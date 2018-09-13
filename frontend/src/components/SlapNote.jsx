@@ -2,31 +2,87 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {notes, auth} from "../actions";
+import ReactMde, {ReactMdeTypes, DraftUtil} from "react-mde";
+import * as Showdown from "showdown";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'
+
+export interface AppState {
+	    mdeState: ReactMdeTypes.MdeState;
+}
 
 
-class SlapNote extends Component {
+class SlapNote extends Component<{}, AppState> {
+
+    converter: Showdown.Converter;
+
+	constructor(props) {
+		super(props);
+		    this.converter = new Showdown.Converter({tables: true, simplifiedAutoLink: true});
+	}
+
 	state = {
+		name: "",
 		text: "",
 		updateNoteId: null,
+		mdeState: null,
 	}
 
 	resetForm = () => {
-		this.setState({text: "", updateNoteId: null});
+		this.setState({mdeState: null, updateNoteId: null, name: ""});
 	}
 
 	selectForEdit = (id) => {
 		let note = this.props.notes[id];
-		this.setState({text: note.text, updateNoteId: id});
+		this.setState({updateNoteId: id, name: note.name});
+		let { mdeState } = this.state;
+		let newDraftState= DraftUtil.buildNewDraftState(
+			mdeState.draftEditorState,
+			{
+				selection: {
+					start: 0,
+					end: 0
+				},
+			text: note.text
+			}
+		);
+		this.setState({
+			mdeState: {
+				markdown: note.text,
+			    html: this.generateMarkdownPreview,
+			    draftEditorState: newDraftState
+			}
+		});
 	}
 
 	submitNote = (e) => {
 		e.preventDefault();
 		if (this.state.updateNoteId === null) {
-			this.props.addNote(this.state.text).then(this.resetForm)
+			this.props.addNote(this.state.mdeState.markdown, this.state.name).then(this.resetForm)
 		} else {
-			this.props.updateNote(this.state.updateNoteId, this.state.text).then(this.resetForm);
+			this.props.updateNote(this.state.updateNoteId, this.state.mdeState.markdown, this.state.name).then(this.resetForm);
 		}
 		this.resetForm();
+	}
+
+	selectForDelete = (id) => {
+		confirmAlert({
+			title: 'Confirm to submit',
+			message: 'Are you sure to do this.',
+			buttons: [
+				{
+					label: 'Yes',
+					onClick: () => {this.props.deleteNote(id), this.resetForm()}
+				},
+				{
+					label: 'No',
+				}
+			]
+		})
+	};
+
+    handleValueChange = (mdeState: ReactMdeTypes.MdeState) => {
+		this.setState({mdeState});
 	}
 
 	componentDidMount() {
@@ -36,33 +92,44 @@ class SlapNote extends Component {
 	render() {
 		return (
 			<div>
-				<h2>Welcome to <span>👋</span>Note!</h2>
+				<h2><span role="img">👋</span>note!</h2>
 				<hr/>
 			    <div style={{textAlign: "right"}}>
 			    	{this.props.user.username} (<a onClick={this.props.logout}>logout</a>)
 			    </div>
-				<h3>Add new note</h3>
-				<form onSubmit={this.submitNote}>
-					<input
-					    value={this.state.text}
-					    placeholder="Enter note here..."
-					    onChange={(e) => this.setState({text: e.target.value})}
-				    required />
-					<button onClick={this.resetForm}>Reset</button>
-					<input type="submit" value="Save Note" />
-				</form>
-		        <h3>Notes</h3>
-				<table>
-					<tbody>
-						{this.props.notes.map((note, id) => (
-							<tr key={`note_${id}`}>
-								<td>{note.text}</td>
-								<td><button onClick={() => this.selectForEdit(id)}>edit</button></td>
-								<td><button onClick={() => this.props.deleteNote(id)}>delete</button></td>
-							</tr>
-						))}
-					</tbody>
-				</table>
+				<div className="row">
+					<div className="col-md-3">
+						<h3>Notes</h3>
+						<table>
+							<tbody>
+								{this.props.notes.map((note, id) => (
+									<tr key={`note_${id}`}>
+										<td><a href="#!" onClick={() => this.selectForDelete(id)}><span role="img">🗑️</span></a></td>
+										<td><a href="#!" onClick={() => this.selectForEdit(id)}>{note.name}</a></td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+					<div className="col-md-9">
+						<form onSubmit={this.submitNote}>
+							<input
+								className="form-control"
+								value={this.state.name}
+								placeholder="Enter name here..."
+								onChange={(e) => this.setState({name: e.target.value})}
+							required />
+							<ReactMde
+								onChange={this.handleValueChange}
+								editorState={this.state.mdeState}
+								generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
+								layout="horizontal"
+							/>
+							<button onClick={this.resetForm}>Reset</button>
+							<input type="submit" value="Save Note" />
+						</form>
+					</div>
+				</div>
 				<p>
 					<Link to="/contact">Click Here</Link> to contact us!
 				</p>
@@ -83,11 +150,11 @@ const mapDispatchToProps = dispatch => {
 		fetchNotes: () => {
 			dispatch(notes.fetchNotes());
 	    },
-		addNote: (text) => {
-			return dispatch(notes.addNote(text));
+		addNote: (text, name) => {
+			return dispatch(notes.addNote(text, name));
 		},
-		updateNote: (id, text) => {
-		    return dispatch(notes.updateNote(id, text));
+		updateNote: (id, text, name) => {
+		    return dispatch(notes.updateNote(id, text, name));
 		},
 		deleteNote: (id) => {
 		    dispatch(notes.deleteNote(id));

@@ -29,7 +29,7 @@ export const fetchNotes = () => {
 	}
 }
 
-export const addNote = text => {
+export const addNote = (text, name) => {
 	return (dispatch, getState) => {
 		let headers = {"Content-Type": "application/json"};
 		let {token} = getState().auth;
@@ -38,7 +38,7 @@ export const addNote = text => {
 			headers["Authorization"] = `Token ${token}`;
 		}
 
-		let body = JSON.stringify({text, });
+		let body = JSON.stringify({text, name});
 		return fetch("/api/notes/", {headers, method: "POST", body})
 			.then(res => {
 				if (res.status < 500) {
@@ -61,7 +61,7 @@ export const addNote = text => {
 	}
 }
 
-export const updateNote = (index, text) => {
+export const updateNote = (index, text, name) => {
 	return (dispatch, getState) => {
 
 		let headers = {"Content-Type": "application/json"};
@@ -71,7 +71,7 @@ export const updateNote = (index, text) => {
 			headers["Authorization"] = `Token ${token}`;
 		}
 
-		let body = JSON.stringify({text, });
+		let body = JSON.stringify({text, name});
 		let noteId = getState().notes[index].id;
 
 		return fetch(`/api/notes/${noteId}/`, {headers, method: "PUT", body})

@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Note
-        fields = ('id', 'text', )
+        fields = ('id', 'text', 'name', )
 
 class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:

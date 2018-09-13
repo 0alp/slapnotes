@@ -4,11 +4,8 @@ from rest_framework.response import Response
 from knox.models import AuthToken
 from .serializers import (NoteSerializer, CreateUserSerializer, 
         UserSerializer, LoginUserSerializer)
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
 
 
-#@method_decorator(csrf_exempt, name='dispatch')
 class NoteViewSet(viewsets.ModelViewSet):
     serializer_class = NoteSerializer
     permission_classes = [permissions.IsAuthenticated, ]
@@ -19,7 +16,6 @@ class NoteViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
-#@method_decorator(csrf_exempt, name='post')
 class RegistrationAPI(generics.GenericAPIView):
     serializer_class = CreateUserSerializer
 

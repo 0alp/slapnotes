@@ -1,8 +1,10 @@
-@import url("css/normalize.css");
-@import url("css/sakura.css");
+/*@import url("css/normalize.css");
+@import url("css/sakura.css");*/
+@import url('../node_modules/react-mde/lib/styles/css/react-mde-all.css');
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 20px;
   font-family: sans-serif;
+  min-width: 100%
 }
