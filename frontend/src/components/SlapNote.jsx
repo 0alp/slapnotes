@@ -67,8 +67,7 @@ class SlapNote extends Component<{}, AppState> {
 
 	selectForDelete = (id) => {
 		confirmAlert({
-			title: 'Confirm to submit',
-			message: 'Are you sure to do this.',
+			message: 'Do you really want to delete this note? This action cannot be undone.',
 			buttons: [
 				{
 					label: 'Yes',
@@ -91,12 +90,12 @@ class SlapNote extends Component<{}, AppState> {
 
 	render() {
 		return (
-			<div>
+			<div className="container-fluid">
+			    <div style={{float: "right"}}>
+			    	{this.props.user.username} (<a href="#!" onClick={this.props.logout}>logout</a>)
+			    </div>
 				<h2><span role="img">👋</span>note!</h2>
 				<hr/>
-			    <div style={{textAlign: "right"}}>
-			    	{this.props.user.username} (<a onClick={this.props.logout}>logout</a>)
-			    </div>
 				<div className="row">
 					<div className="col-md-3">
 						<h3>Notes</h3>
@@ -113,20 +112,30 @@ class SlapNote extends Component<{}, AppState> {
 					</div>
 					<div className="col-md-9">
 						<form onSubmit={this.submitNote}>
-							<input
-								className="form-control"
-								value={this.state.name}
-								placeholder="Enter name here..."
-								onChange={(e) => this.setState({name: e.target.value})}
-							required />
-							<ReactMde
-								onChange={this.handleValueChange}
-								editorState={this.state.mdeState}
-								generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
-								layout="horizontal"
-							/>
-							<button onClick={this.resetForm}>Reset</button>
-							<input type="submit" value="Save Note" />
+							<fieldset>
+								<div className="form-group">
+								<input
+									className="form-control"
+									value={this.state.name}
+									placeholder="Enter name here..."
+									onChange={(e) => this.setState({name: e.target.value})}
+								required />
+								</div>
+								<div className="form-group">
+									<ReactMde
+										onChange={this.handleValueChange}
+										editorState={this.state.mdeState}
+										generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
+										layout="horizontal"
+									/>
+								</div>
+								<div className="form-group">
+									<button onClick={this.resetForm}>Reset</button>
+								</div>
+								<div className="form-group">
+									<input type="submit" value="Save Note" />
+								</div>
+							</fieldset>
 						</form>
 					</div>
 				</div>

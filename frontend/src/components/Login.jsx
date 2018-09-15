@@ -20,37 +20,45 @@ class Login extends Component {
 			return <Redirect to="/" />
 		}
 		return (
-			<form onSubmit={this.onSubmit}>
-				<fieldset>	
-					<legend>Login</legend>
-					{this.props.errors.length > 0 && (
-	              		<ul>
-	                		{this.props.errors.map(error => (
-						    	<li key={error.field}>{error.message}</li>
-							))}
-	              		</ul>
-		            )}		
-					<p>
-						<label htmlFor="username">Username</label>
-						<input
-						type="text" id="username"
-						onChange={e => this.setState({username: e.target.value})} />
-					</p>
-					<p>
-						<label htmlFor="password">Password</label>
-						<input
-						type="password" id="password"
-						onChange={e => this.setState({password: e.target.value})} />
-					</p>
-					<p>
-						<button type="submit">Login</button>
-					</p>
+			<div className="containeri-fluid">
+				<div className="row text-center justify-content-center">
+					<div className="col-md-6 col-sm-12">
+						<form onSubmit={this.onSubmit}>
+							<fieldset>	
+								<legend>Login</legend>
+								{this.props.errors.length > 0 && (
+									<div>
+										{this.props.errors.map(error => (
+										<div className="alert alert-danger" role="alert" key={error.field}>{error.message}</div>
+										))}
+									</div>
+								)}		
+								<p>
+									<label htmlFor="username">Username</label>
+									<input
+									className="form-control"
+									type="text" id="username"
+									onChange={e => this.setState({username: e.target.value})} />
+								</p>
+								<p>
+									<label htmlFor="password">Password</label>
+									<input
+									className="form-control"
+									type="password" id="password"
+									onChange={e => this.setState({password: e.target.value})} />
+								</p>
+								<p>
+									<button type="button submit" className="btn btn-primary">Login</button>
+								</p>
 
-					<p>
-						Don't have an account? <Link to="/register">Register</Link>
-					</p>
-				</fieldset>
-			</form>
+								<p>
+									Don't have an account? <Link to="/register">Register</Link>
+								</p>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
 		)
 	}
 }

@@ -10,11 +10,12 @@ class Login extends Component {
 	state = {
 		username: "",
 		password: "",
+		email: "",
 	}
 
 	onSubmit = e => {
 		e.preventDefault();
-		this.props.register(this.state.username, this.state.password);
+		this.props.register(this.state.username, this.state.password, this.state.email);
 	}
 
 	render() {
@@ -22,37 +23,53 @@ class Login extends Component {
 			return <Redirect to="/" />
 		}
 		return (
-			<form onSubmit={this.onSubmit}>
-				<fieldset>
-					<legend>Register</legend>
-					{this.props.errors.length > 0 && (
-						<ul>
-							{this.props.errors.map(error => (
-							<li key={error.field}>{error.message}</li>
-							))}
-						</ul>
-					)}
-					<p>
-						<label htmlFor="username">Username</label>
-						<input
-						type="text" id="username"
-						onChange={e => this.setState({username: e.target.value})} />
-					</p>
-					<p>
-						<label htmlFor="password">Password</label>
-						<input
-						type="password" id="password"
-						onChange={e => this.setState({password: e.target.value})} />
-					</p>
-					<p>
-						<button type="submit">Register</button>
-					</p>
+			<div className="containeri-fluid">
+				<div className="row text-center justify-content-center">
+					<div className="col-md-6 col-sm-12">
+						<form onSubmit={this.onSubmit}>
+							<fieldset>
+								<legend>Register</legend>
+								{this.props.errors.length > 0 && (
+									<div>
+										{this.props.errors.map(error => (
+										<div className="alert alert-danger" role="alert" key={error.field}>{error.message}</div>
+										))}
+									</div>
+								)}
+								<p>
+									<label htmlFor="username">Username</label>
+									<input
+									type="text" id="username"
+									className="form-control"
+									onChange={e => this.setState({username: e.target.value})} />
+								</p>
+								<p>
+									<label htmlFor="password">Password</label>
+									<input
+									type="password" id="password"
+									className="form-control"
+									onChange={e => this.setState({password: e.target.value})} />
+								</p>
+								<p>
+									<label htmlFor="email">Email</label>
+									<input
+									type="email" id="email"
+									className="form-control"
+									onChange={e => this.setState({email: e.target.value})} />
+								</p>
 
-					<p>
-						Already have an account? <Link to="/login">Login</Link>
-					</p>
-				</fieldset>	
-			</form>
+								<p>
+									<button type="button submit" className="btn btn-primary">Register</button>
+								</p>
+
+								<p>
+									Already have an account? <Link to="/login">Login</Link>
+								</p>
+							</fieldset>	
+						</form>
+					</div>
+				</div>
+			</div>
 		)
 	}
 }
@@ -72,7 +89,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		register: (username, password) => dispatch(auth.register(username, password)),
+		register: (username, password, email) => dispatch(auth.register(username, password, email)),
 	};
 }
 

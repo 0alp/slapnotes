@@ -11,12 +11,19 @@ class NoteSerializer(serializers.ModelSerializer):
 class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'password')
+        fields = ('id', 'username', 'password', 'email')
         extra_kwargs = {'password': {'write_only': True}}
+        unique_together = ('email',)
+
+    def validate_email(self, value):
+        norm_email = value.lower()
+        if User.objects.filter(email=norm_email).exists():
+            raise serializers.ValidationError("A user with that email address already exists.")
+        return norm_email
 
     def create(self, validated_data):
         user = User.objects.create_user(validated_data['username'],
-            None,
+            validated_data['email'],
             validated_data['password'])
 
         return user
