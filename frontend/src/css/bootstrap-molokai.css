@@ -1,0 +1,807 @@
+.darkscheme html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+.darkscheme mark {
+  background: #ff0;
+  color: #000;
+}
+.darkscheme @media print {
+  * {
+    text-shadow: none !important;
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+  select {
+    background: #fff !important;
+  }
+  .navbar {
+    display: none;
+  }
+  .table td,
+  .table th {
+    background-color: #fff !important;
+  }
+  .btn > .caret,
+  .dropup > .btn > .caret {
+    border-top-color: #000 !important;
+  }
+  .label {
+    border: 1px solid #000;
+  }
+  .table {
+    border-collapse: collapse !important;
+  }
+  .table-bordered th,
+  .table-bordered td {
+    border: 1px solid #ddd !important;
+  }
+}
+.darkscheme html {
+  font-size: 62.5%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.darkscheme {
+  color: #f8f8f0;
+  background-color: #1b1d1e;
+}
+.darkscheme input,
+.darkscheme button,
+.darkscheme select,
+.darkscheme textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+.darkscheme a {
+  color: #a6e22e;
+  text-decoration: none;
+}
+.darkscheme a:hover,
+.darkscheme a:focus {
+  color: #7aac18;
+  text-decoration: underline;
+}
+.darkscheme a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.darkscheme figure {
+  margin: 0;
+}
+.darkscheme img {
+  vertical-align: middle;
+}
+.darkscheme .img-responsive,
+.darkscheme .thumbnail > img,
+.darkscheme .thumbnail a > img,
+.darkscheme .carousel-inner > .item > img,
+.darkscheme .carousel-inner > .item > a > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.darkscheme .img-rounded {
+  border-radius: 6px;
+}
+.darkscheme .img-thumbnail {
+  padding: 4px;
+  line-height: 1.42857143;
+  background-color: #1b1d1e;
+  border: 1px solid #f8f8f0;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
+.darkscheme .img-circle {
+  border-radius: 50%;
+}
+.darkscheme hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #bcbcbc;
+}
+.darkscheme .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.darkscheme h1,
+.darkscheme h2,
+.darkscheme h3,
+.darkscheme h4,
+.darkscheme h5,
+.darkscheme h6,
+.darkscheme .h1,
+.darkscheme .h2,
+.darkscheme .h3,
+.darkscheme .h4,
+.darkscheme .h5,
+.darkscheme .h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #f92672;
+}
+.darkscheme h1 small,
+.darkscheme h2 small,
+.darkscheme h3 small,
+.darkscheme h4 small,
+.darkscheme h5 small,
+.darkscheme h6 small,
+.darkscheme .h1 small,
+.darkscheme .h2 small,
+.darkscheme .h3 small,
+.darkscheme .h4 small,
+.darkscheme .h5 small,
+.darkscheme .h6 small,
+.darkscheme h1 .small,
+.darkscheme h2 .small,
+.darkscheme h3 .small,
+.darkscheme h4 .small,
+.darkscheme h5 .small,
+.darkscheme h6 .small,
+.darkscheme .h1 .small,
+.darkscheme .h2 .small,
+.darkscheme .h3 .small,
+.darkscheme .h4 .small,
+.darkscheme .h5 .small,
+.darkscheme .h6 .small {
+  font-weight: normal;
+  line-height: 1;
+  color: #bcbcbc;
+}
+.darkscheme h1,
+.darkscheme .h1,
+.darkscheme h2,
+.darkscheme .h2,
+.darkscheme h3,
+.darkscheme .h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.darkscheme h1 small,
+.darkscheme .h1 small,
+.darkscheme h2 small,
+.darkscheme .h2 small,
+.darkscheme h3 small,
+.darkscheme .h3 small,
+.darkscheme h1 .small,
+.darkscheme .h1 .small,
+.darkscheme h2 .small,
+.darkscheme .h2 .small,
+.darkscheme h3 .small,
+.darkscheme .h3 .small {
+  font-size: 65%;
+}
+.darkscheme h4,
+.darkscheme .h4,
+.darkscheme h5,
+.darkscheme .h5,
+.darkscheme h6,
+.darkscheme .h6 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.darkscheme h4 small,
+.darkscheme .h4 small,
+.darkscheme h5 small,
+.darkscheme .h5 small,
+.darkscheme h6 small,
+.darkscheme .h6 small,
+.darkscheme h4 .small,
+.darkscheme .h4 .small,
+.darkscheme h5 .small,
+.darkscheme .h5 .small,
+.darkscheme h6 .small,
+.darkscheme .h6 .small {
+  font-size: 75%;
+}
+.darkscheme h1,
+.darkscheme .h1 {
+  font-size: 36px;
+}
+.darkscheme h2,
+.darkscheme .h2 {
+  font-size: 30px;
+}
+.darkscheme h3,
+.darkscheme .h3 {
+  font-size: 24px;
+}
+.darkscheme h4,
+.darkscheme .h4 {
+  font-size: 18px;
+}
+.darkscheme h5,
+.darkscheme .h5 {
+  font-size: 14px;
+}
+.darkscheme h6,
+.darkscheme .h6 {
+  font-size: 12px;
+}
+.darkscheme p {
+  margin: 0 0 10px;
+}
+.darkscheme .lead {
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 200;
+  line-height: 1.4;
+}
+.darkscheme @media (min-width: 768px) {
+  .lead {
+    font-size: 21px;
+  }
+}
+.darkscheme small,
+.darkscheme .small {
+  font-size: 85%;
+}
+.darkscheme cite {
+  font-style: normal;
+}
+.darkscheme .text-left {
+  text-align: left;
+}
+.darkscheme .text-right {
+  text-align: right;
+}
+.darkscheme .text-center {
+  text-align: center;
+}
+.darkscheme .text-justify {
+  text-align: justify;
+}
+.darkscheme .text-muted {
+  color: #808080;
+}
+.darkscheme .text-primary {
+  color: #f92672;
+}
+.darkscheme a.text-primary:hover {
+  color: #e60657;
+}
+.darkscheme .text-success {
+  color: #a6e22e;
+}
+.darkscheme a.text-success:hover {
+  color: #8ac21b;
+}
+.darkscheme .text-info {
+  color: #66d9ef;
+}
+.darkscheme a.text-info:hover {
+  color: #38ceea;
+}
+.darkscheme .text-warning {
+  color: #fd971f;
+}
+.darkscheme a.text-warning:hover {
+  color: #e77e02;
+}
+.darkscheme .text-danger {
+  color: #ff0000;
+}
+.darkscheme a.text-danger:hover {
+  color: #cc0000;
+}
+.darkscheme .bg-primary {
+  color: #fff;
+  background-color: #f92672;
+}
+.darkscheme a.bg-primary:hover {
+  background-color: #e60657;
+}
+.darkscheme .bg-success {
+  background-color: #080800;
+}
+.darkscheme a.bg-success:hover {
+  background-color: #000000;
+}
+.darkscheme .bg-info {
+  background-color: #080800;
+}
+.darkscheme a.bg-info:hover {
+  background-color: #000000;
+}
+.darkscheme .bg-warning {
+  background-color: #080800;
+}
+.darkscheme a.bg-warning:hover {
+  background-color: #000000;
+}
+.darkscheme .bg-danger {
+  background-color: #080800;
+}
+.darkscheme a.bg-danger:hover {
+  background-color: #000000;
+}
+.darkscheme .page-header {
+  padding-bottom: 9px;
+  margin: 40px 0 20px;
+  border-bottom: 1px solid #bcbcbc;
+}
+.darkscheme ul,
+.darkscheme ol {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.darkscheme ul ul,
+.darkscheme ol ul,
+.darkscheme ul ol,
+.darkscheme ol ol {
+  margin-bottom: 0;
+}
+.darkscheme .list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+.darkscheme .list-inline {
+  padding-left: 0;
+  list-style: none;
+  margin-left: -5px;
+}
+.darkscheme .list-inline > li {
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.darkscheme dl {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+.darkscheme dt,
+.darkscheme dd {
+  line-height: 1.42857143;
+}
+.darkscheme dt {
+  font-weight: bold;
+}
+.darkscheme dd {
+  margin-left: 0;
+}
+.darkscheme @media (min-width: 768px) {
+  .dl-horizontal dt {
+    float: left;
+    width: 160px;
+    clear: left;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .dl-horizontal dd {
+    margin-left: 180px;
+  }
+}
+.darkscheme abbr[title],
+.darkscheme abbr[data-original-title] {
+  cursor: help;
+  border-bottom: 1px dotted #808080;
+}
+.darkscheme .initialism {
+  font-size: 90%;
+  text-transform: uppercase;
+}
+.darkscheme blockquote {
+  padding: 10px 20px;
+  margin: 0 0 20px;
+  font-size: 17.5px;
+  border-left: 5px solid #bcbcbc;
+}
+.darkscheme blockquote p:last-child,
+.darkscheme blockquote ul:last-child,
+.darkscheme blockquote ol:last-child {
+  margin-bottom: 0;
+}
+.darkscheme blockquote footer,
+.darkscheme blockquote small,
+.darkscheme blockquote .small {
+  display: block;
+  font-size: 80%;
+  line-height: 1.42857143;
+  color: #808080;
+}
+.darkscheme blockquote footer:before,
+.darkscheme blockquote small:before,
+.darkscheme blockquote .small:before {
+  content: '\2014 \00A0';
+}
+.darkscheme .blockquote-reverse,
+.darkscheme blockquote.pull-right {
+  padding-right: 15px;
+  padding-left: 0;
+  border-right: 5px solid #bcbcbc;
+  border-left: 0;
+  text-align: right;
+}
+.darkscheme .blockquote-reverse footer:before,
+.darkscheme blockquote.pull-right footer:before,
+.darkscheme .blockquote-reverse small:before,
+.darkscheme blockquote.pull-right small:before,
+.darkscheme .blockquote-reverse .small:before,
+.darkscheme blockquote.pull-right .small:before {
+  content: '';
+}
+.darkscheme .blockquote-reverse footer:after,
+.darkscheme blockquote.pull-right footer:after,
+.darkscheme .blockquote-reverse small:after,
+.darkscheme blockquote.pull-right small:after,
+.darkscheme .blockquote-reverse .small:after,
+.darkscheme blockquote.pull-right .small:after {
+  content: '\00A0 \2014';
+}
+.darkscheme blockquote:before,
+.darkscheme blockquote:after {
+  content: "";
+}
+.darkscheme address {
+  margin-bottom: 20px;
+  font-style: normal;
+  line-height: 1.42857143;
+}
+.darkscheme code,
+.darkscheme kbd,
+.darkscheme pre,
+.darkscheme samp {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+.darkscheme code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #fd971f;
+  background-color: #293739;
+  white-space: nowrap;
+  border-radius: 4px;
+}
+.darkscheme kbd {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #f8f8f0;
+  background-color: #232526;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.darkscheme pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  word-break: break-all;
+  word-wrap: break-word;
+  color: #e6db74;
+  background-color: #272822;
+  border: 1px solid #0c0c0b;
+  border-radius: 4px;
+}
+.darkscheme pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  white-space: pre-wrap;
+  background-color: transparent;
+  border-radius: 0;
+}
+.darkscheme .table > thead > tr > th,
+.darkscheme .table > tbody > tr > th,
+.darkscheme .table > tfoot > tr > th,
+.darkscheme .table > thead > tr > td,
+.darkscheme .table > tbody > tr > td,
+.darkscheme .table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #293739;
+}
+.darkscheme .table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #293739;
+}
+.darkscheme .table > caption + thead > tr:first-child > th,
+.darkscheme .table > colgroup + thead > tr:first-child > th,
+.darkscheme .table > thead:first-child > tr:first-child > th,
+.darkscheme .table > caption + thead > tr:first-child > td,
+.darkscheme .table > colgroup + thead > tr:first-child > td,
+.darkscheme .table > thead:first-child > tr:first-child > td {
+  border-top: 0;
+}
+.darkscheme .table > tbody + tbody {
+  border-top: 2px solid #293739;
+}
+.darkscheme .table .table {
+  background-color: #1b1d1e;
+}
+.darkscheme .table-bordered {
+  border: 1px solid #293739;
+}
+.darkscheme .table-bordered > thead > tr > th,
+.darkscheme .table-bordered > tbody > tr > th,
+.darkscheme .table-bordered > tfoot > tr > th,
+.darkscheme .table-bordered > thead > tr > td,
+.darkscheme .table-bordered > tbody > tr > td,
+.darkscheme .table-bordered > tfoot > tr > td {
+  border: 1px solid #293739;
+}
+.darkscheme .table-striped > tbody > tr:nth-child(odd) > td,
+.darkscheme .table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #272a2b;
+}
+.darkscheme .table-hover > tbody > tr:hover > td,
+.darkscheme .table-hover > tbody > tr:hover > th {
+  background-color: #293739;
+}
+.darkscheme .table > thead > tr > td.active,
+.darkscheme .table > tbody > tr > td.active,
+.darkscheme .table > tfoot > tr > td.active,
+.darkscheme .table > thead > tr > th.active,
+.darkscheme .table > tbody > tr > th.active,
+.darkscheme .table > tfoot > tr > th.active,
+.darkscheme .table > thead > tr.active > td,
+.darkscheme .table > tbody > tr.active > td,
+.darkscheme .table > tfoot > tr.active > td,
+.darkscheme .table > thead > tr.active > th,
+.darkscheme .table > tbody > tr.active > th,
+.darkscheme .table > tfoot > tr.active > th {
+  background-color: #f92672;
+}
+.darkscheme .table-hover > tbody > tr > td.active:hover,
+.darkscheme .table-hover > tbody > tr > th.active:hover,
+.darkscheme .table-hover > tbody > tr.active:hover > td,
+.darkscheme .table-hover > tbody > tr.active:hover > th {
+  background-color: #f80d62;
+}
+.darkscheme .table > thead > tr > td.success,
+.darkscheme .table > tbody > tr > td.success,
+.darkscheme .table > tfoot > tr > td.success,
+.darkscheme .table > thead > tr > th.success,
+.darkscheme .table > tbody > tr > th.success,
+.darkscheme .table > tfoot > tr > th.success,
+.darkscheme .table > thead > tr.success > td,
+.darkscheme .table > tbody > tr.success > td,
+.darkscheme .table > tfoot > tr.success > td,
+.darkscheme .table > thead > tr.success > th,
+.darkscheme .table > tbody > tr.success > th,
+.darkscheme .table > tfoot > tr.success > th {
+  background-color: #080800;
+}
+.darkscheme .table-hover > tbody > tr > td.success:hover,
+.darkscheme .table-hover > tbody > tr > th.success:hover,
+.darkscheme .table-hover > tbody > tr.success:hover > td,
+.darkscheme .table-hover > tbody > tr.success:hover > th {
+  background-color: #000000;
+}
+.darkscheme .table > thead > tr > td.info,
+.darkscheme .table > tbody > tr > td.info,
+.darkscheme .table > tfoot > tr > td.info,
+.darkscheme .table > thead > tr > th.info,
+.darkscheme .table > tbody > tr > th.info,
+.darkscheme .table > tfoot > tr > th.info,
+.darkscheme .table > thead > tr.info > td,
+.darkscheme .table > tbody > tr.info > td,
+.darkscheme .table > tfoot > tr.info > td,
+.darkscheme .table > thead > tr.info > th,
+.darkscheme .table > tbody > tr.info > th,
+.darkscheme .table > tfoot > tr.info > th {
+  background-color: #080800;
+}
+.darkscheme .table-hover > tbody > tr > td.info:hover,
+.darkscheme .table-hover > tbody > tr > th.info:hover,
+.darkscheme .table-hover > tbody > tr.info:hover > td,
+.darkscheme .table-hover > tbody > tr.info:hover > th {
+  background-color: #000000;
+}
+.darkscheme .table > thead > tr > td.warning,
+.darkscheme .table > tbody > tr > td.warning,
+.darkscheme .table > tfoot > tr > td.warning,
+.darkscheme .table > thead > tr > th.warning,
+.darkscheme .table > tbody > tr > th.warning,
+.darkscheme .table > tfoot > tr > th.warning,
+.darkscheme .table > thead > tr.warning > td,
+.darkscheme .table > tbody > tr.warning > td,
+.darkscheme .table > tfoot > tr.warning > td,
+.darkscheme .table > thead > tr.warning > th,
+.darkscheme .table > tbody > tr.warning > th,
+.darkscheme .table > tfoot > tr.warning > th {
+  background-color: #080800;
+}
+.darkscheme .table-hover > tbody > tr > td.warning:hover,
+.darkscheme .table-hover > tbody > tr > th.warning:hover,
+.darkscheme .table-hover > tbody > tr.warning:hover > td,
+.darkscheme .table-hover > tbody > tr.warning:hover > th {
+  background-color: #000000;
+}
+.darkscheme .table > thead > tr > td.danger,
+.darkscheme .table > tbody > tr > td.danger,
+.darkscheme .table > tfoot > tr > td.danger,
+.darkscheme .table > thead > tr > th.danger,
+.darkscheme .table > tbody > tr > th.danger,
+.darkscheme .table > tfoot > tr > th.danger,
+.darkscheme .table > thead > tr.danger > td,
+.darkscheme .table > tbody > tr.danger > td,
+.darkscheme .table > tfoot > tr.danger > td,
+.darkscheme .table > thead > tr.danger > th,
+.darkscheme .table > tbody > tr.danger > th,
+.darkscheme .table > tfoot > tr.danger > th {
+  background-color: #080800;
+}
+.darkscheme .table-hover > tbody > tr > td.danger:hover,
+.darkscheme .table-hover > tbody > tr > th.danger:hover,
+.darkscheme .table-hover > tbody > tr.danger:hover > td,
+.darkscheme .table-hover > tbody > tr.danger:hover > th {
+  background-color: #000000;
+}
+.darkscheme legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 20px;
+  font-size: 21px;
+  line-height: inherit;
+  color: #808080;
+  border: 0;
+  border-bottom: 1px solid #293739;
+}
+.darkscheme /* Molokai Customizations */
+.darkscheme /* Fix Colors of Table Rows with Form States */
+.darkscheme .table > thead > tr > td.success,
+.darkscheme .table > tbody > tr > td.success,
+.darkscheme .table > tfoot > tr > td.success,
+.darkscheme .table > thead > tr > th.success,
+.darkscheme .table > tbody > tr > th.success,
+.darkscheme .table > tfoot > tr > th.success,
+.darkscheme .table > thead > tr.success > td,
+.darkscheme .table > tbody > tr.success > td,
+.darkscheme .table > tfoot > tr.success > td,
+.darkscheme .table > thead > tr.success > th,
+.darkscheme .table > tbody > tr.success > th,
+.darkscheme .table > tfoot > tr.success > th {
+  background-color: #8ac21b;
+}
+.darkscheme .table-hover > tbody > tr > td.success:hover,
+.darkscheme .table-hover > tbody > tr > th.success:hover,
+.darkscheme .table-hover > tbody > tr.success:hover > td,
+.darkscheme .table-hover > tbody > tr.success:hover > th {
+  background-color: #7aac18;
+}
+.darkscheme .table > thead > tr > td.info,
+.darkscheme .table > tbody > tr > td.info,
+.darkscheme .table > tfoot > tr > td.info,
+.darkscheme .table > thead > tr > th.info,
+.darkscheme .table > tbody > tr > th.info,
+.darkscheme .table > tfoot > tr > th.info,
+.darkscheme .table > thead > tr.info > td,
+.darkscheme .table > tbody > tr.info > td,
+.darkscheme .table > tfoot > tr.info > td,
+.darkscheme .table > thead > tr.info > th,
+.darkscheme .table > tbody > tr.info > th,
+.darkscheme .table > tfoot > tr.info > th {
+  background-color: #38ceea;
+}
+.darkscheme .table-hover > tbody > tr > td.info:hover,
+.darkscheme .table-hover > tbody > tr > th.info:hover,
+.darkscheme .table-hover > tbody > tr.info:hover > td,
+.darkscheme .table-hover > tbody > tr.info:hover > th {
+  background-color: #21c8e8;
+}
+.darkscheme .table > thead > tr > td.warning,
+.darkscheme .table > tbody > tr > td.warning,
+.darkscheme .table > tfoot > tr > td.warning,
+.darkscheme .table > thead > tr > th.warning,
+.darkscheme .table > tbody > tr > th.warning,
+.darkscheme .table > tfoot > tr > th.warning,
+.darkscheme .table > thead > tr.warning > td,
+.darkscheme .table > tbody > tr.warning > td,
+.darkscheme .table > tfoot > tr.warning > td,
+.darkscheme .table > thead > tr.warning > th,
+.darkscheme .table > tbody > tr.warning > th,
+.darkscheme .table > tfoot > tr.warning > th {
+  background-color: #e77e02;
+}
+.darkscheme .table-hover > tbody > tr > td.warning:hover,
+.darkscheme .table-hover > tbody > tr > th.warning:hover,
+.darkscheme .table-hover > tbody > tr.warning:hover > td,
+.darkscheme .table-hover > tbody > tr.warning:hover > th {
+  background-color: #ce7002;
+}
+.darkscheme .table > thead > tr > td.danger,
+.darkscheme .table > tbody > tr > td.danger,
+.darkscheme .table > tfoot > tr > td.danger,
+.darkscheme .table > thead > tr > th.danger,
+.darkscheme .table > tbody > tr > th.danger,
+.darkscheme .table > tfoot > tr > th.danger,
+.darkscheme .table > thead > tr.danger > td,
+.darkscheme .table > tbody > tr.danger > td,
+.darkscheme .table > tfoot > tr.danger > td,
+.darkscheme .table > thead > tr.danger > th,
+.darkscheme .table > tbody > tr.danger > th,
+.darkscheme .table > tfoot > tr.danger > th {
+  background-color: #cc0000;
+}
+.darkscheme .table-hover > tbody > tr > td.danger:hover,
+.darkscheme .table-hover > tbody > tr > th.danger:hover,
+.darkscheme .table-hover > tbody > tr.danger:hover > td,
+.darkscheme .table-hover > tbody > tr.danger:hover > th {
+  background-color: #b30000;
+}
+.darkscheme tr.active,
+.darkscheme tr.warning,
+.darkscheme tr.info,
+.darkscheme tr.danger,
+.darkscheme tr.success {
+  color: #080800;
+}
+.darkscheme tr.active a,
+.darkscheme tr.warning a,
+.darkscheme tr.info a,
+.darkscheme tr.danger a,
+.darkscheme tr.success a {
+  color: #080800;
+}
+.darkscheme td.active,
+.darkscheme td.warning,
+.darkscheme td.info,
+.darkscheme td.danger,
+.darkscheme td.success {
+  color: #080800;
+}
+.darkscheme td.active a,
+.darkscheme td.warning a,
+.darkscheme td.info a,
+.darkscheme td.danger a,
+.darkscheme td.success a {
+  color: #080800;
+}

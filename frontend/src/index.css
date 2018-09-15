@@ -1,10 +1,92 @@
-/*@import url("css/normalize.css");
-@import url("css/sakura.css");*/
+@import url('https://fonts.googleapis.com/css?family=Cutive+Mono');
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+@import url('./css/bootstrap-molokai.css');
+@import url('./css/solarized-light.css');
 @import url('../node_modules/react-mde/lib/styles/css/react-mde-all.css');
 
+
+:root {
+	--darkblue: #5680E9;
+	--aqua: #84CEEB;
+	--lightblue: #5AB9EA;
+	--gray: #C1C8E4;
+	--purple: #8860D0;
+}
+
+
 body {
-  margin: 0;
-  padding: 20px;
-  font-family: sans-serif;
-  min-width: 100%
+	margin: 0;
+	padding: 20px;
+	font-family: sans-serif;
+	min-width: 100%;
+	font-family: 'Quicksand', sans-serif;
+	background: gray;
+	color: lightblue;
+}
+
+h2 {
+	color: aqua;
+}
+
+a {
+	color: lightblue;
+}
+
+a:hover {
+	color: darkblue;
+}
+
+hr {
+	background: lightblue;
+}
+
+input {
+	background-color: gray !important;
+	color: lightblue !important;
+	border: none;
+	font-size: 1.5em !important;
+}
+
+svg {
+	color: gray
+}
+
+.mde-text {
+	font-family: 'Cutive Mono', monospace;
+	font-size: 1.15em;
+}
+
+.mde-preview a {
+	/* color: cyan !important; */
+}
+.react-mde {
+	border: 1px solid lightblue; 
+	/* background-color: black; */
+}
+
+.mde-header {
+	/* background: lightblue; */
+}
+
+.lightscheme {
+	/* background-color: white; */
+}
+
+.btn-primary{
+	background-color: purple;
+	border: purple;
+}
+
+.btn:hover{
+	background-color: darkblue;
+	border: darkblue;
+}
+
+.btn-default{
+	background-color: lightblue;
+	border: lightblue;
+}
+
+.btn-default:hover{
+	color:white;
 }

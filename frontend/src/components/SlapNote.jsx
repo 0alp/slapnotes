@@ -6,11 +6,11 @@ import ReactMde, {ReactMdeTypes, DraftUtil} from "react-mde";
 import * as Showdown from "showdown";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
+import MediaQuery from 'react-responsive';
 
 export interface AppState {
 	    mdeState: ReactMdeTypes.MdeState;
 }
-
 
 class SlapNote extends Component<{}, AppState> {
 
@@ -26,6 +26,7 @@ class SlapNote extends Component<{}, AppState> {
 		text: "",
 		updateNoteId: null,
 		mdeState: null,
+		lightscheme: false,
 	}
 
 	resetForm = () => {
@@ -97,7 +98,7 @@ class SlapNote extends Component<{}, AppState> {
 				<h2><span role="img">👋</span>note!</h2>
 				<hr/>
 				<div className="row">
-					<div className="col-md-3">
+					<div className="col-md-2">
 						<h3>Notes</h3>
 						<table>
 							<tbody>
@@ -109,8 +110,9 @@ class SlapNote extends Component<{}, AppState> {
 								))}
 							</tbody>
 						</table>
+					<hr className="d-block d-sm-none"/>
 					</div>
-					<div className="col-md-9">
+					<div className="col-md-10">
 						<form onSubmit={this.submitNote}>
 							<fieldset>
 								<div className="form-group">
@@ -122,18 +124,35 @@ class SlapNote extends Component<{}, AppState> {
 								required />
 								</div>
 								<div className="form-group">
-									<ReactMde
-										onChange={this.handleValueChange}
-										editorState={this.state.mdeState}
-										generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
-										layout="horizontal"
-									/>
+									<MediaQuery query="(min-device-width: 576px)">
+										<ReactMde
+											className={this.state.lightscheme ? "lightscheme" : "darkscheme"}
+											onChange={this.handleValueChange}
+											editorState={this.state.mdeState}
+											generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
+											layout="horizontal"
+										/>
+									</MediaQuery>
+									<MediaQuery query="(max-device-width: 576px)">
+										<ReactMde
+											className={this.state.lightscheme ? "lightscheme" : "darkscheme"}
+											onChange={this.handleValueChange}
+											editorState={this.state.mdeState}
+											generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
+										/>
+									</MediaQuery>
 								</div>
-								<div className="form-group">
-									<button onClick={this.resetForm}>Reset</button>
-								</div>
-								<div className="form-group">
-									<input type="submit" value="Save Note" />
+								<div className="d-inline-flex">
+									<div className="form-group justify-content-start p-2">
+										<button type="button submit" className="btn btn-primary" value="Save Note">Save Note</button>
+									</div>
+									<div className="form-group justify-content-start p-2">
+										<button onClick={this.resetForm} type="button" className="btn btn-default">Reset</button>
+										</div>
+									<div className="form-group justify-content-start p-2">
+										<button onClick={()=>this.setState({lightscheme: !this.state.lightscheme})} type="button" className="btn btn-default">Change to {this.state.lightscheme ? "dark" : "light"} colorscheme</button>
+									</div>
+
 								</div>
 							</fieldset>
 						</form>

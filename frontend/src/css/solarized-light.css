@@ -1,0 +1,293 @@
+.lightscheme article,
+.lightscheme aside,
+.lightscheme details,
+.lightscheme figcaption,
+.lightscheme figure,
+.lightscheme footer,
+.lightscheme header,
+.lightscheme hgroup,
+.lightscheme nav,
+.lightscheme section,
+.lightscheme summary {
+  display: block;
+}
+.lightscheme audio,
+.lightscheme canvas,
+.lightscheme video {
+  display: inline-block;
+}
+.lightscheme audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+.lightscheme [hidden] {
+  display: none;
+}
+.lightscheme html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+.lightscheme {
+  color: #657b83;
+}
+.lightscheme a:focus {
+  outline: thin dotted;
+}
+.lightscheme a:active,
+.lightscheme a:hover {
+  outline: 0;
+}
+.lightscheme h1 {
+  font-size: 2em;
+}
+.lightscheme abbr[title] {
+  border-bottom: 1px dotted;
+}
+.lightscheme b,
+.lightscheme strong {
+  font-weight: bold;
+}
+.lightscheme dfn {
+  font-style: italic;
+}
+.lightscheme mark {
+  background: #ff0;
+  color: #000;
+}
+.lightscheme code,
+.lightscheme kbd,
+.lightscheme pre,
+.lightscheme samp {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+.lightscheme pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.lightscheme q {
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+.lightscheme small {
+  font-size: 80%;
+}
+.lightscheme sub,
+.lightscheme sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.lightscheme sup {
+  top: -0.5em;
+}
+.lightscheme sub {
+  bottom: -0.25em;
+}
+.lightscheme img {
+  border: 0;
+}
+.lightscheme svg:not(:root) {
+  overflow: hidden;
+}
+.lightscheme figure {
+  margin: 0;
+}
+.lightscheme fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+.lightscheme legend {
+  border: 0;
+  padding: 0;
+}
+.lightscheme button,
+.lightscheme input,
+.lightscheme select,
+.lightscheme textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+}
+.lightscheme button,
+.lightscheme input {
+  line-height: normal;
+}
+.lightscheme button,
+.lightscheme html input[type="button"],
+.lightscheme input[type="reset"],
+.lightscheme input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+.lightscheme button[disabled],
+.lightscheme input[disabled] {
+  cursor: default;
+}
+.lightscheme input[type="checkbox"],
+.lightscheme input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+.lightscheme input[type="search"] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+.lightscheme input[type="search"]::-webkit-search-cancel-button,
+.lightscheme input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+.lightscheme button::-moz-focus-inner,
+.lightscheme input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+.lightscheme textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+.lightscheme table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.lightscheme html {
+  font-family: 'PT Sans', sans-serif;
+}
+.lightscheme pre,
+.lightscheme code {
+  font-family: 'Inconsolata', sans-serif;
+}
+.lightscheme h1,
+.lightscheme h2,
+.lightscheme h3,
+.lightscheme h4,
+.lightscheme h5,
+.lightscheme h6 {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-weight: 700;
+}
+
+.lightscheme {
+  background-color: #fdf6e3;
+  border: 1pt solid #93a1a1;
+}
+.lightscheme code {
+  background-color: #eee8d5;
+  padding: 2px;
+}
+.lightscheme a {
+  color: #b58900;
+}
+.lightscheme a:visited {
+  color: #cb4b16;
+}
+.lightscheme a:hover {
+  color: #cb4b16;
+}
+.lightscheme h1 {
+  color: #d33682;
+}
+.lightscheme h2,
+.lightscheme h3,
+.lightscheme h4,
+.lightscheme h5,
+.lightscheme h6 {
+  color: #859900;
+}
+.lightscheme pre {
+  background-color: #fdf6e3;
+  color: #657b83;
+  border: 1pt solid #93a1a1;
+  padding: 1em;
+  box-shadow: 5pt 5pt 8pt #eee8d5;
+}
+.lightscheme pre code {
+  background-color: #fdf6e3;
+}
+.lightscheme h1 {
+  font-size: 2.8em;
+}
+.lightscheme h2 {
+  font-size: 2.4em;
+}
+.lightscheme h3 {
+  font-size: 1.8em;
+}
+.lightscheme h4 {
+  font-size: 1.4em;
+}
+.lightscheme h5 {
+  font-size: 1.3em;
+}
+.lightscheme h6 {
+  font-size: 1.15em;
+}
+.lightscheme .tag {
+  background-color: #eee8d5;
+  color: #d33682;
+  padding: 0 0.2em;
+}
+.lightscheme .todo,
+.lightscheme .next,
+.lightscheme .done {
+  color: #fdf6e3;
+  background-color: #dc322f;
+  padding: 0 0.2em;
+}
+.lightscheme .tag {
+  -webkit-border-radius: 0.35em;
+  -moz-border-radius: 0.35em;
+  border-radius: 0.35em;
+}
+.lightscheme .TODO {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #2aa198;
+}
+.lightscheme .NEXT {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #268bd2;
+}
+.lightscheme .ACTIVE {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #268bd2;
+}
+.lightscheme .DONE {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #859900;
+}
+.lightscheme .WAITING {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #cb4b16;
+}
+.lightscheme .HOLD {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #d33682;
+}
+.lightscheme .NOTE {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #d33682;
+}
+.lightscheme .CANCELLED {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  background-color: #859900;
+}

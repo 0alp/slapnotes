@@ -24,6 +24,8 @@ class Login extends Component {
 		}
 		return (
 			<div className="containeri-fluid">
+				<h2><span role="img">👋</span>note!</h2>
+				<hr/>
 				<div className="row text-center justify-content-center">
 					<div className="col-md-6 col-sm-12">
 						<form onSubmit={this.onSubmit}>
