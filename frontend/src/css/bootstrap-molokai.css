@@ -1,13 +1,13 @@
-.darkscheme html {
+.molokai html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
-.darkscheme mark {
+.molokai mark {
   background: #ff0;
   color: #000;
 }
-.darkscheme @media print {
+.molokai @media print {
   * {
     text-shadow: none !important;
     color: #000 !important;
@@ -78,55 +78,55 @@
     border: 1px solid #ddd !important;
   }
 }
-.darkscheme html {
+.molokai html {
   font-size: 62.5%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-.darkscheme {
+.molokai {
   color: #f8f8f0;
   background-color: #1b1d1e;
 }
-.darkscheme input,
-.darkscheme button,
-.darkscheme select,
-.darkscheme textarea {
+.molokai input,
+.molokai button,
+.molokai select,
+.molokai textarea {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
 }
-.darkscheme a {
-  color: #a6e22e;
+.molokai a {
+  color: #a6e22e !important;
   text-decoration: none;
 }
-.darkscheme a:hover,
-.darkscheme a:focus {
+.molokai a:hover,
+.molokai a:focus {
   color: #7aac18;
   text-decoration: underline;
 }
-.darkscheme a:focus {
+.molokai a:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.darkscheme figure {
+.molokai figure {
   margin: 0;
 }
-.darkscheme img {
+.molokai img {
   vertical-align: middle;
 }
-.darkscheme .img-responsive,
-.darkscheme .thumbnail > img,
-.darkscheme .thumbnail a > img,
-.darkscheme .carousel-inner > .item > img,
-.darkscheme .carousel-inner > .item > a > img {
+.molokai .img-responsive,
+.molokai .thumbnail > img,
+.molokai .thumbnail a > img,
+.molokai .carousel-inner > .item > img,
+.molokai .carousel-inner > .item > a > img {
   display: block;
   max-width: 100%;
   height: auto;
 }
-.darkscheme .img-rounded {
+.molokai .img-rounded {
   border-radius: 6px;
 }
-.darkscheme .img-thumbnail {
+.molokai .img-thumbnail {
   padding: 4px;
   line-height: 1.42857143;
   background-color: #1b1d1e;
@@ -138,16 +138,16 @@
   max-width: 100%;
   height: auto;
 }
-.darkscheme .img-circle {
+.molokai .img-circle {
   border-radius: 50%;
 }
-.darkscheme hr {
+.molokai hr {
   margin-top: 20px;
   margin-bottom: 20px;
   border: 0;
   border-top: 1px solid #bcbcbc;
 }
-.darkscheme .sr-only {
+.molokai .sr-only {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -157,263 +157,263 @@
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
-.darkscheme h1,
-.darkscheme h2,
-.darkscheme h3,
-.darkscheme h4,
-.darkscheme h5,
-.darkscheme h6,
-.darkscheme .h1,
-.darkscheme .h2,
-.darkscheme .h3,
-.darkscheme .h4,
-.darkscheme .h5,
-.darkscheme .h6 {
+.molokai h1,
+.molokai h2,
+.molokai h3,
+.molokai h4,
+.molokai h5,
+.molokai h6,
+.molokai .h1,
+.molokai .h2,
+.molokai .h3,
+.molokai .h4,
+.molokai .h5,
+.molokai .h6 {
   font-family: inherit;
   font-weight: 500;
   line-height: 1.1;
   color: #f92672;
 }
-.darkscheme h1 small,
-.darkscheme h2 small,
-.darkscheme h3 small,
-.darkscheme h4 small,
-.darkscheme h5 small,
-.darkscheme h6 small,
-.darkscheme .h1 small,
-.darkscheme .h2 small,
-.darkscheme .h3 small,
-.darkscheme .h4 small,
-.darkscheme .h5 small,
-.darkscheme .h6 small,
-.darkscheme h1 .small,
-.darkscheme h2 .small,
-.darkscheme h3 .small,
-.darkscheme h4 .small,
-.darkscheme h5 .small,
-.darkscheme h6 .small,
-.darkscheme .h1 .small,
-.darkscheme .h2 .small,
-.darkscheme .h3 .small,
-.darkscheme .h4 .small,
-.darkscheme .h5 .small,
-.darkscheme .h6 .small {
+.molokai h1 small,
+.molokai h2 small,
+.molokai h3 small,
+.molokai h4 small,
+.molokai h5 small,
+.molokai h6 small,
+.molokai .h1 small,
+.molokai .h2 small,
+.molokai .h3 small,
+.molokai .h4 small,
+.molokai .h5 small,
+.molokai .h6 small,
+.molokai h1 .small,
+.molokai h2 .small,
+.molokai h3 .small,
+.molokai h4 .small,
+.molokai h5 .small,
+.molokai h6 .small,
+.molokai .h1 .small,
+.molokai .h2 .small,
+.molokai .h3 .small,
+.molokai .h4 .small,
+.molokai .h5 .small,
+.molokai .h6 .small {
   font-weight: normal;
   line-height: 1;
   color: #bcbcbc;
 }
-.darkscheme h1,
-.darkscheme .h1,
-.darkscheme h2,
-.darkscheme .h2,
-.darkscheme h3,
-.darkscheme .h3 {
+.molokai h1,
+.molokai .h1,
+.molokai h2,
+.molokai .h2,
+.molokai h3,
+.molokai .h3 {
   margin-top: 20px;
   margin-bottom: 10px;
 }
-.darkscheme h1 small,
-.darkscheme .h1 small,
-.darkscheme h2 small,
-.darkscheme .h2 small,
-.darkscheme h3 small,
-.darkscheme .h3 small,
-.darkscheme h1 .small,
-.darkscheme .h1 .small,
-.darkscheme h2 .small,
-.darkscheme .h2 .small,
-.darkscheme h3 .small,
-.darkscheme .h3 .small {
+.molokai h1 small,
+.molokai .h1 small,
+.molokai h2 small,
+.molokai .h2 small,
+.molokai h3 small,
+.molokai .h3 small,
+.molokai h1 .small,
+.molokai .h1 .small,
+.molokai h2 .small,
+.molokai .h2 .small,
+.molokai h3 .small,
+.molokai .h3 .small {
   font-size: 65%;
 }
-.darkscheme h4,
-.darkscheme .h4,
-.darkscheme h5,
-.darkscheme .h5,
-.darkscheme h6,
-.darkscheme .h6 {
+.molokai h4,
+.molokai .h4,
+.molokai h5,
+.molokai .h5,
+.molokai h6,
+.molokai .h6 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.darkscheme h4 small,
-.darkscheme .h4 small,
-.darkscheme h5 small,
-.darkscheme .h5 small,
-.darkscheme h6 small,
-.darkscheme .h6 small,
-.darkscheme h4 .small,
-.darkscheme .h4 .small,
-.darkscheme h5 .small,
-.darkscheme .h5 .small,
-.darkscheme h6 .small,
-.darkscheme .h6 .small {
+.molokai h4 small,
+.molokai .h4 small,
+.molokai h5 small,
+.molokai .h5 small,
+.molokai h6 small,
+.molokai .h6 small,
+.molokai h4 .small,
+.molokai .h4 .small,
+.molokai h5 .small,
+.molokai .h5 .small,
+.molokai h6 .small,
+.molokai .h6 .small {
   font-size: 75%;
 }
-.darkscheme h1,
-.darkscheme .h1 {
+.molokai h1,
+.molokai .h1 {
   font-size: 36px;
 }
-.darkscheme h2,
-.darkscheme .h2 {
+.molokai h2,
+.molokai .h2 {
   font-size: 30px;
 }
-.darkscheme h3,
-.darkscheme .h3 {
+.molokai h3,
+.molokai .h3 {
   font-size: 24px;
 }
-.darkscheme h4,
-.darkscheme .h4 {
+.molokai h4,
+.molokai .h4 {
   font-size: 18px;
 }
-.darkscheme h5,
-.darkscheme .h5 {
+.molokai h5,
+.molokai .h5 {
   font-size: 14px;
 }
-.darkscheme h6,
-.darkscheme .h6 {
+.molokai h6,
+.molokai .h6 {
   font-size: 12px;
 }
-.darkscheme p {
+.molokai p {
   margin: 0 0 10px;
 }
-.darkscheme .lead {
+.molokai .lead {
   margin-bottom: 20px;
   font-size: 16px;
   font-weight: 200;
   line-height: 1.4;
 }
-.darkscheme @media (min-width: 768px) {
+.molokai @media (min-width: 768px) {
   .lead {
     font-size: 21px;
   }
 }
-.darkscheme small,
-.darkscheme .small {
+.molokai small,
+.molokai .small {
   font-size: 85%;
 }
-.darkscheme cite {
+.molokai cite {
   font-style: normal;
 }
-.darkscheme .text-left {
+.molokai .text-left {
   text-align: left;
 }
-.darkscheme .text-right {
+.molokai .text-right {
   text-align: right;
 }
-.darkscheme .text-center {
+.molokai .text-center {
   text-align: center;
 }
-.darkscheme .text-justify {
+.molokai .text-justify {
   text-align: justify;
 }
-.darkscheme .text-muted {
+.molokai .text-muted {
   color: #808080;
 }
-.darkscheme .text-primary {
+.molokai .text-primary {
   color: #f92672;
 }
-.darkscheme a.text-primary:hover {
+.molokai a.text-primary:hover {
   color: #e60657;
 }
-.darkscheme .text-success {
+.molokai .text-success {
   color: #a6e22e;
 }
-.darkscheme a.text-success:hover {
+.molokai a.text-success:hover {
   color: #8ac21b;
 }
-.darkscheme .text-info {
+.molokai .text-info {
   color: #66d9ef;
 }
-.darkscheme a.text-info:hover {
+.molokai a.text-info:hover {
   color: #38ceea;
 }
-.darkscheme .text-warning {
+.molokai .text-warning {
   color: #fd971f;
 }
-.darkscheme a.text-warning:hover {
+.molokai a.text-warning:hover {
   color: #e77e02;
 }
-.darkscheme .text-danger {
+.molokai .text-danger {
   color: #ff0000;
 }
-.darkscheme a.text-danger:hover {
+.molokai a.text-danger:hover {
   color: #cc0000;
 }
-.darkscheme .bg-primary {
+.molokai .bg-primary {
   color: #fff;
   background-color: #f92672;
 }
-.darkscheme a.bg-primary:hover {
+.molokai a.bg-primary:hover {
   background-color: #e60657;
 }
-.darkscheme .bg-success {
+.molokai .bg-success {
   background-color: #080800;
 }
-.darkscheme a.bg-success:hover {
+.molokai a.bg-success:hover {
   background-color: #000000;
 }
-.darkscheme .bg-info {
+.molokai .bg-info {
   background-color: #080800;
 }
-.darkscheme a.bg-info:hover {
+.molokai a.bg-info:hover {
   background-color: #000000;
 }
-.darkscheme .bg-warning {
+.molokai .bg-warning {
   background-color: #080800;
 }
-.darkscheme a.bg-warning:hover {
+.molokai a.bg-warning:hover {
   background-color: #000000;
 }
-.darkscheme .bg-danger {
+.molokai .bg-danger {
   background-color: #080800;
 }
-.darkscheme a.bg-danger:hover {
+.molokai a.bg-danger:hover {
   background-color: #000000;
 }
-.darkscheme .page-header {
+.molokai .page-header {
   padding-bottom: 9px;
   margin: 40px 0 20px;
   border-bottom: 1px solid #bcbcbc;
 }
-.darkscheme ul,
-.darkscheme ol {
+.molokai ul,
+.molokai ol {
   margin-top: 0;
   margin-bottom: 10px;
 }
-.darkscheme ul ul,
-.darkscheme ol ul,
-.darkscheme ul ol,
-.darkscheme ol ol {
+.molokai ul ul,
+.molokai ol ul,
+.molokai ul ol,
+.molokai ol ol {
   margin-bottom: 0;
 }
-.darkscheme .list-unstyled {
+.molokai .list-unstyled {
   padding-left: 0;
   list-style: none;
 }
-.darkscheme .list-inline {
+.molokai .list-inline {
   padding-left: 0;
   list-style: none;
   margin-left: -5px;
 }
-.darkscheme .list-inline > li {
+.molokai .list-inline > li {
   display: inline-block;
   padding-left: 5px;
   padding-right: 5px;
 }
-.darkscheme dl {
+.molokai dl {
   margin-top: 0;
   margin-bottom: 20px;
 }
-.darkscheme dt,
-.darkscheme dd {
+.molokai dt,
+.molokai dd {
   line-height: 1.42857143;
 }
-.darkscheme dt {
+.molokai dt {
   font-weight: bold;
 }
-.darkscheme dd {
+.molokai dd {
   margin-left: 0;
 }
-.darkscheme @media (min-width: 768px) {
+.molokai @media (min-width: 768px) {
   .dl-horizontal dt {
     float: left;
     width: 160px;
@@ -427,79 +427,79 @@
     margin-left: 180px;
   }
 }
-.darkscheme abbr[title],
-.darkscheme abbr[data-original-title] {
+.molokai abbr[title],
+.molokai abbr[data-original-title] {
   cursor: help;
   border-bottom: 1px dotted #808080;
 }
-.darkscheme .initialism {
+.molokai .initialism {
   font-size: 90%;
   text-transform: uppercase;
 }
-.darkscheme blockquote {
+.molokai blockquote {
   padding: 10px 20px;
   margin: 0 0 20px;
   font-size: 17.5px;
   border-left: 5px solid #bcbcbc;
 }
-.darkscheme blockquote p:last-child,
-.darkscheme blockquote ul:last-child,
-.darkscheme blockquote ol:last-child {
+.molokai blockquote p:last-child,
+.molokai blockquote ul:last-child,
+.molokai blockquote ol:last-child {
   margin-bottom: 0;
 }
-.darkscheme blockquote footer,
-.darkscheme blockquote small,
-.darkscheme blockquote .small {
+.molokai blockquote footer,
+.molokai blockquote small,
+.molokai blockquote .small {
   display: block;
   font-size: 80%;
   line-height: 1.42857143;
   color: #808080;
 }
-.darkscheme blockquote footer:before,
-.darkscheme blockquote small:before,
-.darkscheme blockquote .small:before {
+.molokai blockquote footer:before,
+.molokai blockquote small:before,
+.molokai blockquote .small:before {
   content: '\2014 \00A0';
 }
-.darkscheme .blockquote-reverse,
-.darkscheme blockquote.pull-right {
+.molokai .blockquote-reverse,
+.molokai blockquote.pull-right {
   padding-right: 15px;
   padding-left: 0;
   border-right: 5px solid #bcbcbc;
   border-left: 0;
   text-align: right;
 }
-.darkscheme .blockquote-reverse footer:before,
-.darkscheme blockquote.pull-right footer:before,
-.darkscheme .blockquote-reverse small:before,
-.darkscheme blockquote.pull-right small:before,
-.darkscheme .blockquote-reverse .small:before,
-.darkscheme blockquote.pull-right .small:before {
+.molokai .blockquote-reverse footer:before,
+.molokai blockquote.pull-right footer:before,
+.molokai .blockquote-reverse small:before,
+.molokai blockquote.pull-right small:before,
+.molokai .blockquote-reverse .small:before,
+.molokai blockquote.pull-right .small:before {
   content: '';
 }
-.darkscheme .blockquote-reverse footer:after,
-.darkscheme blockquote.pull-right footer:after,
-.darkscheme .blockquote-reverse small:after,
-.darkscheme blockquote.pull-right small:after,
-.darkscheme .blockquote-reverse .small:after,
-.darkscheme blockquote.pull-right .small:after {
+.molokai .blockquote-reverse footer:after,
+.molokai blockquote.pull-right footer:after,
+.molokai .blockquote-reverse small:after,
+.molokai blockquote.pull-right small:after,
+.molokai .blockquote-reverse .small:after,
+.molokai blockquote.pull-right .small:after {
   content: '\00A0 \2014';
 }
-.darkscheme blockquote:before,
-.darkscheme blockquote:after {
+.molokai blockquote:before,
+.molokai blockquote:after {
   content: "";
 }
-.darkscheme address {
+.molokai address {
   margin-bottom: 20px;
   font-style: normal;
   line-height: 1.42857143;
 }
-.darkscheme code,
-.darkscheme kbd,
-.darkscheme pre,
-.darkscheme samp {
+.molokai code,
+.molokai kbd,
+.molokai pre,
+.molokai samp {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-.darkscheme code {
+.molokai code {
   padding: 2px 4px;
   font-size: 90%;
   color: #fd971f;
@@ -507,7 +507,7 @@
   white-space: nowrap;
   border-radius: 4px;
 }
-.darkscheme kbd {
+.molokai kbd {
   padding: 2px 4px;
   font-size: 90%;
   color: #f8f8f0;
@@ -515,7 +515,7 @@
   border-radius: 3px;
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-.darkscheme pre {
+.molokai pre {
   display: block;
   padding: 9.5px;
   margin: 0 0 10px;
@@ -524,11 +524,11 @@
   word-break: break-all;
   word-wrap: break-word;
   color: #e6db74;
-  background-color: #272822;
+  background-color: #272822 !important;
   border: 1px solid #0c0c0b;
   border-radius: 4px;
 }
-.darkscheme pre code {
+.molokai pre code {
   padding: 0;
   font-size: inherit;
   color: inherit;
@@ -536,155 +536,155 @@
   background-color: transparent;
   border-radius: 0;
 }
-.darkscheme .table > thead > tr > th,
-.darkscheme .table > tbody > tr > th,
-.darkscheme .table > tfoot > tr > th,
-.darkscheme .table > thead > tr > td,
-.darkscheme .table > tbody > tr > td,
-.darkscheme .table > tfoot > tr > td {
+.molokai .table > thead > tr > th,
+.molokai .table > tbody > tr > th,
+.molokai .table > tfoot > tr > th,
+.molokai .table > thead > tr > td,
+.molokai .table > tbody > tr > td,
+.molokai .table > tfoot > tr > td {
   padding: 8px;
   line-height: 1.42857143;
   vertical-align: top;
   border-top: 1px solid #293739;
 }
-.darkscheme .table > thead > tr > th {
+.molokai .table > thead > tr > th {
   vertical-align: bottom;
   border-bottom: 2px solid #293739;
 }
-.darkscheme .table > caption + thead > tr:first-child > th,
-.darkscheme .table > colgroup + thead > tr:first-child > th,
-.darkscheme .table > thead:first-child > tr:first-child > th,
-.darkscheme .table > caption + thead > tr:first-child > td,
-.darkscheme .table > colgroup + thead > tr:first-child > td,
-.darkscheme .table > thead:first-child > tr:first-child > td {
+.molokai .table > caption + thead > tr:first-child > th,
+.molokai .table > colgroup + thead > tr:first-child > th,
+.molokai .table > thead:first-child > tr:first-child > th,
+.molokai .table > caption + thead > tr:first-child > td,
+.molokai .table > colgroup + thead > tr:first-child > td,
+.molokai .table > thead:first-child > tr:first-child > td {
   border-top: 0;
 }
-.darkscheme .table > tbody + tbody {
+.molokai .table > tbody + tbody {
   border-top: 2px solid #293739;
 }
-.darkscheme .table .table {
+.molokai .table .table {
   background-color: #1b1d1e;
 }
-.darkscheme .table-bordered {
+.molokai .table-bordered {
   border: 1px solid #293739;
 }
-.darkscheme .table-bordered > thead > tr > th,
-.darkscheme .table-bordered > tbody > tr > th,
-.darkscheme .table-bordered > tfoot > tr > th,
-.darkscheme .table-bordered > thead > tr > td,
-.darkscheme .table-bordered > tbody > tr > td,
-.darkscheme .table-bordered > tfoot > tr > td {
+.molokai .table-bordered > thead > tr > th,
+.molokai .table-bordered > tbody > tr > th,
+.molokai .table-bordered > tfoot > tr > th,
+.molokai .table-bordered > thead > tr > td,
+.molokai .table-bordered > tbody > tr > td,
+.molokai .table-bordered > tfoot > tr > td {
   border: 1px solid #293739;
 }
-.darkscheme .table-striped > tbody > tr:nth-child(odd) > td,
-.darkscheme .table-striped > tbody > tr:nth-child(odd) > th {
+.molokai .table-striped > tbody > tr:nth-child(odd) > td,
+.molokai .table-striped > tbody > tr:nth-child(odd) > th {
   background-color: #272a2b;
 }
-.darkscheme .table-hover > tbody > tr:hover > td,
-.darkscheme .table-hover > tbody > tr:hover > th {
+.molokai .table-hover > tbody > tr:hover > td,
+.molokai .table-hover > tbody > tr:hover > th {
   background-color: #293739;
 }
-.darkscheme .table > thead > tr > td.active,
-.darkscheme .table > tbody > tr > td.active,
-.darkscheme .table > tfoot > tr > td.active,
-.darkscheme .table > thead > tr > th.active,
-.darkscheme .table > tbody > tr > th.active,
-.darkscheme .table > tfoot > tr > th.active,
-.darkscheme .table > thead > tr.active > td,
-.darkscheme .table > tbody > tr.active > td,
-.darkscheme .table > tfoot > tr.active > td,
-.darkscheme .table > thead > tr.active > th,
-.darkscheme .table > tbody > tr.active > th,
-.darkscheme .table > tfoot > tr.active > th {
+.molokai .table > thead > tr > td.active,
+.molokai .table > tbody > tr > td.active,
+.molokai .table > tfoot > tr > td.active,
+.molokai .table > thead > tr > th.active,
+.molokai .table > tbody > tr > th.active,
+.molokai .table > tfoot > tr > th.active,
+.molokai .table > thead > tr.active > td,
+.molokai .table > tbody > tr.active > td,
+.molokai .table > tfoot > tr.active > td,
+.molokai .table > thead > tr.active > th,
+.molokai .table > tbody > tr.active > th,
+.molokai .table > tfoot > tr.active > th {
   background-color: #f92672;
 }
-.darkscheme .table-hover > tbody > tr > td.active:hover,
-.darkscheme .table-hover > tbody > tr > th.active:hover,
-.darkscheme .table-hover > tbody > tr.active:hover > td,
-.darkscheme .table-hover > tbody > tr.active:hover > th {
+.molokai .table-hover > tbody > tr > td.active:hover,
+.molokai .table-hover > tbody > tr > th.active:hover,
+.molokai .table-hover > tbody > tr.active:hover > td,
+.molokai .table-hover > tbody > tr.active:hover > th {
   background-color: #f80d62;
 }
-.darkscheme .table > thead > tr > td.success,
-.darkscheme .table > tbody > tr > td.success,
-.darkscheme .table > tfoot > tr > td.success,
-.darkscheme .table > thead > tr > th.success,
-.darkscheme .table > tbody > tr > th.success,
-.darkscheme .table > tfoot > tr > th.success,
-.darkscheme .table > thead > tr.success > td,
-.darkscheme .table > tbody > tr.success > td,
-.darkscheme .table > tfoot > tr.success > td,
-.darkscheme .table > thead > tr.success > th,
-.darkscheme .table > tbody > tr.success > th,
-.darkscheme .table > tfoot > tr.success > th {
+.molokai .table > thead > tr > td.success,
+.molokai .table > tbody > tr > td.success,
+.molokai .table > tfoot > tr > td.success,
+.molokai .table > thead > tr > th.success,
+.molokai .table > tbody > tr > th.success,
+.molokai .table > tfoot > tr > th.success,
+.molokai .table > thead > tr.success > td,
+.molokai .table > tbody > tr.success > td,
+.molokai .table > tfoot > tr.success > td,
+.molokai .table > thead > tr.success > th,
+.molokai .table > tbody > tr.success > th,
+.molokai .table > tfoot > tr.success > th {
   background-color: #080800;
 }
-.darkscheme .table-hover > tbody > tr > td.success:hover,
-.darkscheme .table-hover > tbody > tr > th.success:hover,
-.darkscheme .table-hover > tbody > tr.success:hover > td,
-.darkscheme .table-hover > tbody > tr.success:hover > th {
+.molokai .table-hover > tbody > tr > td.success:hover,
+.molokai .table-hover > tbody > tr > th.success:hover,
+.molokai .table-hover > tbody > tr.success:hover > td,
+.molokai .table-hover > tbody > tr.success:hover > th {
   background-color: #000000;
 }
-.darkscheme .table > thead > tr > td.info,
-.darkscheme .table > tbody > tr > td.info,
-.darkscheme .table > tfoot > tr > td.info,
-.darkscheme .table > thead > tr > th.info,
-.darkscheme .table > tbody > tr > th.info,
-.darkscheme .table > tfoot > tr > th.info,
-.darkscheme .table > thead > tr.info > td,
-.darkscheme .table > tbody > tr.info > td,
-.darkscheme .table > tfoot > tr.info > td,
-.darkscheme .table > thead > tr.info > th,
-.darkscheme .table > tbody > tr.info > th,
-.darkscheme .table > tfoot > tr.info > th {
+.molokai .table > thead > tr > td.info,
+.molokai .table > tbody > tr > td.info,
+.molokai .table > tfoot > tr > td.info,
+.molokai .table > thead > tr > th.info,
+.molokai .table > tbody > tr > th.info,
+.molokai .table > tfoot > tr > th.info,
+.molokai .table > thead > tr.info > td,
+.molokai .table > tbody > tr.info > td,
+.molokai .table > tfoot > tr.info > td,
+.molokai .table > thead > tr.info > th,
+.molokai .table > tbody > tr.info > th,
+.molokai .table > tfoot > tr.info > th {
   background-color: #080800;
 }
-.darkscheme .table-hover > tbody > tr > td.info:hover,
-.darkscheme .table-hover > tbody > tr > th.info:hover,
-.darkscheme .table-hover > tbody > tr.info:hover > td,
-.darkscheme .table-hover > tbody > tr.info:hover > th {
+.molokai .table-hover > tbody > tr > td.info:hover,
+.molokai .table-hover > tbody > tr > th.info:hover,
+.molokai .table-hover > tbody > tr.info:hover > td,
+.molokai .table-hover > tbody > tr.info:hover > th {
   background-color: #000000;
 }
-.darkscheme .table > thead > tr > td.warning,
-.darkscheme .table > tbody > tr > td.warning,
-.darkscheme .table > tfoot > tr > td.warning,
-.darkscheme .table > thead > tr > th.warning,
-.darkscheme .table > tbody > tr > th.warning,
-.darkscheme .table > tfoot > tr > th.warning,
-.darkscheme .table > thead > tr.warning > td,
-.darkscheme .table > tbody > tr.warning > td,
-.darkscheme .table > tfoot > tr.warning > td,
-.darkscheme .table > thead > tr.warning > th,
-.darkscheme .table > tbody > tr.warning > th,
-.darkscheme .table > tfoot > tr.warning > th {
+.molokai .table > thead > tr > td.warning,
+.molokai .table > tbody > tr > td.warning,
+.molokai .table > tfoot > tr > td.warning,
+.molokai .table > thead > tr > th.warning,
+.molokai .table > tbody > tr > th.warning,
+.molokai .table > tfoot > tr > th.warning,
+.molokai .table > thead > tr.warning > td,
+.molokai .table > tbody > tr.warning > td,
+.molokai .table > tfoot > tr.warning > td,
+.molokai .table > thead > tr.warning > th,
+.molokai .table > tbody > tr.warning > th,
+.molokai .table > tfoot > tr.warning > th {
   background-color: #080800;
 }
-.darkscheme .table-hover > tbody > tr > td.warning:hover,
-.darkscheme .table-hover > tbody > tr > th.warning:hover,
-.darkscheme .table-hover > tbody > tr.warning:hover > td,
-.darkscheme .table-hover > tbody > tr.warning:hover > th {
+.molokai .table-hover > tbody > tr > td.warning:hover,
+.molokai .table-hover > tbody > tr > th.warning:hover,
+.molokai .table-hover > tbody > tr.warning:hover > td,
+.molokai .table-hover > tbody > tr.warning:hover > th {
   background-color: #000000;
 }
-.darkscheme .table > thead > tr > td.danger,
-.darkscheme .table > tbody > tr > td.danger,
-.darkscheme .table > tfoot > tr > td.danger,
-.darkscheme .table > thead > tr > th.danger,
-.darkscheme .table > tbody > tr > th.danger,
-.darkscheme .table > tfoot > tr > th.danger,
-.darkscheme .table > thead > tr.danger > td,
-.darkscheme .table > tbody > tr.danger > td,
-.darkscheme .table > tfoot > tr.danger > td,
-.darkscheme .table > thead > tr.danger > th,
-.darkscheme .table > tbody > tr.danger > th,
-.darkscheme .table > tfoot > tr.danger > th {
+.molokai .table > thead > tr > td.danger,
+.molokai .table > tbody > tr > td.danger,
+.molokai .table > tfoot > tr > td.danger,
+.molokai .table > thead > tr > th.danger,
+.molokai .table > tbody > tr > th.danger,
+.molokai .table > tfoot > tr > th.danger,
+.molokai .table > thead > tr.danger > td,
+.molokai .table > tbody > tr.danger > td,
+.molokai .table > tfoot > tr.danger > td,
+.molokai .table > thead > tr.danger > th,
+.molokai .table > tbody > tr.danger > th,
+.molokai .table > tfoot > tr.danger > th {
   background-color: #080800;
 }
-.darkscheme .table-hover > tbody > tr > td.danger:hover,
-.darkscheme .table-hover > tbody > tr > th.danger:hover,
-.darkscheme .table-hover > tbody > tr.danger:hover > td,
-.darkscheme .table-hover > tbody > tr.danger:hover > th {
+.molokai .table-hover > tbody > tr > td.danger:hover,
+.molokai .table-hover > tbody > tr > th.danger:hover,
+.molokai .table-hover > tbody > tr.danger:hover > td,
+.molokai .table-hover > tbody > tr.danger:hover > th {
   background-color: #000000;
 }
-.darkscheme legend {
+.molokai legend {
   display: block;
   width: 100%;
   padding: 0;
@@ -695,113 +695,113 @@
   border: 0;
   border-bottom: 1px solid #293739;
 }
-.darkscheme /* Molokai Customizations */
-.darkscheme /* Fix Colors of Table Rows with Form States */
-.darkscheme .table > thead > tr > td.success,
-.darkscheme .table > tbody > tr > td.success,
-.darkscheme .table > tfoot > tr > td.success,
-.darkscheme .table > thead > tr > th.success,
-.darkscheme .table > tbody > tr > th.success,
-.darkscheme .table > tfoot > tr > th.success,
-.darkscheme .table > thead > tr.success > td,
-.darkscheme .table > tbody > tr.success > td,
-.darkscheme .table > tfoot > tr.success > td,
-.darkscheme .table > thead > tr.success > th,
-.darkscheme .table > tbody > tr.success > th,
-.darkscheme .table > tfoot > tr.success > th {
+.molokai /* Molokai Customizations */
+.molokai /* Fix Colors of Table Rows with Form States */
+.molokai .table > thead > tr > td.success,
+.molokai .table > tbody > tr > td.success,
+.molokai .table > tfoot > tr > td.success,
+.molokai .table > thead > tr > th.success,
+.molokai .table > tbody > tr > th.success,
+.molokai .table > tfoot > tr > th.success,
+.molokai .table > thead > tr.success > td,
+.molokai .table > tbody > tr.success > td,
+.molokai .table > tfoot > tr.success > td,
+.molokai .table > thead > tr.success > th,
+.molokai .table > tbody > tr.success > th,
+.molokai .table > tfoot > tr.success > th {
   background-color: #8ac21b;
 }
-.darkscheme .table-hover > tbody > tr > td.success:hover,
-.darkscheme .table-hover > tbody > tr > th.success:hover,
-.darkscheme .table-hover > tbody > tr.success:hover > td,
-.darkscheme .table-hover > tbody > tr.success:hover > th {
+.molokai .table-hover > tbody > tr > td.success:hover,
+.molokai .table-hover > tbody > tr > th.success:hover,
+.molokai .table-hover > tbody > tr.success:hover > td,
+.molokai .table-hover > tbody > tr.success:hover > th {
   background-color: #7aac18;
 }
-.darkscheme .table > thead > tr > td.info,
-.darkscheme .table > tbody > tr > td.info,
-.darkscheme .table > tfoot > tr > td.info,
-.darkscheme .table > thead > tr > th.info,
-.darkscheme .table > tbody > tr > th.info,
-.darkscheme .table > tfoot > tr > th.info,
-.darkscheme .table > thead > tr.info > td,
-.darkscheme .table > tbody > tr.info > td,
-.darkscheme .table > tfoot > tr.info > td,
-.darkscheme .table > thead > tr.info > th,
-.darkscheme .table > tbody > tr.info > th,
-.darkscheme .table > tfoot > tr.info > th {
+.molokai .table > thead > tr > td.info,
+.molokai .table > tbody > tr > td.info,
+.molokai .table > tfoot > tr > td.info,
+.molokai .table > thead > tr > th.info,
+.molokai .table > tbody > tr > th.info,
+.molokai .table > tfoot > tr > th.info,
+.molokai .table > thead > tr.info > td,
+.molokai .table > tbody > tr.info > td,
+.molokai .table > tfoot > tr.info > td,
+.molokai .table > thead > tr.info > th,
+.molokai .table > tbody > tr.info > th,
+.molokai .table > tfoot > tr.info > th {
   background-color: #38ceea;
 }
-.darkscheme .table-hover > tbody > tr > td.info:hover,
-.darkscheme .table-hover > tbody > tr > th.info:hover,
-.darkscheme .table-hover > tbody > tr.info:hover > td,
-.darkscheme .table-hover > tbody > tr.info:hover > th {
+.molokai .table-hover > tbody > tr > td.info:hover,
+.molokai .table-hover > tbody > tr > th.info:hover,
+.molokai .table-hover > tbody > tr.info:hover > td,
+.molokai .table-hover > tbody > tr.info:hover > th {
   background-color: #21c8e8;
 }
-.darkscheme .table > thead > tr > td.warning,
-.darkscheme .table > tbody > tr > td.warning,
-.darkscheme .table > tfoot > tr > td.warning,
-.darkscheme .table > thead > tr > th.warning,
-.darkscheme .table > tbody > tr > th.warning,
-.darkscheme .table > tfoot > tr > th.warning,
-.darkscheme .table > thead > tr.warning > td,
-.darkscheme .table > tbody > tr.warning > td,
-.darkscheme .table > tfoot > tr.warning > td,
-.darkscheme .table > thead > tr.warning > th,
-.darkscheme .table > tbody > tr.warning > th,
-.darkscheme .table > tfoot > tr.warning > th {
+.molokai .table > thead > tr > td.warning,
+.molokai .table > tbody > tr > td.warning,
+.molokai .table > tfoot > tr > td.warning,
+.molokai .table > thead > tr > th.warning,
+.molokai .table > tbody > tr > th.warning,
+.molokai .table > tfoot > tr > th.warning,
+.molokai .table > thead > tr.warning > td,
+.molokai .table > tbody > tr.warning > td,
+.molokai .table > tfoot > tr.warning > td,
+.molokai .table > thead > tr.warning > th,
+.molokai .table > tbody > tr.warning > th,
+.molokai .table > tfoot > tr.warning > th {
   background-color: #e77e02;
 }
-.darkscheme .table-hover > tbody > tr > td.warning:hover,
-.darkscheme .table-hover > tbody > tr > th.warning:hover,
-.darkscheme .table-hover > tbody > tr.warning:hover > td,
-.darkscheme .table-hover > tbody > tr.warning:hover > th {
+.molokai .table-hover > tbody > tr > td.warning:hover,
+.molokai .table-hover > tbody > tr > th.warning:hover,
+.molokai .table-hover > tbody > tr.warning:hover > td,
+.molokai .table-hover > tbody > tr.warning:hover > th {
   background-color: #ce7002;
 }
-.darkscheme .table > thead > tr > td.danger,
-.darkscheme .table > tbody > tr > td.danger,
-.darkscheme .table > tfoot > tr > td.danger,
-.darkscheme .table > thead > tr > th.danger,
-.darkscheme .table > tbody > tr > th.danger,
-.darkscheme .table > tfoot > tr > th.danger,
-.darkscheme .table > thead > tr.danger > td,
-.darkscheme .table > tbody > tr.danger > td,
-.darkscheme .table > tfoot > tr.danger > td,
-.darkscheme .table > thead > tr.danger > th,
-.darkscheme .table > tbody > tr.danger > th,
-.darkscheme .table > tfoot > tr.danger > th {
+.molokai .table > thead > tr > td.danger,
+.molokai .table > tbody > tr > td.danger,
+.molokai .table > tfoot > tr > td.danger,
+.molokai .table > thead > tr > th.danger,
+.molokai .table > tbody > tr > th.danger,
+.molokai .table > tfoot > tr > th.danger,
+.molokai .table > thead > tr.danger > td,
+.molokai .table > tbody > tr.danger > td,
+.molokai .table > tfoot > tr.danger > td,
+.molokai .table > thead > tr.danger > th,
+.molokai .table > tbody > tr.danger > th,
+.molokai .table > tfoot > tr.danger > th {
   background-color: #cc0000;
 }
-.darkscheme .table-hover > tbody > tr > td.danger:hover,
-.darkscheme .table-hover > tbody > tr > th.danger:hover,
-.darkscheme .table-hover > tbody > tr.danger:hover > td,
-.darkscheme .table-hover > tbody > tr.danger:hover > th {
+.molokai .table-hover > tbody > tr > td.danger:hover,
+.molokai .table-hover > tbody > tr > th.danger:hover,
+.molokai .table-hover > tbody > tr.danger:hover > td,
+.molokai .table-hover > tbody > tr.danger:hover > th {
   background-color: #b30000;
 }
-.darkscheme tr.active,
-.darkscheme tr.warning,
-.darkscheme tr.info,
-.darkscheme tr.danger,
-.darkscheme tr.success {
+.molokai tr.active,
+.molokai tr.warning,
+.molokai tr.info,
+.molokai tr.danger,
+.molokai tr.success {
   color: #080800;
 }
-.darkscheme tr.active a,
-.darkscheme tr.warning a,
-.darkscheme tr.info a,
-.darkscheme tr.danger a,
-.darkscheme tr.success a {
+.molokai tr.active a,
+.molokai tr.warning a,
+.molokai tr.info a,
+.molokai tr.danger a,
+.molokai tr.success a {
   color: #080800;
 }
-.darkscheme td.active,
-.darkscheme td.warning,
-.darkscheme td.info,
-.darkscheme td.danger,
-.darkscheme td.success {
+.molokai td.active,
+.molokai td.warning,
+.molokai td.info,
+.molokai td.danger,
+.molokai td.success {
   color: #080800;
 }
-.darkscheme td.active a,
-.darkscheme td.warning a,
-.darkscheme td.info a,
-.darkscheme td.danger a,
-.darkscheme td.success a {
+.molokai td.active a,
+.molokai td.warning a,
+.molokai td.info a,
+.molokai td.danger a,
+.molokai td.success a {
   color: #080800;
 }

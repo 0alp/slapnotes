@@ -1,8 +1,8 @@
+@import url('../node_modules/react-mde/lib/styles/css/react-mde-all.css');
 @import url('https://fonts.googleapis.com/css?family=Cutive+Mono');
 @import url('https://fonts.googleapis.com/css?family=Quicksand');
 @import url('./css/bootstrap-molokai.css');
 @import url('./css/solarized-light.css');
-@import url('../node_modules/react-mde/lib/styles/css/react-mde-all.css');
 
 
 :root {

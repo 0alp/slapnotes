@@ -18,7 +18,9 @@ class SlapNote extends Component<{}, AppState> {
 
 	constructor(props) {
 		super(props);
-		    this.converter = new Showdown.Converter({tables: true, simplifiedAutoLink: true});
+		    this.converter = new Showdown.Converter({tables: true, simplifiedAutoLink: true, 
+				strikethrough: true, tasklists: true, simpleLineBreaks: true, emoji: true,
+				underline: true});
 	}
 
 	state = {
@@ -26,7 +28,7 @@ class SlapNote extends Component<{}, AppState> {
 		text: "",
 		updateNoteId: null,
 		mdeState: null,
-		lightscheme: false,
+		colorscheme: "molokai",
 	}
 
 	resetForm = () => {
@@ -123,10 +125,22 @@ class SlapNote extends Component<{}, AppState> {
 									onChange={(e) => this.setState({name: e.target.value})}
 								required />
 								</div>
+								<div className="form-group justify-content-start p-2">
+									<label labelFor="colorscheme">Color Scheme</label>
+									<select 
+									className="form-control"
+									id="colorscheme" 
+									name="colorscheme"
+									onChange={(e)=>this.setState({colorscheme: e.target.value})}
+									>
+										<option value="molokai">Molokai Dark</option>
+										<option value="solarized">Solarized Light</option>
+									</select>
+								</div>
 								<div className="form-group">
 									<MediaQuery query="(min-device-width: 576px)">
 										<ReactMde
-											className={this.state.lightscheme ? "lightscheme" : "darkscheme"}
+											className={this.state.colorscheme}
 											onChange={this.handleValueChange}
 											editorState={this.state.mdeState}
 											generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
@@ -135,7 +149,7 @@ class SlapNote extends Component<{}, AppState> {
 									</MediaQuery>
 									<MediaQuery query="(max-device-width: 576px)">
 										<ReactMde
-											className={this.state.lightscheme ? "lightscheme" : "darkscheme"}
+											className={this.state.colorscheme}
 											onChange={this.handleValueChange}
 											editorState={this.state.mdeState}
 											generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
@@ -148,9 +162,6 @@ class SlapNote extends Component<{}, AppState> {
 									</div>
 									<div className="form-group justify-content-start p-2">
 										<button onClick={this.resetForm} type="button" className="btn btn-default">Reset</button>
-										</div>
-									<div className="form-group justify-content-start p-2">
-										<button onClick={()=>this.setState({lightscheme: !this.state.lightscheme})} type="button" className="btn btn-default">Change to {this.state.lightscheme ? "dark" : "light"} colorscheme</button>
 									</div>
 
 								</div>
