@@ -7,6 +7,8 @@ import * as Showdown from "showdown";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import MediaQuery from 'react-responsive';
+import xssFilter from 'showdown-xss-filter';
+import Header from "./Header";
 
 export interface AppState {
 	    mdeState: ReactMdeTypes.MdeState;
@@ -20,7 +22,7 @@ class SlapNote extends Component<{}, AppState> {
 		super(props);
 		    this.converter = new Showdown.Converter({tables: true, simplifiedAutoLink: true, 
 				strikethrough: true, tasklists: true, simpleLineBreaks: true, emoji: true,
-				underline: true});
+				underline: true, extensions: []});
 	}
 
 	state = {
@@ -29,6 +31,12 @@ class SlapNote extends Component<{}, AppState> {
 		updateNoteId: null,
 		mdeState: null,
 		colorscheme: "molokai",
+		flavor: "vanilla",
+		showSettings: false,
+		layout: null,
+		height: null,
+		width: null,
+		submitStatus: null,
 	}
 
 	resetForm = () => {
@@ -61,11 +69,16 @@ class SlapNote extends Component<{}, AppState> {
 	submitNote = (e) => {
 		e.preventDefault();
 		if (this.state.updateNoteId === null) {
-			this.props.addNote(this.state.mdeState.markdown, this.state.name).then(this.resetForm)
+			this.props.addNote(this.state.mdeState.markdown, this.state.name).then(
+				(data)=>{this.setState({submitStatus: data})},
+				(error)=>{this.setState({error})}
+			)
 		} else {
-			this.props.updateNote(this.state.updateNoteId, this.state.mdeState.markdown, this.state.name).then(this.resetForm);
+			this.props.updateNote(this.state.updateNoteId, this.state.mdeState.markdown, this.state.name).then(
+				(data)=>{this.setState({submitStatus: data})},
+				(error)=>{this.setState({error})}
+			)
 		}
-		this.resetForm();
 	}
 
 	selectForDelete = (id) => {
@@ -83,22 +96,43 @@ class SlapNote extends Component<{}, AppState> {
 		})
 	};
 
+	setFlavor = (flavor) => {
+		this.converter.setFlavor(flavor)
+		this.setState({flavor: flavor})
+	}
+
     handleValueChange = (mdeState: ReactMdeTypes.MdeState) => {
 		this.setState({mdeState});
 	}
+
+	onResize = (event, {element, size}) => {
+		this.setState({width: size.width, height: size.height});
+	};
 
 	componentDidMount() {
 	    this.props.fetchNotes();
 	}
 
 	render() {
+		let alert;
+		if (this.props.errors.length) {
+			alert = (this.props.errors.map(error => (
+				<div className="alert alert-danger" role="alert" key={error.field}>{error.message}</div>
+			)))
+		} else if (this.state.submitStatus) {
+			alert = (
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					{this.state.submitStatus.note.name} has been {this.state.submitStatus.type === "ADD_NOTE" ? "added" : "updated"} successfully!
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			)
+		}	
+		
 		return (
 			<div className="container-fluid">
-			    <div style={{float: "right"}}>
-			    	{this.props.user.username} (<a href="#!" onClick={this.props.logout}>logout</a>)
-			    </div>
-				<h2><span role="img">👋</span>note!</h2>
-				<hr/>
+				<Header username={this.props.user.username} logout={this.props.logout} />
 				<div className="row">
 					<div className="col-md-2">
 						<h3>Notes</h3>
@@ -117,26 +151,68 @@ class SlapNote extends Component<{}, AppState> {
 					<div className="col-md-10">
 						<form onSubmit={this.submitNote}>
 							<fieldset>
-								<div className="form-group">
-								<input
-									className="form-control"
-									value={this.state.name}
-									placeholder="Enter name here..."
-									onChange={(e) => this.setState({name: e.target.value})}
-								required />
+								<div className="row">
+									<div className="form-group col-10">
+									<input
+										className="form-control"
+										value={this.state.name}
+										placeholder="Enter name here..."
+										onChange={(e) => this.setState({name: e.target.value})}
+									required />
+									</div>
+									<div className="col-2">
+										<span role="img" 
+										onClick={(e)=>(this.setState({showSettings: !this.state.showSettings}))}  
+										data-toggle="tooltip" 
+										data-placement="top" 
+										title="Settings">
+											⚙️
+										</span>
+									</div>
 								</div>
-								<div className="form-group justify-content-start p-2">
-									<label labelFor="colorscheme">Color Scheme</label>
-									<select 
-									className="form-control"
-									id="colorscheme" 
-									name="colorscheme"
-									onChange={(e)=>this.setState({colorscheme: e.target.value})}
-									>
-										<option value="molokai">Molokai Dark</option>
-										<option value="solarized">Solarized Light</option>
-									</select>
+								{ this.state.showSettings ?
+								<div className="row">
+									<div className="form-group col-2 justify-content-start">
+										<label labelFor="colorscheme">Color Scheme</label>
+										<select 
+										className="form-control"
+										id="colorscheme" 
+										name="colorscheme"
+										onChange={(e)=>this.setState({colorscheme: e.target.value})}
+										>
+											<option value="molokai">Molokai Dark</option>
+											<option value="solarized">Solarized Light</option>
+										</select>
+									</div>
+									<div className="form-group col-2 justify-content-start">
+										<label labelFor="flavor">Markdown Flavor</label>
+										<select 
+										className="form-control"
+										id="flavor" 
+										name="flavor"
+										onChange={(e)=>this.setFlavor(e.target.value)}
+										>
+											<option value="original">Original</option>
+											<option value="vanilla">Vanilla</option>
+											<option value="github">Github</option>
+										</select>
+									</div>
+									<div className="form-group col-2 justify-content-start">
+										<label labelFor="layout">Layout</label>
+										<select 
+										className="form-control"
+										id="layout" 
+										name="layout"
+										onChange={(e)=>this.setState({layout:e.target.value})}
+										>
+											<option value="vertical">Vertical</option>
+											<option value="horizontal">Horizontal</option>
+											<option value="tabbed">Tabbed</option>
+										</select>
+									</div>
+
 								</div>
+								: null }
 								<div className="form-group">
 									<MediaQuery query="(min-device-width: 576px)">
 										<ReactMde
@@ -144,7 +220,7 @@ class SlapNote extends Component<{}, AppState> {
 											onChange={this.handleValueChange}
 											editorState={this.state.mdeState}
 											generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
-											layout="horizontal"
+											layout={this.state.layout ? this.state.layout : "horizontal"}
 										/>
 									</MediaQuery>
 									<MediaQuery query="(max-device-width: 576px)">
@@ -153,17 +229,18 @@ class SlapNote extends Component<{}, AppState> {
 											onChange={this.handleValueChange}
 											editorState={this.state.mdeState}
 											generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
+											layout={this.state.layout ? this.state.layout : "vertical"}
 										/>
 									</MediaQuery>
 								</div>
+								{alert}
 								<div className="d-inline-flex">
 									<div className="form-group justify-content-start p-2">
 										<button type="button submit" className="btn btn-primary" value="Save Note">Save Note</button>
 									</div>
 									<div className="form-group justify-content-start p-2">
-										<button onClick={this.resetForm} type="button" className="btn btn-default">Reset</button>
+										<button onClick={this.resetForm} type="button" className="btn btn-default">New Note</button>
 									</div>
-
 								</div>
 							</fieldset>
 						</form>
@@ -178,9 +255,16 @@ class SlapNote extends Component<{}, AppState> {
 }
 
 const mapStateToProps = state => {
+	let errors = [];
+	if (state.notes.errors) {
+		errors = Object.keys(state.notes.errors).map(field => {
+			return {field, message: state.notes.errors[field]};
+		});
+	}
 	return {
 		notes: state.notes,
 		user: state.auth.user,
+		errors
 	}
 }
 
