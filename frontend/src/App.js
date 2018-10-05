@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {Route, Switch, BrowserRouter, Redirect} from 'react-router-dom';
 import SlapNote from "./components/SlapNote";
+import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 import { Provider, connect } from "react-redux";
 import slapApp from "./reducers";
@@ -11,6 +12,8 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import 'react-router-modal/css/react-router-modal.css';
+import { ModalContainer, ModalRoute } from 'react-router-modal';
 
 let store = createStore(slapApp, applyMiddleware(thunk));
 
@@ -32,16 +35,34 @@ class RootContainerComponent extends Component {
 		}} />
 	}
 
+	AsyncRoute = ({component: ChildComponent, ...rest}) => {
+		return <Route {...rest} render={props => {
+			if (this.props.auth.isLoading) {
+				return <em>Loading...</em>;
+			} else {
+				return <ChildComponent {...props} />
+		  	}
+		}} />
+	}
+
 	render() {
-		let {PrivateRoute} = this;
+		let {PrivateRoute, AsyncRoute} = this;
 		return (
 			<BrowserRouter>
-				<Switch>
-					<PrivateRoute exact path="/" component={SlapNote} />
-					<Route exact path="/login" component={Login} />
-					<Route exact path="/register" component={Register} />
-					<Route component={NotFound} />
-				</Switch>
+				<div>
+					<div>
+						<Switch>
+							<AsyncRoute exact path="/" component={Home} />
+							<PrivateRoute exact path="/notes" component={SlapNote} />
+							<ModalRoute exact path="/login" parentPath="/" component={Login} />
+							<ModalRoute exact path="/register" parentPath="/" component={Register} />
+							<Route component={NotFound} />
+						</Switch>
+					</div>
+					<div>
+						<ModalContainer />
+					</div>
+				</div>
 			</BrowserRouter>
 		);
 	}

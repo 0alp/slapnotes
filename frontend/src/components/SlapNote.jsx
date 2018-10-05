@@ -9,6 +9,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css'
 import MediaQuery from 'react-responsive';
 import xssFilter from 'showdown-xss-filter';
 import Header from "./Header";
+import Footer from "./Footer";
 
 export interface AppState {
 	    mdeState: ReactMdeTypes.MdeState;
@@ -87,7 +88,7 @@ class SlapNote extends Component<{}, AppState> {
 			buttons: [
 				{
 					label: 'Yes',
-					onClick: () => {this.props.deleteNote(id), this.resetForm()}
+					onClick: () => {(this.props.deleteNote(id), this.resetForm())}
 				},
 				{
 					label: 'No',
@@ -121,9 +122,9 @@ class SlapNote extends Component<{}, AppState> {
 			)))
 		} else if (this.state.submitStatus) {
 			alert = (
-				<div class="alert alert-success alert-dismissible fade show" role="alert">
+				<div className="alert alert-success alert-dismissible fade show" role="alert">
 					{this.state.submitStatus.note.name} has been {this.state.submitStatus.type === "ADD_NOTE" ? "added" : "updated"} successfully!
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<button type="button" className="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
@@ -131,124 +132,131 @@ class SlapNote extends Component<{}, AppState> {
 		}	
 		
 		return (
-			<div className="container-fluid">
-				<Header username={this.props.user.username} logout={this.props.logout} />
-				<div className="row">
-					<div className="col-md-2">
-						<h3>Notes</h3>
-						<table>
-							<tbody>
-								{this.props.notes.map((note, id) => (
-									<tr key={`note_${id}`}>
-										<td><a href="#!" onClick={() => this.selectForDelete(id)}><span role="img">🗑️</span></a></td>
-										<td><a href="#!" onClick={() => this.selectForEdit(id)}>{note.name}</a></td>
-									</tr>
-								))}
-							</tbody>
-						</table>
-					<hr className="d-block d-sm-none"/>
-					</div>
-					<div className="col-md-10">
-						<form onSubmit={this.submitNote}>
-							<fieldset>
-								<div className="row">
-									<div className="form-group col-10">
-									<input
-										className="form-control"
-										value={this.state.name}
-										placeholder="Enter name here..."
-										onChange={(e) => this.setState({name: e.target.value})}
-									required />
+			<div>
+				<Header user={this.props.user} logout={this.props.logout} />
+				<div className="container-fluid">
+					<div className="row">
+						<div className="col-md-1">
+							<h3>Notes</h3>
+							<table>
+								<tbody>
+									{this.props.notes.map((note, id) => (
+										<tr key={`note_${id}`}>
+											<td><a href="#!" onClick={() => this.selectForDelete(id)}><span role="img">🗑️</span></a></td>
+											<td><a href="#!" onClick={() => this.selectForEdit(id)}>{note.name}</a></td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						<hr className="d-block d-sm-none"/>
+						</div>
+						<div className="col-md-11">
+							<form onSubmit={this.submitNote}>
+								<fieldset>
+									<div className="row">
+										<div className="form-group col-11">
+										<input
+											className="form-control"
+											value={this.state.name}
+											placeholder="Enter name here..."
+											onChange={(e) => this.setState({name: e.target.value})}
+										required />
+										</div>
+										<div className="col-1">
+											<h3>
+												<a href="#!">
+													<span role="img" 
+													onClick={(e)=>(this.setState({showSettings: !this.state.showSettings}))}  
+													data-toggle="tooltip" 
+													data-placement="top" 
+													title="Settings">
+														⚙️
+													</span>
+												</a>
+											</h3>
+										</div>
 									</div>
-									<div className="col-2">
-										<span role="img" 
-										onClick={(e)=>(this.setState({showSettings: !this.state.showSettings}))}  
-										data-toggle="tooltip" 
-										data-placement="top" 
-										title="Settings">
-											⚙️
-										</span>
-									</div>
-								</div>
-								{ this.state.showSettings ?
-								<div className="row">
-									<div className="form-group col-2 justify-content-start">
-										<label labelFor="colorscheme">Color Scheme</label>
-										<select 
-										className="form-control"
-										id="colorscheme" 
-										name="colorscheme"
-										onChange={(e)=>this.setState({colorscheme: e.target.value})}
-										>
-											<option value="molokai">Molokai Dark</option>
-											<option value="solarized">Solarized Light</option>
-										</select>
-									</div>
-									<div className="form-group col-2 justify-content-start">
-										<label labelFor="flavor">Markdown Flavor</label>
-										<select 
-										className="form-control"
-										id="flavor" 
-										name="flavor"
-										onChange={(e)=>this.setFlavor(e.target.value)}
-										>
-											<option value="original">Original</option>
-											<option value="vanilla">Vanilla</option>
-											<option value="github">Github</option>
-										</select>
-									</div>
-									<div className="form-group col-2 justify-content-start">
-										<label labelFor="layout">Layout</label>
-										<select 
-										className="form-control"
-										id="layout" 
-										name="layout"
-										onChange={(e)=>this.setState({layout:e.target.value})}
-										>
-											<option value="vertical">Vertical</option>
-											<option value="horizontal">Horizontal</option>
-											<option value="tabbed">Tabbed</option>
-										</select>
-									</div>
+									{ this.state.showSettings ?
+									<div className="row">
+										<div className="form-group col-2 justify-content-start">
+											<label labelFor="colorscheme">Color Scheme</label>
+											<select 
+											className="form-control"
+											id="colorscheme" 
+											name="colorscheme"
+											onChange={(e)=>this.setState({colorscheme: e.target.value})}
+											>
+												<option value="molokai">Molokai Dark</option>
+												<option value="solarized">Solarized Light</option>
+											</select>
+										</div>
+										<div className="form-group col-2 justify-content-start">
+											<label labelFor="flavor">Markdown Flavor</label>
+											<select 
+											className="form-control"
+											id="flavor" 
+											name="flavor"
+											onChange={(e)=>this.setFlavor(e.target.value)}
+											>
+												<option value="original">Original</option>
+												<option value="vanilla">Vanilla</option>
+												<option value="github">Github</option>
+											</select>
+										</div>
+										<div className="form-group col-2 justify-content-start">
+											<label labelFor="layout">Layout</label>
+											<select 
+											className="form-control"
+											id="layout" 
+											name="layout"
+											onChange={(e)=>this.setState({layout:e.target.value})}
+											>
+												<option value="vertical">Vertical</option>
+												<option value="horizontal">Horizontal</option>
+												<option value="tabbed">Tabbed</option>
+											</select>
+										</div>
 
-								</div>
-								: null }
-								<div className="form-group">
-									<MediaQuery query="(min-device-width: 576px)">
-										<ReactMde
-											className={this.state.colorscheme}
-											onChange={this.handleValueChange}
-											editorState={this.state.mdeState}
-											generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
-											layout={this.state.layout ? this.state.layout : "horizontal"}
-										/>
-									</MediaQuery>
-									<MediaQuery query="(max-device-width: 576px)">
-										<ReactMde
-											className={this.state.colorscheme}
-											onChange={this.handleValueChange}
-											editorState={this.state.mdeState}
-											generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
-											layout={this.state.layout ? this.state.layout : "vertical"}
-										/>
-									</MediaQuery>
-								</div>
-								{alert}
-								<div className="d-inline-flex">
-									<div className="form-group justify-content-start p-2">
-										<button type="button submit" className="btn btn-primary" value="Save Note">Save Note</button>
 									</div>
-									<div className="form-group justify-content-start p-2">
-										<button onClick={this.resetForm} type="button" className="btn btn-default">New Note</button>
+									: null }
+									<div className="form-group">
+										<MediaQuery query="(min-device-width: 576px)">
+											<ReactMde
+												className={this.state.colorscheme}
+												onChange={this.handleValueChange}
+												editorState={this.state.mdeState}
+												generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
+												layout={this.state.layout ? this.state.layout : "horizontal"}
+											/>
+										</MediaQuery>
+										<MediaQuery query="(max-device-width: 576px)">
+											<ReactMde
+												className={this.state.colorscheme}
+												onChange={this.handleValueChange}
+												editorState={this.state.mdeState}
+												generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
+												layout={this.state.layout ? this.state.layout : "vertical"}
+											/>
+										</MediaQuery>
 									</div>
-								</div>
-							</fieldset>
-						</form>
+									{alert}
+									<div className="d-inline-flex">
+										<div className="form-group justify-content-start p-2">
+											<button type="button submit" className="btn btn-primary" value="Save Note">Save Note</button>
+										</div>
+										<div className="form-group justify-content-start p-2">
+											<button onClick={this.resetForm} type="button" className="btn btn-default">New Note</button>
+										</div>
+									</div>
+								</fieldset>
+							</form>
+						</div>
 					</div>
+					<p>
+						<Link to="/contact">Click Here</Link> to contact us!
+					</p>
 				</div>
-				<p>
-					<Link to="/contact">Click Here</Link> to contact us!
-				</p>
+				<Footer />
 			</div>
 		)
 	}

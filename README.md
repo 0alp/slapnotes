@@ -4,11 +4,15 @@ A basic notepad site inspired by <a href="http://v1k45.com/blog/modern-django-pa
 Basically my replacement for Laverna
 
 TODO:
-- Regular styles
-- Responsive Styles
 - showdown-xss-filter
-- emoji-awesome
 - Get editor to immediately render HTML (currently takes a click)
-- Pages
-	- Contact
-	- About
+- Pages:
+	- Contact?
+- Styles:
+	- Footer
+	- CSS transition groups
+	- Images
+- Links
+- Issues:
+	- Notes are duplicated when we go from notes -> home -> notes
+	- Pseudo elements spill off to right

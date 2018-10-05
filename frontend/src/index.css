@@ -4,13 +4,26 @@
 @import url('./css/bootstrap-molokai.css');
 @import url('./css/solarized-light.css');
 
-
 :root {
-	--darkblue: #5680E9;
+	--darkblue: #000033;
 	--aqua: #84CEEB;
 	--lightblue: #5AB9EA;
 	--gray: #C1C8E4;
 	--purple: #8860D0;
+}
+
+section::before,
+section::after {
+	position: absolute;
+	content: '';
+	pointer-events: none;
+}
+
+section {
+	position: relative;
+	padding: 10em 10%;
+	color: #fff;
+	text-align: center;
 }
 
 
@@ -20,20 +33,20 @@ body {
 	font-family: sans-serif;
 	min-width: 100%;
 	font-family: 'Quicksand', sans-serif;
-	background: gray;
-	color: lightblue;
+	background: darkblue;
+	color: white;
 }
 
 h2 {
-	color: aqua;
+	color: white;
 }
 
 a {
-	color: lightblue;
+	color: white;
 }
 
 a:hover {
-	color: darkblue;
+	color: lightblue;
 }
 
 hr {
@@ -52,11 +65,8 @@ svg {
 }
 
 #header {
-	margin-left: -15px;
-	margin-right: -15px;
-	background: darkblue;
-	padding-left: 15px;
-	padding-right: 15px;
+	padding: 0 3%;
+	background: linear-gradient(to bottom,purple 0,darkblue 100%);
 }
 
 #header hr {
@@ -64,25 +74,22 @@ svg {
 	margin-right: -15px;
 }
 
+#footer {
+	padding: 3%;
+	background: linear-gradient(to top,purple 0,darkblue 100%);
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%
+}
+
 .mde-text {
 	font-family: 'Cutive Mono', monospace;
 	font-size: 1.15em;
 }
 
-.mde-preview a {
-	/* color: cyan !important; */
-}
 .react-mde {
-	border: 1px solid lightblue; 
-	/* background-color: black; */
-}
-
-.mde-header {
-	/* background: lightblue; */
-}
-
-.lightscheme {
-	/* background-color: white; */
+	border: none !important; 
 }
 
 .btn-primary{
@@ -102,4 +109,83 @@ svg {
 
 .btn-default:hover{
 	color:white;
+}
+
+.ss-style-doublediagonal {
+	z-index: 1;
+	padding-top: 6em;
+	background: white;
+	color: black;
+}
+
+.ss-style-doublediagonal::before,
+.ss-style-doublediagonal::after {
+	top: 0;
+	left: -25%;
+	z-index: -1;
+	width: 150%;
+	height: 75%;
+	background: inherit;
+	-webkit-transform: rotate(-2deg);
+	transform: rotate(-2deg);
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+}
+
+.ss-style-doublediagonal::before {
+	height: 50%;
+	background: purple;
+	-webkit-transform: rotate(-3deg);
+	transform: rotate(-3deg);
+	-webkit-transform-origin: 3% 0;
+	transform-origin: 3% 0;
+}
+
+.ss-style-doublediagonal-rev {
+	z-index: 1;
+	padding-top: 6em;
+	background: darkblue;
+}
+
+.ss-style-doublediagonal-rev::before,
+.ss-style-doublediagonal-rev::after {
+	top: -30%;
+	left: -25%;
+	z-index: -1;
+	width: 150%;
+	height: 75%;
+	background: inherit;
+	-webkit-transform: rotate(2deg);
+	transform: rotate(2deg);
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+}
+
+.ss-style-doublediagonal-rev::before {
+	height: 50%;
+	background: purple;
+	-webkit-transform: rotate(3deg);
+	transform: rotate(3deg);
+	-webkit-transform-origin: -3% 0;
+	transform-origin: -3% 0;
+}
+
+.react-router-modal__modal-open {
+	color: black;
+}
+
+.react-router-modal__modal-open a {
+	color: darkblue;
+}
+
+.Collapsible {
+	cursor: pointer;
+}
+
+.is-closed:after {
+	content: ' ▼';
+}
+
+.is-open:after{
+	content: ' ▲';
 }
