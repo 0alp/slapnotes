@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 import notes from "./notes";
 import auth from "./auth";
+import profile from "./profile";
 
 const slapApp = combineReducers({
-	notes, auth
+	notes, auth, profile
 })
 
 const rootReducer = (state, action) => {

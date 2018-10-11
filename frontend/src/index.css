@@ -8,7 +8,7 @@
 	--darkblue: #000033;
 	--aqua: #84CEEB;
 	--lightblue: #5AB9EA;
-	--gray: #C1C8E4;
+	/* --gray: #C1C8E4; */
 	--purple: #8860D0;
 }
 
@@ -47,21 +47,25 @@ a {
 
 a:hover {
 	color: lightblue;
-}
-
-hr {
-	background: lightblue;
+	text-decoration: none;
+	transition: .5s;
 }
 
 input {
-	background-color: gray !important;
-	color: lightblue !important;
 	border: none;
 	font-size: 1.5em !important;
 }
 
 svg {
 	color: gray
+}
+
+ul {
+	list-style: none;
+}
+
+.btn {
+	margin: 10px;
 }
 
 #header {
@@ -75,12 +79,16 @@ svg {
 }
 
 #footer {
+	z-index: 2;
 	padding: 3%;
 	background: linear-gradient(to top,purple 0,darkblue 100%);
-	position: fixed;
 	bottom: 0;
 	left: 0;
 	width: 100%
+}
+
+#footer .svg-inline--fa {
+	color: white;
 }
 
 .mde-text {
@@ -115,7 +123,7 @@ svg {
 	z-index: 1;
 	padding-top: 6em;
 	background: white;
-	color: black;
+	color: dimgrey;
 }
 
 .ss-style-doublediagonal::before,
@@ -182,10 +190,48 @@ svg {
 	cursor: pointer;
 }
 
+.Collapsible__contentInner, ul {
+	padding: 0;
+}
+
 .is-closed:after {
 	content: ' ▼';
 }
 
-.is-open:after{
+.is-open:after {
 	content: ' ▲';
+}
+
+section .svg-inline--fa {
+	color: dimgrey;
+}
+
+.fa-mobile {
+	margin: -30px -150px 30px 0;
+}
+
+.fa-tablet {
+	margin: -30px 0 30px -150px;
+}
+
+.settings-transition-enter {
+	opacity: 0.01;
+	max-height: 0;
+}
+
+.settings-transition-enter.settings-transition-enter-active {
+	opacity: 1;
+	max-height: 100px;
+	transition: all 500ms ease-in;
+}
+
+.settings-transition-leave {
+	opacity: 1;
+	max-height: auto;
+}
+
+.settings-transition-leave.settings-transition-leave-active {
+	opacity: 0.01;
+	max-height: 100px;
+	transition: all 500ms ease-in;
 }

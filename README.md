@@ -7,12 +7,16 @@ TODO:
 - showdown-xss-filter
 - Get editor to immediately render HTML (currently takes a click)
 - Pages:
-	- Contact?
+	- ~Contact~
+	- User
+		- Change password
+		- Preferences?
 - Styles:
-	- Footer
-	- CSS transition groups
-	- Images
+	- ~Footer~
+	- ~CSS transition groups~
+	- ~Images~
 - Links
+- User preferences
 - Issues:
-	- Notes are duplicated when we go from notes -> home -> notes
-	- Pseudo elements spill off to right
+	- ~Notes are duplicated when we go from notes -> home -> notes~
+	- ~Pseudo elements spill off to right~

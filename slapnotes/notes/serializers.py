@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Note
+from .models import Note, Profile
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
@@ -7,6 +7,11 @@ class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Note
         fields = ('id', 'text', 'name', )
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ('id','layout','colorscheme','flavor',)
 
 class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -31,7 +36,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username')
+        fields = ('id', 'username',)
 
 class LoginUserSerializer(serializers.Serializer):
     username = serializers.CharField()

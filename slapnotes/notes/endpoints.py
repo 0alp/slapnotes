@@ -1,11 +1,12 @@
 from django.conf.urls import include, url
 from rest_framework import routers
-from .api import NoteViewSet, RegistrationAPI, LoginAPI, UserAPI
+from .api import NoteViewSet, RegistrationAPI, LoginAPI, UserAPI, ProfileViewSet
 from django.urls import re_path
 from knox import views as knox_views
 
 router = routers.DefaultRouter()
 router.register('notes', NoteViewSet, 'notes')
+router.register('profile', ProfileViewSet, 'profile')
 
 urlpatterns = [
     re_path(r'^api/auth/', include('knox.urls')),

@@ -49,6 +49,7 @@ class Login extends Component {
 								</p>
 								<p>
 									<button type="button submit" className="btn btn-primary">Login</button>
+									<button className="btn btn-default" onClick={(e)=>(e.preventDefault(),this.props.history.goBack())}>Back</button>
 								</p>
 
 								<p>

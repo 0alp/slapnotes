@@ -10,3 +10,12 @@ class Note(models.Model):
     
     def __str__(self):
         return self.text
+
+class Profile(models.Model):
+    owner = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE, null=True)
+    colorscheme = models.CharField(max_length=100, blank=True, default='')
+    layout = models.CharField(max_length=100, blank=True, default='')
+    flavor = models.CharField(max_length=100, blank=True, default='')
+    
+    def __str__(self):
+        return self.text

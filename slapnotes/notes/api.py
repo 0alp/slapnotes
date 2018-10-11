@@ -1,9 +1,9 @@
-from .models import Note
+from .models import Note, Profile
 from rest_framework import viewsets, permissions, generics
 from rest_framework.response import Response
 from knox.models import AuthToken
 from .serializers import (NoteSerializer, CreateUserSerializer, 
-        UserSerializer, LoginUserSerializer)
+        UserSerializer, LoginUserSerializer, ProfileSerializer)
 
 
 class NoteViewSet(viewsets.ModelViewSet):
@@ -15,6 +15,23 @@ class NoteViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+class ProfileViewSet(viewsets.ModelViewSet):
+    serializer_class = ProfileSerializer
+    permission_classes = [permissions.IsAuthenticated, ]
+
+    def get_queryset(self):
+        return Profile.objects.filter(owner=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+    def put(self, request):
+        profile = Profile.objects.filter(owner=self.request.user).first()
+        serializer = ProfileSerializer(profile, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
 
 class RegistrationAPI(generics.GenericAPIView):
     serializer_class = CreateUserSerializer

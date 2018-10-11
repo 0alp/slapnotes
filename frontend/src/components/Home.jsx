@@ -10,7 +10,7 @@ class Home extends Component {
 
 	render(){
 		return(
-			<div>
+			<div style={{overflow: "hidden", width: "100%"}}>
 				<Header user={this.props.user} logout={this.props.logout} />
 				<section className="text-center">
 					<h1>Welcome to <span role="img">👋</span>note!</h1>
@@ -31,12 +31,28 @@ class Home extends Component {
 					<div className="row">
 						<div className="col-4">
 							<h3>Vim-inspired colorschemes</h3>
+							<i className="fas fa-palette fa-10x"></i>
+							<p>Are you used to the colors in your terminal? Edit your notes in a variety of colorschemes with basic Markdown syntax highlighting.</p>
 						</div>
 						<div className="col-4">
 							<h3>Live markdown editor</h3>
+							<i className="fab fa-markdown fa-10x"></i>
+							<p>Edit your notes in Markdown, the standard markup language used across the web. Supports original, vanilla, and Github flavors.</p>
 						</div>
 						<div className="col-4">
 							<h3>Fully responsive layout</h3>
+							<div className="row">
+								<div className="col-12">
+									<i className="fas fa-desktop fa-5x"></i>
+								</div>
+								<div className="col-6">
+									<i className="fas fa-mobile fa-5x"></i>
+								</div>
+								<div className="col-6">
+									<i className="fas fa-tablet fa-5x"></i>
+								</div>
+							</div>
+							<p>Designed with a mobile-first philosophy, slapnote can be used on a variety of devices and platforms.</p>
 						</div>
 					</div>
 				</section>

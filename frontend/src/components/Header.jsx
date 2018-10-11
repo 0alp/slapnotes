@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import Login from "./Login";
 import Register from "./Register";
+import Contact from './Contact';
 import Collapsible from 'react-collapsible';
 
 
@@ -13,8 +14,9 @@ export default class Header extends Component {
 					{this.props.user ?
 			    		<Collapsible trigger={this.props.user.username}> 
 							<ul>
-								<li><Link to="/notes">Notes</Link></li>
 								<li><Link to="/">Home</Link></li>
+								<li><Link to="/notes">Notes</Link></li>
+								<li><Link to="/contact">Contact</Link></li>
 								<li><a href="#!" onClick={this.props.logout}>Logout</a></li>
 							</ul>
 						</Collapsible>
