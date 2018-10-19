@@ -4,21 +4,17 @@ import {Link, Redirect} from "react-router-dom";
 import {auth} from "../actions";
 
 
-class Login extends Component {
+class ResetPassword extends Component {
 	state = {
-		username: "",
-		password: "",
+		email: "",
 	}
 
 	onSubmit = e => {
 		e.preventDefault();
-		this.props.login(this.state.username, this.state.password);
+		this.props.resetPassword(this.state.email);
 	}
 
 	render() {
-		if (this.props.isAuthenticated) {
-			return <Redirect to="/" />
-		}
 		return (
 			<div className="container-fluid">
 				<div className="row text-center justify-content-center">
@@ -34,30 +30,17 @@ class Login extends Component {
 									</div>
 								)}		
 								<p>
-									<label htmlFor="username">Username</label>
+									<label htmlFor="email">Email</label>
 									<input
 									className="form-control"
-									type="text" id="username"
-									onChange={e => this.setState({username: e.target.value})} />
-								</p>
+									type="email" id="email"
+									onChange={e => this.setState({email: e.target.value})} />
+								</p>	
 								<p>
-									<label htmlFor="password">Password</label>
-									<input
-									className="form-control"
-									type="password" id="password"
-									onChange={e => this.setState({password: e.target.value})} />
-								</p>
-								<p>
-									<button type="button submit" className="btn btn-primary">Login</button>
+									<button type="button submit" className="btn btn-primary">Submit</button>
 									<button className="btn btn-default" onClick={(e)=>(e.preventDefault(),this.props.history.goBack())}>Back</button>
 								</p>
 
-								<p>
-									Don't have an account? <Link to="/register">Register</Link>
-								</p>
-								<p>
-									<Link to="/resetpassword">Forgot your password?</Link>
-								</p>
 							</fieldset>
 						</form>
 					</div>
@@ -76,17 +59,16 @@ const mapStateToProps = state => {
 		});
 	}
 	return {
-		errors,
-		isAuthenticated: state.auth.isAuthenticated
+		errors
 	};
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		login: (username, password) => {
-			return dispatch(auth.login(username, password));
+		resetPassword: (email) => {
+			return dispatch(auth.resetPassword(email));
 		}
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(ResetPassword);

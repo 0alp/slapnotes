@@ -14,10 +14,11 @@ export default class Header extends Component {
 					{this.props.user ?
 			    		<Collapsible trigger={this.props.user.username}> 
 							<ul>
-								<li><Link to="/">Home</Link></li>
-								<li><Link to="/notes">Notes</Link></li>
-								<li><Link to="/contact">Contact</Link></li>
-								<li><a href="#!" onClick={this.props.logout}>Logout</a></li>
+								<li><Link to="/">Home <span role="img">🏠</span></Link></li>
+								<li><Link to="/notes">Notes <span role="img">🗒️</span></Link></li>
+								<li><Link to="/contact">Contact <span role="img">📲</span></Link></li>
+								<li><Link to="/changepassword">Reset Password <span role="img">📲</span></Link></li>
+								<li><a href="#!" onClick={this.props.logout}>Logout <span role="img">🏃💨</span></a></li>
 							</ul>
 						</Collapsible>
 					:

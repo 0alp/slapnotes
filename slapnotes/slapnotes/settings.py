@@ -133,3 +133,19 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, '../webpack-stats.dev.json'),
     }
 }
+
+REST_AUTH_SERIALIZERS = {
+    'PASSWORD_RESET_SERIALIZER': 
+        'yourproject_app.serializers.PasswordResetSerializer',
+}
+
+LOGOUT_ON_PASSWORD_CHANGE = False
+
+# Email
+# TESTING - Prints emails to console
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'knvb.ajax@gmail.com'
+EMAIL_HOST_PASSWORD = 'dzkuxzdrnokwlhnv'

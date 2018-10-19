@@ -82,7 +82,7 @@ ul {
 	z-index: 2;
 	padding: 3%;
 	background: linear-gradient(to top,purple 0,darkblue 100%);
-	bottom: 0;
+	/* bottom: 0; */
 	left: 0;
 	width: 100%
 }
@@ -206,13 +206,13 @@ section .svg-inline--fa {
 	color: dimgrey;
 }
 
-.fa-mobile {
-	margin: -30px -150px 30px 0;
-}
+/* .fa-mobile { */
+/* 	margin: -30px -150px 30px 0; */
+/* } */
 
-.fa-tablet {
-	margin: -30px 0 30px -150px;
-}
+/* .fa-tablet { */
+/* 	margin: -30px 0 30px -150px; */
+/* } */
 
 .settings-transition-enter {
 	opacity: 0.01;

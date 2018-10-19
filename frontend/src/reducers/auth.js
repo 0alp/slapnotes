@@ -29,6 +29,11 @@ export default function auth(state=initialState, action) {
 
 		case 'AUTHENTICATION_ERROR':
 		case 'LOGIN_FAILED':
+		case 'RESET_FAILED':
+		case 'RESET_SUCCESSFUL':
+			localStorage.setItem("token", action.data.token);
+			return {...state, user: action.user};
+
 		case 'REGISTRATION_FAILED':
 		case 'LOGOUT_SUCCESSFUL':
 			localStorage.removeItem("token");

@@ -5,8 +5,20 @@ import Footer from "./Footer";
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {auth} from "../actions";
+import ReactInterval from 'react-interval';
 
 class Home extends Component {
+	state = {
+		timer: 0,
+		icon: 'fas fa-desktop fa-10x'
+	}
+
+	changeIcon(){
+		const icons = ['fas fa-tablet','fas fa-mobile','fas fa-desktop']
+		let index = this.state.timer % icons.length
+		this.setState({icon: icons[index] + ' fa-10x'})
+		this.setState({timer: this.state.timer + 1})
+	}
 
 	render(){
 		return(
@@ -29,27 +41,23 @@ class Home extends Component {
 				</section>
 				<section className="ss-style-doublediagonal">
 					<div className="row">
-						<div className="col-4">
+						<div className="col-12 col-md-4">
 							<h3>Vim-inspired colorschemes</h3>
 							<i className="fas fa-palette fa-10x"></i>
 							<p>Are you used to the colors in your terminal? Edit your notes in a variety of colorschemes with basic Markdown syntax highlighting.</p>
 						</div>
-						<div className="col-4">
+						<div className="col-12 col-md-4">
 							<h3>Live markdown editor</h3>
 							<i className="fab fa-markdown fa-10x"></i>
 							<p>Edit your notes in Markdown, the standard markup language used across the web. Supports original, vanilla, and Github flavors.</p>
 						</div>
-						<div className="col-4">
+						<div className="col-12 col-md-4">
 							<h3>Fully responsive layout</h3>
 							<div className="row">
-								<div className="col-12">
-									<i className="fas fa-desktop fa-5x"></i>
-								</div>
-								<div className="col-6">
-									<i className="fas fa-mobile fa-5x"></i>
-								</div>
-								<div className="col-6">
-									<i className="fas fa-tablet fa-5x"></i>
+						        <ReactInterval timeout={1000} enabled={true}
+			    					callback={() => this.changeIcon()} />
+								<div className="col-12" key={Math.random()}>
+									<i className={this.state.icon}></i>
 								</div>
 							</div>
 							<p>Designed with a mobile-first philosophy, slapnote can be used on a variety of devices and platforms.</p>
@@ -58,19 +66,20 @@ class Home extends Component {
 				</section>
 				<section className="ss-style-doublediagonal-rev">
 					<div className="row">
-						<div className="col-3">
+						<div className="col-12 col-md-3">
 							<h4>FOSS - Free and Open-Source</h4>
 							<p>Review (almost) every line of code, contribute, or suggest improvements on Github! Better yet, fork the project and create your own clone!</p>
 						</div>
-						<div className="col-3">
+						<div className="col-12 col-md-3">
 							<h4>Simplicity first</h4>
 							<p>There's nothing to set up - just create an account and go!</p>
 						</div>
-						<div className="col-3">
+						<div className="col-12 col-md-3">
 							<h4>Fully responsive layout</h4>
 						</div>
-						<div className="col-3">
-							<h4>Professional yet FUN</h4>
+						<div className="col-12 col-md-3">
+							<h4>Professional yet FUN<span role="img">🎉</span></h4>
+							<p>Slapnote adds a sense of humor and adventure to a reliabile, secure, and efficient app - who else would have an emoji domain?</p>
 						</div>
 					</div>
 				</section>

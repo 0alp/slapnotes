@@ -4,7 +4,6 @@ const initialState = {
 };
 
 export default function profile(state=initialState, action) {
-	let newProfile = state.profile;
 
 	switch (action.type) {
 		case 'PROFILE_LOADING':
@@ -14,7 +13,7 @@ export default function profile(state=initialState, action) {
 		    return {...state, profile:action.profile[0], isLoading: false};
 
 		case 'UPDATE_PROFILE':
-		    return {...state, profile:state.profile};
+		    return {...state, profile:action.profile};
 				
 		default:
 			return state;

@@ -1,9 +1,15 @@
-from .models import Note, Profile
+from .models import Note, Profile, User
 from rest_framework import viewsets, permissions, generics
 from rest_framework.response import Response
 from knox.models import AuthToken
+from django.views.generic.base import TemplateView
+from django import forms
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from .serializers import (NoteSerializer, CreateUserSerializer, 
-        UserSerializer, LoginUserSerializer, ProfileSerializer)
+        UserSerializer, LoginUserSerializer, ProfileSerializer,
+        ChangePasswordSerializer, PasswordResetSerializer,
+        SubmitPasswordResetSerializer)
 
 
 class NoteViewSet(viewsets.ModelViewSet):
@@ -64,3 +70,65 @@ class UserAPI(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
+class ChangePasswordAPI(generics.UpdateAPIView):
+    serializer_class = ChangePasswordSerializer
+    model = User
+
+    def get_object(self, queryset=None):
+        obj = self.request.user
+        return obj
+
+    def update(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            self.object.set_password(serializer.data.get("new_password"))
+            self.object.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)                                                                                                                                                                
+
+class ResetPasswordAPI(generics.GenericAPIView):
+    serializer_class = PasswordResetSerializer
+    
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        return Response(serializer.data)
+
+class PasswordResetConfirmView(TemplateView):
+    template_name = "password_reset_confirm.html"
+
+    def get_context_data(self, **kwargs):
+        uidb64 = (self.kwargs.get('uidb64', None))
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        context = super(PasswordResetConfirmView, self).get_context_data(**kwargs)
+        context.update({
+            'user': User.objects.get(pk=uid),
+            'uidb64': self.kwargs.get('uidb64', None),
+            'token': self.kwargs.get('token', None),
+        })
+        return context
+
+class ResetPasswordAPI(generics.GenericAPIView):
+    serializer_class = SubmitPasswordResetSerializer
+    model = User
+
+    def get_object(self, queryset=None):
+        serializer = self.get_serializer(data=self.request.data)
+        serializer.is_valid(raise_exception=True)
+        uidb64 = (serializer.data.get('uidb64'))
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.filter(pk=uid).first()
+        return user
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            self.object.set_password(serializer.data.get("password"))
+            self.object.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)                                                                                                                                                                
+

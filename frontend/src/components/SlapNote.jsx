@@ -24,7 +24,7 @@ class SlapNote extends Component<{}, AppState> {
 		super(props);
 		    this.converter = new Showdown.Converter({tables: true, simplifiedAutoLink: true, 
 				strikethrough: true, tasklists: true, simpleLineBreaks: true, emoji: true,
-				underline: true, extensions: []});
+				underline: true, extensions: [xssFilter]});
 	}
 
 	state = {
@@ -32,8 +32,8 @@ class SlapNote extends Component<{}, AppState> {
 		text: "",
 		updateNoteId: null,
 		mdeState: null,
-		colorscheme: "molokai",
-		flavor: "vanilla",
+		colorscheme: null,
+		flavor: null,
 		showSettings: false,
 		layout: null,
 		height: null,
@@ -62,8 +62,8 @@ class SlapNote extends Component<{}, AppState> {
 		);
 		this.setState({
 			mdeState: {
-				markdown: note.text,
-			    html: this.generateMarkdownPreview,
+				html: note.text,
+			   	markdown: this.generateMarkdownPreview,
 			    draftEditorState: newDraftState
 			}
 		});
@@ -102,11 +102,14 @@ class SlapNote extends Component<{}, AppState> {
 
 	setFlavor = (flavor) => {
 		this.converter.setFlavor(flavor)
-		this.setState({flavor: flavor})
+		this.setState({flavor: flavor},()=>this.saveProfile())
 	}
 
 	saveProfile = () => {
-		this.props.updateProfile(this.state.colorscheme, this.state.layout, this.state.flavor)
+		let colorscheme = this.state.colorscheme || this.props.profile.profile.colorscheme
+		let layout = this.state.layout || this.props.profile.profile.layout
+		let flavor = this.state.flavor || this.props.profile.profile.flavor
+		this.props.updateProfile(colorscheme, layout, flavor)
 	}
 
     handleValueChange = (mdeState: ReactMdeTypes.MdeState) => {
@@ -121,7 +124,7 @@ class SlapNote extends Component<{}, AppState> {
 		if (!this.props.notes.length){
 	    	this.props.fetchNotes();
 		}
-		this.props.fetchProfile();
+		this.props.fetchProfile()
 	}
 
 	render() {
@@ -202,7 +205,8 @@ class SlapNote extends Component<{}, AppState> {
 												className="form-control"
 												id="colorscheme" 
 												name="colorscheme"
-												onChange={(e)=>this.setState({colorscheme: e.target.value})}
+												onChange={(e)=>this.setState({colorscheme: e.target.value},()=>this.saveProfile())}
+												defaultValue={this.props.profile.profile.colorscheme}
 												>
 													<option value="molokai">Molokai Dark</option>
 													<option value="solarized">Solarized Light</option>
@@ -215,6 +219,7 @@ class SlapNote extends Component<{}, AppState> {
 												id="flavor" 
 												name="flavor"
 												onChange={(e)=>this.setFlavor(e.target.value)}
+												defaultValue={this.props.profile.profile.flavor}
 												>
 													<option value="original">Original</option>
 													<option value="vanilla">Vanilla</option>
@@ -227,14 +232,15 @@ class SlapNote extends Component<{}, AppState> {
 												className="form-control"
 												id="layout" 
 												name="layout"
-												onChange={(e)=>this.setState({layout:e.target.value})}
+												onChange={(e)=>this.setState({layout: e.target.value},()=>this.saveProfile())}
+												defaultValue={this.props.profile.profile.layout}
 												>
 													<option value="vertical">Vertical</option>
 													<option value="horizontal">Horizontal</option>
 													<option value="tabbed">Tabbed</option>
 												</select>
 											</div>
-											<button className="btn btn-default" onClick={(e)=>(e.preventDefault(),this.saveProfile())}>Save settings</button>
+											{/*<button className="btn btn-default" onClick={(e)=>(e.preventDefault(),this.saveProfile())}>Save settings</button>*/}
 										</div>
 										: null }
 										</CSSTransitionGroup>
@@ -245,7 +251,7 @@ class SlapNote extends Component<{}, AppState> {
 													onChange={this.handleValueChange}
 													editorState={this.state.mdeState}
 													generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
-													layout={this.props.profile.layout ? this.props.profile.layout : "horizontal"}
+													layout={this.props.profile.profile.layout ? this.props.profile.profile.layout : "horizontal"}
 												/>
 											</MediaQuery>
 											<MediaQuery query="(max-device-width: 576px)">
@@ -254,7 +260,7 @@ class SlapNote extends Component<{}, AppState> {
 													onChange={this.handleValueChange}
 													editorState={this.state.mdeState}
 													generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
-													layout={this.props.profile.layout ? this.props.profile.layout : "vertical"}
+													layout={this.props.profile.profile.layout ? this.props.profile.profile.layout : "vertical"}
 												/>
 											</MediaQuery>
 										</div>
@@ -272,7 +278,7 @@ class SlapNote extends Component<{}, AppState> {
 							</div>
 						</div>
 					</div>
-					<Footer style={{position: "fixed"}}/>
+					{/*<Footer style={{position: "absolute"}}/>*/}
 				</div>
 			)
 		}

@@ -13,6 +13,8 @@ import thunk from "redux-thunk";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Contact from './components/Contact';
+import ChangePassword from './components/ChangePassword';
+import ResetPassword from './components/ResetPassword';
 import 'react-router-modal/css/react-router-modal.css';
 import { ModalContainer, ModalRoute } from 'react-router-modal';
 
@@ -58,6 +60,8 @@ class RootContainerComponent extends Component {
 							<ModalRoute exact path="/login" parentPath="/" component={Login} />
 							<ModalRoute exact path="/register" parentPath="/" component={Register} />
 							<ModalRoute exact path="/contact" parentPath={(match) => {match.url}} component={Contact} />
+							<ModalRoute exact path="/changepassword" parentPath={(match) => {match.url}} component={ChangePassword} />
+							<ModalRoute exact path="/resetpassword" parentPath={(match) => {match.url}} component={ResetPassword} />
 							<Route component={NotFound} />
 						</Switch>
 					</div>
