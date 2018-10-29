@@ -6,10 +6,12 @@ from django.views.generic.base import TemplateView
 from django import forms
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.core.mail import send_mail, BadHeaderError
+from django.conf import settings
 from .serializers import (NoteSerializer, CreateUserSerializer, 
         UserSerializer, LoginUserSerializer, ProfileSerializer,
         ChangePasswordSerializer, PasswordResetSerializer,
-        SubmitPasswordResetSerializer)
+        SubmitPasswordResetSerializer, ContactEmailSerializer)
 
 
 class NoteViewSet(viewsets.ModelViewSet):
@@ -27,6 +29,11 @@ class ProfileViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated, ]
 
     def get_queryset(self):
+        # create default if not exists
+        if not Profile.objects.filter(owner=self.request.user):
+            serializer = ProfileSerializer(None, data=self.request.data)
+            serializer.is_valid()
+            serializer.save(owner=self.request.user)
         return Profile.objects.filter(owner=self.request.user)
 
     def perform_create(self, serializer):
@@ -73,20 +80,12 @@ class UserAPI(generics.RetrieveAPIView):
 
 class ChangePasswordAPI(generics.UpdateAPIView):
     serializer_class = ChangePasswordSerializer
-    model = User
-
-    def get_object(self, queryset=None):
-        obj = self.request.user
-        return obj
 
     def update(self, request, *args, **kwargs):
-        self.object = self.get_object()
         serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid():
-            self.object.set_password(serializer.data.get("new_password"))
-            self.object.save()
-            return Response(serializer.data)
-        return Response(serializer.errors)                                                                                                                                                                
+        serializer.is_valid(raise_exception=True)
+        serializer.save(request.data)
+        return Response(serializer.data)
 
 class ResetPasswordAPI(generics.GenericAPIView):
     serializer_class = PasswordResetSerializer
@@ -111,7 +110,8 @@ class PasswordResetConfirmView(TemplateView):
         })
         return context
 
-class ResetPasswordAPI(generics.GenericAPIView):
+class SubmitResetPasswordAPI(generics.GenericAPIView):
+# class SubmitResetPasswordAPI(viewsets.ModelViewSet):
     serializer_class = SubmitPasswordResetSerializer
     model = User
 
@@ -132,3 +132,16 @@ class ResetPasswordAPI(generics.GenericAPIView):
             return Response(serializer.data)
         return Response(serializer.errors)                                                                                                                                                                
 
+class ContactEmailAPI(generics.GenericAPIView):
+    serializer_class = ContactEmailSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        name = serializer.validated_data['name']
+        email = serializer.validated_data['reply']
+        message = serializer.validated_data['message']
+        email_text = "You received a message from {name} at {email}: {message}".format(
+                name=name, email=email, message=message)
+        send_mail("Contact email from Slapnote", email_text, email, [getattr(settings, 'EMAIL_HOST_USER')])
+        return Response(serializer.data)

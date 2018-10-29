@@ -1,34 +1,59 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link, Redirect} from "react-router-dom";
-import {auth} from "../actions";
+import {email} from "../actions";
 
 
 class ResetPassword extends Component {
 	state = {
 		email: "",
+		submitStatus: false
 	}
 
 	onSubmit = e => {
 		e.preventDefault();
 		this.props.resetPassword(this.state.email);
+		this.setState({submitStatus: true});
+	}
+
+	componentDidUpdate(prevProps) {
+		if (this.props.location !== prevProps.location) {
+			this.onRouteChanged();
+		}
+	}
+
+	onRouteChanged() {
+		this.setState({submitStatus: false});
 	}
 
 	render() {
 		return (
 			<div className="container-fluid">
 				<div className="row text-center justify-content-center">
+					<div className="col-12">
+						{this.props.errors.length > 0 && (
+							<div>
+								<div className="alert alert-danger" role="alert">
+									<strong>Uh-oh! Looks like there are some errors with your submission</strong>
+									{this.props.errors.map(error => (
+										<div>
+											{error.message}
+										</div>
+									))}
+								</div>
+							</div>
+							)}
+							{this.props.user_message && this.state.submitStatus && (
+								<div>
+									<div className="alert alert-success" role="alert">{this.props.user_message}</div>
+								</div>
+							)}		
+					</div>
 					<div className="col-md-6 col-sm-12">
+					{!this.state.submitStatus || this.props.errors.length ? 
 						<form onSubmit={this.onSubmit}>
+							<legend>Reset Password</legend>
 							<fieldset>	
-								<legend>Login</legend>
-								{this.props.errors.length > 0 && (
-									<div>
-										{this.props.errors.map(error => (
-										<div className="alert alert-danger" role="alert" key={error.field}>{error.message}</div>
-										))}
-									</div>
-								)}		
 								<p>
 									<label htmlFor="email">Email</label>
 									<input
@@ -37,12 +62,14 @@ class ResetPassword extends Component {
 									onChange={e => this.setState({email: e.target.value})} />
 								</p>	
 								<p>
-									<button type="button submit" className="btn btn-primary">Submit</button>
-									<button className="btn btn-default" onClick={(e)=>(e.preventDefault(),this.props.history.goBack())}>Back</button>
+									Submit your email address and we'll email you a password reset form.
 								</p>
-
+								<p>
+									<button type="button submit" className="btn btn-primary">Submit</button>
+								</p>
 							</fieldset>
-						</form>
+						</form>: null}
+						<button className="btn btn-default" onClick={(e)=>(e.preventDefault(),this.props.history.goBack())}>Back</button>
 					</div>
 				</div>
 			</div>
@@ -53,20 +80,21 @@ class ResetPassword extends Component {
 
 const mapStateToProps = state => {
 	let errors = [];
-	if (state.auth.errors) {
-		errors = Object.keys(state.auth.errors).map(field => {
-			return {field, message: state.auth.errors[field]};
+	if (state.email.errors) {
+		errors = Object.keys(state.email.errors).map(field => {
+			return {field, message: state.email.errors[field]};
 		});
 	}
 	return {
-		errors
+		errors, 
+		user_message: state.email.user_message
 	};
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		resetPassword: (email) => {
-			return dispatch(auth.resetPassword(email));
+		resetPassword: (email_addr) => {
+			return dispatch(email.sendResetPasswordEmail(email_addr));
 		}
 	};
 }

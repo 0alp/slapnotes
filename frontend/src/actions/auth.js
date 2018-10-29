@@ -18,7 +18,6 @@ export const loadUser = () => {
 		dispatch({type: "USER_LOADING"});
 
 		const token = getState().auth.token;
-		console.log(token)
 
 		let headers = {
 			"Content-Type": "application/json",
@@ -152,7 +151,7 @@ export const logout = () => {
 	}
 }
 
-export const changePassword = (new_password, old_password) => {
+export const changePassword = (new_password, new_password2, old_password) => {
 	return (dispatch, getState) => {
 		const token = getState().auth.token;
 
@@ -162,44 +161,11 @@ export const changePassword = (new_password, old_password) => {
 
 		headers["Authorization"] = `Token ${token}`;
 
-		let body = JSON.stringify({new_password, old_password});
+		let body = JSON.stringify({new_password, new_password2, old_password});
+
+		dispatch({type: 'default', data: null });
 
 		return fetch("/api/auth/password/change/", {headers, body, method: "PUT"})
-			.then(res => {
-				if (res.status < 500) {
-					return res.json().then(data => {
-						return {status: res.status, data};
-					})
-				} else {
-					console.log("Server Error!");
-					throw res;
-				}
-			})
-			.then(res => {
-				if (res.status === 200) {
-					dispatch({type: 'CHANGE_SUCCESSFUL', data: res.data });
-					return res.data;
-				} else if (res.status === 403 || res.status === 401) {
-					dispatch({type: "AUTHENTICATION_ERROR", data: res.data});
-					throw res.data;
-				} else {
-					dispatch({type: "CHANGE_FAILED", data: res.data});
-				  	throw res.data;
-				}
-			})
-	}
-}
-
-export const resetPassword = (email) => {
-	return (dispatch, getState) => {
-
-		let csrftoken = getCookie('csrftoken');
-		
-		let headers = {"Content-Type": "application/json", "X-CSRFToken": csrftoken};
-		let body = JSON.stringify({email});
-
-
-		return fetch("/api/auth/password/reset/", {headers, body, method: "POST"})
 			.then(res => {
 				if (res.status < 500) {
 					return res.json().then(data => {
@@ -217,12 +183,52 @@ export const resetPassword = (email) => {
 				} else if (res.status === 403 || res.status === 401) {
 					dispatch({type: "AUTHENTICATION_ERROR", data: res.data});
 					throw res.data;
+				} else if (res.status === 400) {
+					dispatch({type: "BAD_REQUEST", data: res.data});
+					throw res.data;
 				} else {
-					dispatch({type: "RESET_FAILED", data: res.data});
+					dispatch({type: "SERVER_ERROR", data: res.data});
 				  	throw res.data;
 				}
 			})
 	}
 }
 
+export const submitPasswordReset = (password, password2, uidb64, token) => {
+	return (dispatch, getState) => {
+		let csrftoken = getCookie('csrftoken');
+		
+		let headers = {"Content-Type": "application/json", "X-CSRFToken": csrftoken};
 
+		let body = JSON.stringify({password, password2, uidb64, token});
+
+		dispatch({type: 'default', data: null });
+
+		return fetch("/api/password_reset_submit/", {headers, body, method: "POST"})
+			.then(res => {
+				if (res.status < 500) {
+					return res.json().then(data => {
+						return {status: res.status, data};
+					})
+				} else {
+					console.log("Server Error!");
+					throw res;
+				}
+			})
+			.then(res => {
+				if (res.status === 200) {
+					dispatch({type: 'RESET_SUCCESSFUL', data: res.data });
+					return res.data;
+				} else if (res.status === 403 || res.status === 401) {
+					dispatch({type: "AUTHENTICATION_ERROR", data: res.data});
+					throw res.data;
+				} else if (res.status === 400) {
+					dispatch({type: "BAD_REQUEST", data: res.data});
+					throw res.data;
+				} else {
+					dispatch({type: "SERVER_ERROR", data: res.data});
+				  	throw res.data;
+				}
+			})
+	}
+}

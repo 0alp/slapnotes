@@ -30,6 +30,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
         return norm_email
 
     def create(self, validated_data):
+        # Profile.perform_create()
         user = User.objects.create_user(validated_data['username'],
             validated_data['email'],
             validated_data['password'])
@@ -54,24 +55,37 @@ class LoginUserSerializer(serializers.Serializer):
 class ChangePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
-    password = old_password
+    new_password2 = serializers.CharField(required=True)
     
     def validate(self, data):
-        user = authenticate(**data)
+        if not data['new_password'] == data['new_password2']:
+            raise serializers.ValidationError("New passwords must match.")
+        password = data['old_password']
+        request = self.context.get('request')
+        username = request.user.username
+        user = authenticate(username=username, password=password)
         if user and user.is_active:
-            return user
+            return data
         raise serializers.ValidationError("The password you provided is incorrect.")
+
+    def save(self, validated_data):
+        request = self.context.get('request')
+        username = request.user.username
+        user = User.objects.get(username=username)
+        user.set_password(validated_data['new_password'])
+        user.save()
 
 class PasswordResetSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password_reset_form_class = PasswordResetForm
+
     def validate_email(self, value):
         self.reset_form = self.password_reset_form_class(data=self.initial_data)
         if not self.reset_form.is_valid():
             raise serializers.ValidationError(_('Error'))
 
         if not User.objects.filter(email=value).exists():
-            raise serializers.ValidationError(_('Invalid e-mail address'))
+            raise serializers.ValidationError(_('No user with that e-mail address is on file.'))
 
         return value
 
@@ -95,3 +109,9 @@ class SubmitPasswordResetSerializer(serializers.Serializer):
         if data['password'] != data['password2']:
             raise serializers.ValidationError("Passwords must match.")
         return data
+
+class ContactEmailSerializer(serializers.Serializer):
+    name = serializers.CharField(required=True)
+    reply = serializers.EmailField(required=True)
+    message = serializers.CharField(required=True)
+

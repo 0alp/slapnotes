@@ -9,30 +9,53 @@ class ChangePassword extends Component {
 		old_password: "",
 		new_password: "",
 		new_password2: "",
+		submitStatus: false,
 	}
 
 	onSubmit = e => {
 		e.preventDefault();
-		if (this.state.new_password === this.state.new_password2){
-			this.props.changePassword(this.state.old_password, this.state.new_password);
+		this.props.changePassword(this.state.new_password, this.state.new_password2, this.state.old_password);
+		this.setState({submitStatus: true});
+	}
+
+	componentDidUpdate(prevProps) {
+		if (this.props.location !== prevProps.location) {
+			this.onRouteChanged();
 		}
+	}
+
+	onRouteChanged() {
+		this.setState({submitStatus: false});
 	}
 
 	render() {
 		return (
 			<div className="container-fluid">
 				<div className="row text-center justify-content-center">
+					<div className="col-12">
+						{this.props.errors.length > 0 && (
+							<div>
+								<div className="alert alert-danger" role="alert">
+									<strong>Uh-oh! Looks like there are some errors with your submission</strong>
+									{this.props.errors.map(error => (
+										<div>
+											<span>{error.field}: </span><span>{error.message}</span>
+										</div>
+									))}
+								</div>
+							</div>
+							)}
+							{this.props.user_message && this.state.submitStatus && (
+								<div>
+									<div className="alert alert-success" role="alert">{this.props.user_message}</div>
+								</div>
+							)}		
+					</div>
 					<div className="col-md-6 col-sm-12">
+					{!this.state.submitStatus || this.props.errors.length ? 
 						<form onSubmit={this.onSubmit}>
 							<fieldset>	
 								<legend>Login</legend>
-								{this.props.errors.length > 0 && (
-									<div>
-										{this.props.errors.map(error => (
-										<div className="alert alert-danger" role="alert" key={error.field}>{error.message}</div>
-										))}
-									</div>
-								)}		
 								<p>
 									<label htmlFor="username">Old Password</label>
 									<input
@@ -56,11 +79,10 @@ class ChangePassword extends Component {
 								</p>	
 								<p>
 									<button type="button submit" className="btn btn-primary">Change Password</button>
-									<button className="btn btn-default" onClick={(e)=>(e.preventDefault(),this.props.history.goBack())}>Back</button>
 								</p>
-
 							</fieldset>
-						</form>
+						</form> : null }
+						<button className="btn btn-default" onClick={(e)=>(e.preventDefault(),this.props.history.goBack())}>Back</button>
 					</div>
 				</div>
 			</div>
@@ -77,14 +99,15 @@ const mapStateToProps = state => {
 		});
 	}
 	return {
-		errors
+		errors,
+		user_message: state.auth.user_message
 	};
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		changePassword: (old_password, new_password) => {
-			return dispatch(auth.changePassword(old_password, new_password));
+		changePassword: (new_password, new_password2, old_password) => {
+			return dispatch(auth.changePassword(new_password, new_password2, old_password));
 		}
 	};
 }
