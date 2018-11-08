@@ -151,7 +151,7 @@ class SlapNote extends Component<{}, AppState> {
 				<div>
 					<Header user={this.props.user} logout={this.props.logout} />
 					<div className="container-fluid">
-						<div className="row">
+						<div className="row slapnote-row">
 							<div className="col-md-1">
 								<h3>Notes</h3>
 								<table>
@@ -199,7 +199,7 @@ class SlapNote extends Component<{}, AppState> {
 										>
 										{ this.state.showSettings ?
 										<div className="row">
-											<div className="form-group col-2 justify-content-start">
+											<div className="form-group col-12 col-md-2 justify-content-start">
 												<label labelFor="colorscheme">Color Scheme</label>
 												<select 
 												className="form-control"
@@ -212,7 +212,7 @@ class SlapNote extends Component<{}, AppState> {
 													<option value="solarized">Solarized Light</option>
 												</select>
 											</div>
-											<div className="form-group col-2 justify-content-start">
+											<div className="form-group col-12 col-md-2 justify-content-start">
 												<label labelFor="flavor">Markdown Flavor</label>
 												<select 
 												className="form-control"
@@ -226,7 +226,7 @@ class SlapNote extends Component<{}, AppState> {
 													<option value="github">Github</option>
 												</select>
 											</div>
-											<div className="form-group col-2 justify-content-start">
+											<div className="form-group col-12 col-md-2 justify-content-start">
 												<label labelFor="layout">Layout</label>
 												<select 
 												className="form-control"

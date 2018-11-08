@@ -97,7 +97,7 @@ class ResetPasswordAPI(generics.GenericAPIView):
         return Response(serializer.data)
 
 class PasswordResetConfirmView(TemplateView):
-    template_name = "password_reset_confirm.html"
+    template_name = "index.html"
 
     def get_context_data(self, **kwargs):
         uidb64 = (self.kwargs.get('uidb64', None))
@@ -111,7 +111,6 @@ class PasswordResetConfirmView(TemplateView):
         return context
 
 class SubmitResetPasswordAPI(generics.GenericAPIView):
-# class SubmitResetPasswordAPI(viewsets.ModelViewSet):
     serializer_class = SubmitPasswordResetSerializer
     model = User
 

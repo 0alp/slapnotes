@@ -15,6 +15,7 @@ function getCookie(name) {
 
 export const sendResetPasswordEmail = (email) => {
 	return (dispatch, getState) => {
+		dispatch({type: 'EMAIL_SENDING'});
 
 		let csrftoken = getCookie('csrftoken');
 		
@@ -53,13 +54,14 @@ export const sendResetPasswordEmail = (email) => {
 	}
 }
 
-export const sendContactEmail = (name, reply, message) => {
+export const sendContactEmail = (name, reply, message, user, captcha) => {
 	return (dispatch, getState) => {
+		dispatch({type: 'EMAIL_SENDING'});
 
 		let csrftoken = getCookie('csrftoken');
 		
 		let headers = {"Content-Type": "application/json", "X-CSRFToken": csrftoken};
-		let body = JSON.stringify({name, reply, message});
+		let body = JSON.stringify({name, reply, message, user, captcha});
 
 		dispatch({type: 'default', data: null });
 

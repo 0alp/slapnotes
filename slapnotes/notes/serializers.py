@@ -5,6 +5,10 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.forms import PasswordResetForm
 from django.conf import settings
 from django.utils.translation import gettext as _
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes, force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+import requests
 
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,12 +29,13 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
     def validate_email(self, value):
         norm_email = value.lower()
+        if not norm_email:
+            raise serializers.ValidationError("This field may not be blank.")
         if User.objects.filter(email=norm_email).exists():
             raise serializers.ValidationError("A user with that email address already exists.")
         return norm_email
 
     def create(self, validated_data):
-        # Profile.perform_create()
         user = User.objects.create_user(validated_data['username'],
             validated_data['email'],
             validated_data['password'])
@@ -108,10 +113,31 @@ class SubmitPasswordResetSerializer(serializers.Serializer):
     def validate(self, data):
         if data['password'] != data['password2']:
             raise serializers.ValidationError("Passwords must match.")
+        uid = force_text(urlsafe_base64_decode(data['uidb64']))
+        user = User.objects.filter(pk=uid).first()        
+        if not default_token_generator.check_token(user, data['token']):
+            raise serializers.ValidationError("Your password reset link has expired. Please request a new one.")
         return data
 
 class ContactEmailSerializer(serializers.Serializer):
     name = serializers.CharField(required=True)
     reply = serializers.EmailField(required=True)
     message = serializers.CharField(required=True)
+    user = serializers.CharField(required=False)
+    captcha = serializers.CharField(required=False)
 
+    def validate(self, data):
+        try: 
+            data['user']
+        except KeyError:
+            recaptcha_response = data['captcha']
+            captcha_data = {
+                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+                'response': recaptcha_response
+            }
+            r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=captcha_data)
+            result = r.json()
+            if result['success']:
+                return data
+            raise serializers.ValidationError('Invalid ReCAPTCHA. Please try again')
+        return data

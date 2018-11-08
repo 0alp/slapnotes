@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link, Redirect} from "react-router-dom";
 import {email} from "../actions";
+import Errors from "./Errors";
 
 
 class ResetPassword extends Component {
@@ -31,34 +32,29 @@ class ResetPassword extends Component {
 			<div className="container-fluid">
 				<div className="row text-center justify-content-center">
 					<div className="col-12">
-						{this.props.errors.length > 0 && (
+						{this.props.user_message && this.state.submitStatus && (
 							<div>
-								<div className="alert alert-danger" role="alert">
-									<strong>Uh-oh! Looks like there are some errors with your submission</strong>
-									{this.props.errors.map(error => (
-										<div>
-											{error.message}
-										</div>
-									))}
-								</div>
+								<div className="alert alert-success" role="alert">{this.props.user_message}</div>
 							</div>
-							)}
-							{this.props.user_message && this.state.submitStatus && (
-								<div>
-									<div className="alert alert-success" role="alert">{this.props.user_message}</div>
-								</div>
-							)}		
+						)}		
 					</div>
 					<div className="col-md-6 col-sm-12">
 					{!this.state.submitStatus || this.props.errors.length ? 
-						<form onSubmit={this.onSubmit}>
+						<form onSubmit={this.onSubmit} className={this.props.errors.length && this.state.submitStatus ? "animated shake" : null}>
 							<legend>Reset Password</legend>
 							<fieldset>	
+								{this.props.errors.length > 0 && (
+									<div>
+										<Errors errors={this.props.errors} />
+									</div>
+								)}
 								<p>
 									<label htmlFor="email">Email</label>
 									<input
 									className="form-control"
-									type="email" id="email"
+									type="email" 
+									id="email"
+									value={this.state.email}
 									onChange={e => this.setState({email: e.target.value})} />
 								</p>	
 								<p>
@@ -69,6 +65,7 @@ class ResetPassword extends Component {
 								</p>
 							</fieldset>
 						</form>: null}
+						{this.props.isSending ? <div><i className="fas fa-cog fa-3x fa-spin"></i></div> : null}
 						<button className="btn btn-default" onClick={(e)=>(e.preventDefault(),this.props.history.goBack())}>Back</button>
 					</div>
 				</div>
@@ -87,6 +84,7 @@ const mapStateToProps = state => {
 	}
 	return {
 		errors, 
+		isSending: state.email.isSending,
 		user_message: state.email.user_message
 	};
 }

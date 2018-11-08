@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link, Redirect} from "react-router-dom";
 import {auth} from "../actions";
+import Errors from "./Errors";
 
 
 class ChangePassword extends Component {
@@ -30,60 +31,53 @@ class ChangePassword extends Component {
 
 	render() {
 		return (
-			<div className="container-fluid">
-				<div className="row text-center justify-content-center">
-					<div className="col-12">
-						{this.props.errors.length > 0 && (
-							<div>
-								<div className="alert alert-danger" role="alert">
-									<strong>Uh-oh! Looks like there are some errors with your submission</strong>
-									{this.props.errors.map(error => (
-										<div>
-											<span>{error.field}: </span><span>{error.message}</span>
-										</div>
-									))}
-								</div>
-							</div>
+			<div className="row text-center justify-content-center">
+				<div className="col-md-6 col-sm-12">
+					<form onSubmit={this.onSubmit} className={this.props.errors.length && this.state.submitStatus ? "animated shake" : null}>
+						<fieldset>	
+							<legend>Change Password</legend>
+							{this.props.errors.length > 0 && this.state.submitStatus && (
+								<Errors errors={this.props.errors} />
 							)}
 							{this.props.user_message && this.state.submitStatus && (
 								<div>
 									<div className="alert alert-success" role="alert">{this.props.user_message}</div>
 								</div>
 							)}		
-					</div>
-					<div className="col-md-6 col-sm-12">
-					{!this.state.submitStatus || this.props.errors.length ? 
-						<form onSubmit={this.onSubmit}>
-							<fieldset>	
-								<legend>Login</legend>
-								<p>
+							{!this.state.submitStatus || this.props.errors.length ? 
+							<div>
+								<div className="form-group">
 									<label htmlFor="username">Old Password</label>
 									<input
 									className="form-control"
-									type="password" id="old_password"
+									type="password" 
+									id="old_password"
+									value={this.state.old_password}
 									onChange={e => this.setState({old_password: e.target.value})} />
-								</p>
-								<p>
+								</div>
+								<div className="form-group">
 									<label htmlFor="password">New Password</label>
 									<input
 									className="form-control"
-									type="password" id="new_password"
+									type="password" 
+									id="new_password"
+									value={this.state.new_password}
 									onChange={e => this.setState({new_password: e.target.value})} />
-								</p>
-								<p>
+								</div>
+								<div className="form-group">
 									<label htmlFor="password">New Password (again)</label>
 									<input
 									className="form-control"
-									type="password" id="new_password2"
+									type="password" 
+									id="new_password2"
+									value={this.state.new_password2}
 									onChange={e => this.setState({new_password2: e.target.value})} />
-								</p>	
-								<p>
-									<button type="button submit" className="btn btn-primary">Change Password</button>
-								</p>
-							</fieldset>
-						</form> : null }
-						<button className="btn btn-default" onClick={(e)=>(e.preventDefault(),this.props.history.goBack())}>Back</button>
-					</div>
+								</div>	
+								<button type="button submit" className="btn btn-primary">Submit</button>
+							</div> : null }
+						</fieldset>
+					</form>
+					<button className="btn btn-default" onClick={(e)=>(e.preventDefault(),this.props.history.goBack())}>Back</button>
 				</div>
 			</div>
 		)

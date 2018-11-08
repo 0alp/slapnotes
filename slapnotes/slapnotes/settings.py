@@ -139,7 +139,7 @@ REST_AUTH_SERIALIZERS = {
         'yourproject_app.serializers.PasswordResetSerializer',
 }
 
-LOGOUT_ON_PASSWORD_CHANGE = False
+# LOGOUT_ON_PASSWORD_CHANGE = False
 
 # Email
 # TESTING - Prints emails to console
@@ -149,3 +149,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'knvb.ajax@gmail.com'
 EMAIL_HOST_PASSWORD = 'dzkuxzdrnokwlhnv'
+
+GOOGLE_RECAPTCHA_SECRET_KEY = "6LdIX3kUAAAAANXVNml2iLci7Rzw5VVhrq94nQ64"

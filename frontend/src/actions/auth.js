@@ -24,31 +24,44 @@ export const loadUser = () => {
 		};
 
 		if (token && token !== 'undefined') {
+
 			headers["Authorization"] = `Token ${token}`;
 
-		return fetch("/api/auth/user/", {headers, })
-			.then(res => {
-				if (res.status < 500) {
-					return res.json().then(data => {
-						return {status: res.status, data};
-					})
-				} else {
-					console.log("Server Error!");
-					throw res;
-				}
-			})
-			.then(res => {
-				if (res.status === 200) {
-					dispatch({type: 'USER_LOADED', user: res.data });
-					return res.data;
-				} else if (res.status >= 400 && res.status < 500) {
-					dispatch({type: "AUTHENTICATION_ERROR", data: res.data});
-					throw res.data;
-				}
-			})
+			return fetch("/api/auth/user/", {headers, })
+				.then(res => {
+					if (res.status < 500) {
+						return res.json().then(data => {
+							return {status: res.status, data};
+						})
+					} else {
+						console.log("Server Error!");
+						throw res;
+					}
+				})
+				.then(res => {
+					if (res.status === 200) {
+						dispatch({type: 'USER_LOADED', user: res.data });
+						return res.data;
+					// probably an expired token, so we'll make them log in again
+					} else if (res.status === 401) {
+						dispatch({type: "NOT_LOGGED_IN"});
+						return res.data;
+					} else if (res.status >= 400 && res.status < 500) {
+						dispatch({type: "AUTHENTICATION_ERROR", data: res.data});
+						throw res.data;
+					}
+				})
+
 		} else {
 			dispatch({type:"NOT_LOGGED_IN"});
 		}
+	}
+}
+
+export const reset = () => {
+	console.log('reset')
+	return (dispatch) => {
+		dispatch({type: 'default', data: null });
 	}
 }
 
@@ -72,7 +85,7 @@ export const login = (username, password) => {
 				if (res.status === 200) {
 					dispatch({type: 'LOGIN_SUCCESSFUL', data: res.data });
 					return res.data;
-				} else if (res.status === 403 || res.status === 401) {
+				} else if (res.status === 403 || res.status === 401 || res.status === 400) {
 					dispatch({type: "AUTHENTICATION_ERROR", data: res.data});
 					throw res.data;
 				} else {
@@ -103,7 +116,7 @@ export const register = (username, password, email) => {
 				if (res.status === 200) {
 					dispatch({type: 'REGISTRATION_SUCCESSFUL', data: res.data });
 					return res.data;
-				} else if (res.status === 403 || res.status === 401) {
+				} else if (res.status === 403 || res.status === 401 || res.status === 400) {
 					dispatch({type: "AUTHENTICATION_ERROR", data: res.data});
 					throw res.data;
 				} else {

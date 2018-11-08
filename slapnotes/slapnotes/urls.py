@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from django.views.generic import TemplateView
 from notes import endpoints
+from notes.api import PasswordResetConfirmView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^api/', include(endpoints)),
+    re_path("^password_reset_confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$", PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
     re_path(r'^', TemplateView.as_view(template_name="index.html")),
 ]

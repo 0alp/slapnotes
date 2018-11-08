@@ -22,25 +22,25 @@ export default function auth(state=initialState, action) {
 
 		case 'LOGIN_SUCCESSFUL':
 			localStorage.setItem("token", action.data.token);
-			return {...state, ...action.data, isAuthenticated: true, isLoading: false, errors: null};
+			return {...state, ...action.data, isAuthenticated: true, isLoading: false, errors: null, user_message: "Login successful."};
 
 		case 'REGISTRATION_SUCCESSFUL':
 			localStorage.setItem("token", action.data.token);
-			return {...state, ...action.data, isAuthenticated: true, isLoading: false, errors: null};
+			return {...state, ...action.data, isAuthenticated: true, isLoading: false, errors: null, user_message: "Your registration was successful."};
 
 		case 'BAD_REQUEST':
-			return {...state, errors: action.data}
+			return {...state, errors: action.data, user_message: null};
 
 		case 'AUTHENTICATION_ERROR':
+			return {...state, errors: action.data, isAuthenticated: false, isLoading: false, user_message: null};
+
 		case 'LOGIN_FAILED':
-	
-		// if we get a 401 when not logged in
-		case 'EXPIRED_TOKEN':
-			return {...state, errors:{'_': 'Your password reset token has expired. Please request a new password reset link.'}}
 
 		case 'RESET_SUCCESSFUL':
 			// localStorage.setItem("token", action.data.token);
-			return {...state, user: action.user, user_message: "Your password has been successfully reset."};
+			localStorage.removeItem("token");
+			return {...state, user: null, token: null, errors: null, isAuthenticated: false, isLoading: false, 
+				user_message: "Your password has been successfully reset. Please login with your new credentials."};
 
 		case 'REGISTRATION_FAILED':
 
@@ -53,6 +53,6 @@ export default function auth(state=initialState, action) {
 				isAuthenticated: false, isLoading: false};
 
 		default:
-			return state;
+			return {...state, errors:{}};
 	}
 }

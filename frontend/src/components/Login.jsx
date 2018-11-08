@@ -2,36 +2,46 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link, Redirect} from "react-router-dom";
 import {auth} from "../actions";
+import Errors from "./Errors";
 
 
 class Login extends Component {
 	state = {
 		username: "",
 		password: "",
+		submitStatus: false
 	}
 
 	onSubmit = e => {
 		e.preventDefault();
 		this.props.login(this.state.username, this.state.password);
+		this.setState({submitStatus: true});
+	}
+
+	componentDidUpdate(prevProps) {
+		if (this.props.location.pathname !== prevProps.location.pathname) {
+			this.onRouteChanged();
+		}
+	}
+
+	onRouteChanged() {
+		this.setState({submitStatus: false});
 	}
 
 	render() {
 		if (this.props.isAuthenticated) {
 			return <Redirect to="/" />
 		}
+
 		return (
 			<div className="container-fluid">
 				<div className="row text-center justify-content-center">
 					<div className="col-md-6 col-sm-12">
-						<form onSubmit={this.onSubmit}>
+						<form onSubmit={this.onSubmit} className={this.props.errors.length && this.state.submitStatus ? "animated shake" : null}>
 							<fieldset>	
 								<legend>Login</legend>
-								{this.props.errors.length > 0 && (
-									<div>
-										{this.props.errors.map(error => (
-										<div className="alert alert-danger" role="alert" key={error.field}>{error.message}</div>
-										))}
-									</div>
+								{this.props.errors.length > 0 && this.state.submitStatus && (
+									<Errors errors={this.props.errors} />
 								)}		
 								<p>
 									<label htmlFor="username">Username</label>

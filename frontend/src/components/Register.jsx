@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-
 import {Link, Redirect} from "react-router-dom";
-
 import {auth} from "../actions";
+import Errors from "./Errors";
 
 class Login extends Component {
 
@@ -11,31 +10,37 @@ class Login extends Component {
 		username: "",
 		password: "",
 		email: "",
+		submitStatus: false,
 	}
 
 	onSubmit = e => {
 		e.preventDefault();
 		this.props.register(this.state.username, this.state.password, this.state.email);
+		this.setState({submitStatus: true})
 	}
 
 	render() {
 		if (this.props.isAuthenticated) {
 			return <Redirect to="/" />
 		}
+
 		return (
 			<div className="containeri-fluid">
 				<div className="row text-center justify-content-center">
 					<div className="col-md-6 col-sm-12">
-						<form onSubmit={this.onSubmit}>
+						<form onSubmit={this.onSubmit} className={this.props.errors.length && this.state.submitStatus ? "animated shake" : null}>
 							<fieldset>
 								<legend>Register</legend>
-								{this.props.errors.length > 0 && (
-									<div>
-										{this.props.errors.map(error => (
-										<div className="alert alert-danger" role="alert" key={error.field}>{error.message}</div>
-										))}
-									</div>
+								{this.props.errors.length > 0 && this.state.submitStatus && (
+									<Errors errors={this.props.errors} />
 								)}
+								{this.props.user_message && this.state.submitStatus && (
+									<div>
+										<div className="alert alert-success" role="alert">{this.props.user_message}</div>
+									</div>
+								)}		
+								{!this.state.submitStatus || this.props.errors.length ?
+								<div>
 								<p>
 									<label htmlFor="username">Username</label>
 									<input
@@ -60,12 +65,13 @@ class Login extends Component {
 
 								<p>
 									<button type="button submit" className="btn btn-primary">Register</button>
-									<button className="btn btn-default" onClick={(e)=>(e.preventDefault(),this.props.history.goBack())}>Back</button>
 								</p>
 
 								<p>
 									Already have an account? <Link to="/login">Login</Link>
-								</p>
+								</p> 
+								</div> : null}
+								<button className="btn btn-default" onClick={(e)=>(e.preventDefault(),this.props.history.goBack())}>Back</button>
 							</fieldset>	
 						</form>
 					</div>
