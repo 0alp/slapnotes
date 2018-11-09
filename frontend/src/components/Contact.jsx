@@ -16,7 +16,13 @@ class Contact extends Component {
 
 	onSubmit = e => {
 		e.preventDefault();
-		this.props.sendContactEmail(this.state.name, this.state.reply, this.state.message, this.props.user, this.state.captcha);
+		let user 
+		if (this.props.user){
+			user = this.props.user.username
+		} else {
+			user = ''
+		}
+		this.props.sendContactEmail(this.state.name, this.state.reply, this.state.message, user, this.state.captcha);
 		this.setState({submitStatus: true});
 	}
 
@@ -87,13 +93,17 @@ class Contact extends Component {
 								</div>
 								</fieldset>
 								<br/>
+								{!this.props.user &&
+									<div className="recaptcha-wrapper">
+										<ReCAPTCHA
+											sitekey="6LdIX3kUAAAAABM7JHwaA-NnjFdce__uU4ya6VWj"
+											onChange={this.onChange}
+										 />
+									</div>
+								}
 								<button className="btn btn-primary" type="submit" value="Send">Submit</button>
 							</form> 
 						: null}
-						<ReCAPTCHA
-						    sitekey="6LdIX3kUAAAAABM7JHwaA-NnjFdce__uU4ya6VWj"
-						    onChange={this.onChange}
-						 />
 						{this.props.isSending ? <div><i className="fas fa-cog fa-3x fa-spin"></i></div> : null}
 						<button className="btn btn-default" onClick={(e)=>(e.preventDefault(),this.props.history.goBack())}>Back</button>
 					</div>

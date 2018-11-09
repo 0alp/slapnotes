@@ -40,6 +40,7 @@ class SlapNote extends Component<{}, AppState> {
 		width: null,
 		submitStatus: null,
 		alertVisible: true,
+		isFullscreen: false
 	}
 
 	resetForm = () => {
@@ -247,7 +248,10 @@ class SlapNote extends Component<{}, AppState> {
 										<div className="form-group">
 											<MediaQuery query="(min-device-width: 576px)">
 												<ReactMde
-													className={this.props.profile.profile.colorscheme}
+													className={this.state.isFullscreen ? 
+														this.props.profile.profile.colorscheme + ' fullscreen':
+														this.props.profile.profile.colorscheme
+													} 
 													onChange={this.handleValueChange}
 													editorState={this.state.mdeState}
 													generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
@@ -256,7 +260,10 @@ class SlapNote extends Component<{}, AppState> {
 											</MediaQuery>
 											<MediaQuery query="(max-device-width: 576px)">
 												<ReactMde
-													className={this.props.profile.profile.colorscheme}
+													className={this.state.isFullscreen ? 
+														this.props.profile.profile.colorscheme + ' fullscreen':
+														this.props.profile.profile.colorscheme
+													} 
 													onChange={this.handleValueChange}
 													editorState={this.state.mdeState}
 													generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
@@ -265,20 +272,29 @@ class SlapNote extends Component<{}, AppState> {
 											</MediaQuery>
 										</div>
 										{alert}
-										<div className="d-inline-flex">
+										<div className="d-inline-flex" style={{flexWrap: 'wrap'}}>
 											<div className="form-group justify-content-start p-2">
 												<button type="button submit" className="btn btn-primary" value="Save Note">Save Note</button>
 											</div>
 											<div className="form-group justify-content-start p-2">
 												<button onClick={this.resetForm} type="button" className="btn btn-default">New Note</button>
 											</div>
+											<div className="form-group justify-content-start p-2">
+												<button onClick={()=>this.setState({isFullscreen: !this.state.isFullscreen})} type="button" className="btn btn-default">
+													Switch to {this.state.isFullscreen ? 'normal' : 'fullscreen'} view
+												</button>
+											</div>
 										</div>
+										{this.state.isFullscreen ? 
+												<div onClick={()=>this.setState({isFullscreen: !this.state.isFullscreen})} className="unfullscreen-wrap">
+													<a href="#!">Return to normal <span role="img" aria-label="back">🔙</span></a>
+												</div>
+										: null}
 									</fieldset>
 								</form>
 							</div>
 						</div>
 					</div>
-					{/*<Footer style={{position: "absolute"}}/>*/}
 				</div>
 			)
 		}

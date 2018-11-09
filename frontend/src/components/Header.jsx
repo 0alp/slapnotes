@@ -29,7 +29,7 @@ export default class Header extends Component {
 						</div>
 					}
 			    </div>
-				<h2><span role="img">👋</span>note!</h2>
+				<Link to="/"><h2><span role="img">👋</span>note!</h2></Link>
 				<br/>
 			</div>
 		)

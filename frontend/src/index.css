@@ -286,11 +286,33 @@ section .svg-inline--fa {
 	opacity: 0;
 }
 
+/* >:( stupid recaptcha lib... */
+.recaptcha-wrapper > div > div > div {
+	height: auto !important;
+	width: auto !important;
+}
+
 /* desktop-specific */
 @media (min-width: 992px) {
 	.example-modal {
 		top: 50%;
 	}
+
+	.react-mde.fullscreen{
+		position: fixed;
+		width: 95%;
+		height: 95%;
+		top: 10px;
+		left: 10px;
+	}
+	
+	.unfullscreen-wrap {
+		position: fixed;
+		bottom: 10px;
+		right: 20px;
+	}
+
+
 }
 
 /* mobile-specific */
@@ -305,6 +327,19 @@ section .svg-inline--fa {
 		max-height: 600px;
 		top: 325px;
 		left: 50%;
+	}
+	
+	.react-mde.fullscreen {
+		position: fixed;
+		width: 90%;
+		overflow: scroll;
+		height: 600px;
+		top: 10px;
+	}
+
+	.unfullscreen-wrap {
+		position: fixed;
+		bottom: 10px;
 	}
 
 	.last-p {

@@ -123,13 +123,13 @@ class ContactEmailSerializer(serializers.Serializer):
     name = serializers.CharField(required=True)
     reply = serializers.EmailField(required=True)
     message = serializers.CharField(required=True)
-    user = serializers.CharField(required=False)
-    captcha = serializers.CharField(required=False)
+    user = serializers.CharField(required=False, allow_blank=True)
+    captcha = serializers.CharField(required=False, allow_blank=True)
 
     def validate(self, data):
-        try: 
-            data['user']
-        except KeyError:
+        if data['user']:
+            return data
+        if data['captcha']:
             recaptcha_response = data['captcha']
             captcha_data = {
                 'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
@@ -139,5 +139,4 @@ class ContactEmailSerializer(serializers.Serializer):
             result = r.json()
             if result['success']:
                 return data
-            raise serializers.ValidationError('Invalid ReCAPTCHA. Please try again')
-        return data
+        raise serializers.ValidationError('Invalid ReCAPTCHA. Please try again')

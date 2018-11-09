@@ -113,6 +113,7 @@ class RootContainerComponent extends Component {
 							backdropInClassName='example-backdrop-in'
 							backdropOutClassName='example-backdrop-out'
 							outDelay={500}
+							props = {{user: this.props.auth.user}}
 						/>
 						<ModalRoute
 							path="/changepassword" 
