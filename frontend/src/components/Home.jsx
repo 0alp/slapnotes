@@ -26,6 +26,7 @@ class Home extends Component {
 				<Header user={this.props.user} logout={this.props.logout} />
 				<section className="text-center">
 					<h1>Welcome to <span role="img">👋</span>note!</h1>
+					<p style={{fontSize: ".75em"}}>(a.k.a. slapnote)</p>
 					<p>
 						A notetaking app for programmers and humans
 					</p>

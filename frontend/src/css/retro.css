@@ -1,0 +1,162 @@
+.retro pre,
+.retro code {
+font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
+.retro pre {
+padding: .5rem;
+line-height: 1.25;
+overflow-x: scroll;
+}
+
+.retro a,
+.retro a:visited {
+text-decoration: underline;
+}
+
+.retro a[href]:after {
+content: " (" attr(href) ")";
+}
+
+.retro abbr[title]:after {
+content: " (" attr(title) ")";
+}
+
+.retro a[href^="#"]:after,
+.retro a[href^="javascript:"]:after {
+content: "";
+}
+
+.retro pre,
+.retro blockquote {
+border: 1px solid #999;
+page-break-inside: avoid;
+}
+
+.retro thead {
+display: table-header-group;
+}
+
+.retro tr,
+img {
+page-break-inside: avoid;
+}
+
+.retro img {
+max-width: 100% !important;
+}
+
+.retro p,
+.retro h2,
+.retro h3 {
+orphans: 3;
+widows: 3;
+}
+
+.retro h2,
+.retro h3 {
+page-break-after: avoid;
+}
+
+
+.retro a,
+.retro a:visited {
+color: #01ff70;
+}
+
+.retro a:hover,
+.retro a:focus,
+.retro a:active {
+color: #2ecc40;
+}
+
+.retro html {
+font-size: 12px;
+}
+
+.retro body {
+line-height: 1.85;
+}
+
+.retro p,
+.retro-p {
+font-size: 1rem;
+margin-bottom: 1.3rem;
+}
+
+.retro h1,
+.retro-h1,
+.retro h2,
+.retro-h2,
+.retro h3,
+.retro-h3,
+.retro h4,
+.retro-h4 {
+margin: 1.414rem 0 .5rem;
+font-weight: inherit;
+line-height: 1.42;
+}
+
+.retro h1,
+.retro-h1 {
+margin-top: 0;
+font-size: 3.998rem;
+}
+
+.retro h2,
+.retro-h2 {
+font-size: 2.827rem;
+}
+
+.retro h3,
+.retro-h3 {
+font-size: 1.999rem;
+}
+
+.retro h4,
+.retro-h4 {
+font-size: 1.414rem;
+}
+
+.retro h5,
+.retro-h5 {
+font-size: 1.121rem;
+}
+
+.retro h6,
+.retro-h6 {
+font-size: .88rem;
+}
+
+.retro small,
+.retro-small {
+font-size: .707em;
+}
+
+/* https://github.com/mrmrs/fluidity */
+
+.retro img,
+.retro canvas,
+.retro iframe,
+.retro video,
+.retro svg,
+.retro select,
+.retro textarea {
+max-width: 100%;
+}
+
+.retro {
+background-color: #222;
+min-height: 100%;
+color: #fafafa;
+font-family: "Courier New";
+}
+
+.retro pre {
+background-color: #333;
+}
+
+.retro blockquote {
+border-left: 3px solid #01ff70;
+padding-left: 1rem;
+}

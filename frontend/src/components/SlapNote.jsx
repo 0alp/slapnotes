@@ -22,9 +22,10 @@ class SlapNote extends Component<{}, AppState> {
 
 	constructor(props) {
 		super(props);
-		    this.converter = new Showdown.Converter({tables: true, simplifiedAutoLink: true, 
-				strikethrough: true, tasklists: true, simpleLineBreaks: true, emoji: true,
-				underline: true, extensions: [xssFilter]});
+	    this.escFunction = this.escFunction.bind(this);
+	    this.converter = new Showdown.Converter({tables: true, simplifiedAutoLink: true, 
+			strikethrough: true, tasklists: true, simpleLineBreaks: true, emoji: true,
+			underline: true, extensions: [xssFilter]});
 	}
 
 	state = {
@@ -121,11 +122,23 @@ class SlapNote extends Component<{}, AppState> {
 		this.setState({width: size.width, height: size.height});
 	};
 
+	escFunction(event){
+			console.log('1')
+	    if(event.keyCode === 27) {
+			this.setState({isFullscreen: false})
+		}
+	}
+	
+	componentWillUnmount(){
+		document.removeEventListener("keydown", this.escFunction);
+	}
+
 	componentDidMount() {
 		if (!this.props.notes.length){
 	    	this.props.fetchNotes();
 		}
 		this.props.fetchProfile()
+		document.addEventListener("keydown", this.escFunction);
 	}
 
 	render() {
@@ -209,7 +222,10 @@ class SlapNote extends Component<{}, AppState> {
 												onChange={(e)=>this.setState({colorscheme: e.target.value},()=>this.saveProfile())}
 												defaultValue={this.props.profile.profile.colorscheme}
 												>
+													<option value="github-md">Github</option>
 													<option value="molokai">Molokai Dark</option>
+													<option value="retro">Retro</option>
+													<option value="solarized-dark">Solarized Dark</option>
 													<option value="solarized">Solarized Light</option>
 												</select>
 											</div>
@@ -287,7 +303,7 @@ class SlapNote extends Component<{}, AppState> {
 										</div>
 										{this.state.isFullscreen ? 
 												<div onClick={()=>this.setState({isFullscreen: !this.state.isFullscreen})} className="unfullscreen-wrap">
-													<a href="#!">Return to normal <span role="img" aria-label="back">🔙</span></a>
+													<a href="#!"><span role="img" aria-label="back">🔙</span></a>
 												</div>
 										: null}
 									</fieldset>

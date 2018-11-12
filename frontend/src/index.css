@@ -3,6 +3,9 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand');
 @import url('./css/bootstrap-molokai.css');
 @import url('./css/solarized-light.css');
+@import url('./css/solarized-dark.css');
+@import url('./css/github-markdown.css');
+@import url('./css/retro.css');
 
 :root {
 	--darkblue: #000033;
@@ -97,7 +100,7 @@ ul {
 
 .mde-text {
 	font-family: 'Cutive Mono', monospace;
-	font-size: 1.15em;
+	font-size: 1em;
 }
 
 .react-mde {
@@ -286,6 +289,11 @@ section .svg-inline--fa {
 	opacity: 0;
 }
 
+.made-by {
+	font-size: .75em;
+	background-color: purple;
+}
+
 /* >:( stupid recaptcha lib... */
 .recaptcha-wrapper > div > div > div {
 	height: auto !important;
@@ -339,7 +347,15 @@ section .svg-inline--fa {
 
 	.unfullscreen-wrap {
 		position: fixed;
-		bottom: 10px;
+		top: 10px;
+		z-index: 999;
+		right: 25px;
+		color: black
+	}
+
+	.unfullscreen-wrap span {
+	    color: grey;
+	    padding: 5px;
 	}
 
 	.last-p {
@@ -360,6 +376,14 @@ section .svg-inline--fa {
 
 	.slapnote-row {
 		display: block;
+	}
+
+	.ss-style-doublediagonal .col-12 {
+		padding-bottom:20px;
+	}
+
+	.ss-style-doublediagonal-rev .col-12 {
+		padding-bottom:20px;
 	}
 }
 

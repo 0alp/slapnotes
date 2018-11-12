@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {Link, Redirect} from "react-router-dom";
 import {email} from "../actions";
 import Errors from "./Errors";
+import MediaQuery from 'react-responsive';
 import ReCAPTCHA from "react-google-recaptcha";
 
 class Contact extends Component {
@@ -94,11 +95,24 @@ class Contact extends Component {
 								</fieldset>
 								<br/>
 								{!this.props.user &&
-									<div className="recaptcha-wrapper">
-										<ReCAPTCHA
-											sitekey="6LdIX3kUAAAAABM7JHwaA-NnjFdce__uU4ya6VWj"
-											onChange={this.onChange}
-										 />
+									<div>
+										<MediaQuery query="(min-device-width: 576px)">
+											<div className="recaptcha-wrapper">
+												<ReCAPTCHA
+													sitekey="6LdIX3kUAAAAABM7JHwaA-NnjFdce__uU4ya6VWj"
+													onChange={this.onChange}
+												 />
+											</div>
+										</MediaQuery>
+										<MediaQuery query="(max-device-width: 576px)">
+											<div className="recaptcha-wrapper">
+												<ReCAPTCHA
+													sitekey="6LdIX3kUAAAAABM7JHwaA-NnjFdce__uU4ya6VWj"
+													onChange={this.onChange}
+													size="compact"
+												 />
+											</div>
+										</MediaQuery>
 									</div>
 								}
 								<button className="btn btn-primary" type="submit" value="Send">Submit</button>
