@@ -14,6 +14,8 @@ export default function notes(state=initialState, action) {
 		case 'UPDATE_NOTE':
 			let noteToUpdate = noteList[action.index]
 			noteToUpdate.text = action.note.text;
+			noteToUpdate.name = action.note.name;
+			noteToUpdate.id = action.note.id;
 			noteList.splice(action.index, 1, noteToUpdate);
 			return noteList;
 

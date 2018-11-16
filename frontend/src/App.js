@@ -35,7 +35,7 @@ class RenderBlocker extends React.Component {
 
 class RootContainerComponent extends Component {
 	state = {
-		shouldPageUpdate: true 
+		shouldPageUpdate: true,
 	}
 
 	componentDidMount() {

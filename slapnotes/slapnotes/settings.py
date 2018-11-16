@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
-import os
+import os, json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +20,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'y2fe60n560wu%!y)pewv(m_yjj0=9u#*2z6lv+=vv%j#e+p9%u'
+with open("./secrets.json") as f:
+    secrets = json.loads(f.read())
+
+def get_secret(settings, secrets=secrets):
+    try:
+        return secrets[settings]
+    except KeyError:
+        error_msg = "Set the {0} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+
+SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -148,6 +158,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'knvb.ajax@gmail.com'
-EMAIL_HOST_PASSWORD = 'dzkuxzdrnokwlhnv'
+EMAIL_HOST_PASSWORD = get_secret("EMAIL_HOST_PASSWORD")
 
-GOOGLE_RECAPTCHA_SECRET_KEY = "6LdIX3kUAAAAANXVNml2iLci7Rzw5VVhrq94nQ64"
+#ReCAPTCHA
+GOOGLE_RECAPTCHA_SECRET_KEY = get_secret("GOOGLE_RECAPTCHA_SECRET_KEY")
+

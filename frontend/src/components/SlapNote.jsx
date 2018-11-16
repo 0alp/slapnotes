@@ -41,7 +41,9 @@ class SlapNote extends Component<{}, AppState> {
 		width: null,
 		submitStatus: null,
 		alertVisible: true,
-		isFullscreen: false
+		isFullscreen: false,
+		width: 0,
+		height: 0
 	}
 
 	resetForm = () => {
@@ -75,7 +77,7 @@ class SlapNote extends Component<{}, AppState> {
 		e.preventDefault();
 		if (this.state.updateNoteId === null) {
 			this.props.addNote(this.state.mdeState.markdown, this.state.name).then(
-				(data)=>{this.setState({submitStatus: data})},
+				(data)=>{this.setState({submitStatus: data}),this.selectForEdit(this.props.notes.length-1)},
 				(error)=>{this.setState({error})}
 			)
 		} else {
@@ -123,14 +125,18 @@ class SlapNote extends Component<{}, AppState> {
 	};
 
 	escFunction(event){
-			console.log('1')
 	    if(event.keyCode === 27) {
 			this.setState({isFullscreen: false})
 		}
 	}
+
+	updateWindowDimensions() {
+		this.setState({ width: window.innerWidth, height: window.innerHeight });
+	}
 	
 	componentWillUnmount(){
 		document.removeEventListener("keydown", this.escFunction);
+		document.removeEventListener('resize', this.updateWindowDimensions);
 	}
 
 	componentDidMount() {
@@ -139,6 +145,8 @@ class SlapNote extends Component<{}, AppState> {
 		}
 		this.props.fetchProfile()
 		document.addEventListener("keydown", this.escFunction);
+		this.updateWindowDimensions();
+		document.addEventListener('resize', this.updateWindowDimensions);
 	}
 
 	render() {
@@ -166,14 +174,14 @@ class SlapNote extends Component<{}, AppState> {
 					<Header user={this.props.user} logout={this.props.logout} />
 					<div className="container-fluid">
 						<div className="row slapnote-row">
-							<div className="col-md-1">
+							<div className="col-md-1 note-list">
 								<h3>Notes</h3>
 								<table>
 									<tbody>
 										{this.props.notes.map((note, id) => (
 											<tr key={`note_${id}`}>
-												<td><a href="#!" onClick={() => this.selectForDelete(id)}><span role="img">🗑️</span></a></td>
-												<td><a href="#!" onClick={() => this.selectForEdit(id)}>{note.name}</a></td>
+												<td><a href="#!" onClick={() => this.selectForDelete(id)}><span role="img">🗑️</span></a>&nbsp;
+												<a href="#!" onClick={() => this.selectForEdit(id)}>{note.name}</a></td>
 											</tr>
 										))}
 									</tbody>
@@ -184,27 +192,129 @@ class SlapNote extends Component<{}, AppState> {
 								<form onSubmit={this.submitNote}>
 									<fieldset>
 										<div className="row">
-											<div className="form-group col-11">
-											<input
-												className="form-control"
-												value={this.state.name}
-												placeholder="Enter name here..."
-												onChange={(e) => this.setState({name: e.target.value})}
-											required />
+											<div className="form-group col-12">
+												<input
+													className="form-control"
+													value={this.state.name}
+													placeholder="Enter name here..."
+													onChange={(e) => this.setState({name: e.target.value})}
+												required />
 											</div>
-											<div className="col-1">
-												<h3>
-													<a href="#!">
-														<span role="img" 
-														onClick={(e)=>(this.setState({showSettings: !this.state.showSettings}))}  
-														data-toggle="tooltip" 
-														data-placement="top" 
-														title="Settings">
-															⚙️
-														</span>
-													</a>
-												</h3>
-											</div>
+											{/*<MediaQuery query="(min-device-width: 576px)">
+												<div className="form-group col-11">
+												<input
+													className="form-control"
+													value={this.state.name}
+													placeholder="Enter name here..."
+													onChange={(e) => this.setState({name: e.target.value})}
+												required />
+												</div>
+												<div className="col-1">
+													<h3 style={{display: "inline", padding:"5px"}}>
+														<a href="#!">
+															<span role="img" 
+															onClick={(e)=>(this.setState({showSettings: !this.state.showSettings}))}  
+															data-toggle="tooltip" 
+															data-placement="top" 
+															title="Settings">
+																⚙️
+															</span>
+														</a>
+													</h3>
+													<h3 style={{display: "inline", padding: "5px"}}>
+														<a href="#!">
+															<span role="img" 
+															onClick={(e)=>(this.submitNote(e))}  
+															data-toggle="tooltip" 
+															data-placement="top" 
+															title="Save Note">
+																💾
+															</span>
+														</a>
+													</h3>
+												</div>
+											</MediaQuery>
+											<MediaQuery query="(max-device-width: 576px)">
+												<div className="form-group col-9">
+												<input
+													className="form-control"
+													value={this.state.name}
+													placeholder="Enter name here..."
+													onChange={(e) => this.setState({name: e.target.value})}
+												required />
+												</div>
+												<div className="col-3">
+													<h3 style={{display: "inline", padding:"5px"}}>
+														<a href="#!">
+															<span role="img" 
+															onClick={(e)=>(this.setState({showSettings: !this.state.showSettings}))}  
+															data-toggle="tooltip" 
+															data-placement="top" 
+															title="Settings">
+																⚙️
+															</span>
+														</a>
+													</h3>
+													<h3 style={{display: "inline", padding: "5px"}}>
+														<a href="#!">
+															<span role="img" 
+															onClick={(e)=>(this.submitNote(e))}  
+															data-toggle="tooltip" 
+															data-placement="top" 
+															title="Save Note">
+																💾
+															</span>
+														</a>
+													</h3>
+												</div>
+											</MediaQuery>*/}
+												<div className="form-group col-12">
+													<h3 style={{display: "inline", padding:"5px"}}>
+														<a href="#!">
+															<span role="img" 
+															onClick={(e)=>(this.setState({showSettings: !this.state.showSettings}))}  
+															data-toggle="tooltip" 
+															data-placement="top" 
+															title="Settings">
+																⚙️
+															</span>
+														</a>
+													</h3>
+													<h3 style={{display: "inline", padding: "5px"}}>
+														<a href="#!">
+															<span role="img" 
+															onClick={(e)=>(this.submitNote(e))}  
+															data-toggle="tooltip" 
+															data-placement="top" 
+															title="Save Note">
+																💾
+															</span>
+														</a>
+													</h3>
+													<h3 style={{display: "inline", padding: "5px"}}>
+														<a href="#!">
+															<span role="img" 
+															onClick={()=>(this.resetForm())}  
+															data-toggle="tooltip" 
+															data-placement="top" 
+															title="New Note">
+																📝
+															</span>
+														</a>
+													</h3>
+													<h3 style={{display: "inline", padding: "5px"}}>
+														<a href="#!">
+															<span role="img" 
+															onClick={()=>(this.setState({isFullscreen: true}))}  
+															data-toggle="tooltip" 
+															data-placement="top" 
+															title="Switch to fullscreen">
+																📺
+															</span>
+														</a>
+													</h3>
+
+												</div>
 										</div>
 										<CSSTransitionGroup
 											transitionName="settings-transition"
@@ -261,34 +371,45 @@ class SlapNote extends Component<{}, AppState> {
 										</div>
 										: null }
 										</CSSTransitionGroup>
+										{alert}
 										<div className="form-group">
 											<MediaQuery query="(min-device-width: 576px)">
-												<ReactMde
-													className={this.state.isFullscreen ? 
-														this.props.profile.profile.colorscheme + ' fullscreen':
-														this.props.profile.profile.colorscheme
-													} 
-													onChange={this.handleValueChange}
-													editorState={this.state.mdeState}
-													generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
-													layout={this.props.profile.profile.layout ? this.props.profile.profile.layout : "horizontal"}
-												/>
+												<div 
+													style={this.state.isFullscreen ? {height: this.state.height+'px'} : null} 
+													className={this.state.isFullscreen ? 'fullscreen-wrap' : null}
+												>
+													<ReactMde
+														className={this.state.isFullscreen ? 
+															this.props.profile.profile.colorscheme + ' fullscreen':
+															this.props.profile.profile.colorscheme
+														} 
+														onChange={this.handleValueChange}
+														editorState={this.state.mdeState}
+														generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
+														layout={this.props.profile.profile.layout ? this.props.profile.profile.layout : "horizontal"}
+													/>
+												</div>
 											</MediaQuery>
 											<MediaQuery query="(max-device-width: 576px)">
-												<ReactMde
-													className={this.state.isFullscreen ? 
-														this.props.profile.profile.colorscheme + ' fullscreen':
-														this.props.profile.profile.colorscheme
-													} 
-													onChange={this.handleValueChange}
-													editorState={this.state.mdeState}
-													generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
-													layout={this.props.profile.profile.layout ? this.props.profile.profile.layout : "vertical"}
+												<div 
+													style={this.state.isFullscreen ? {height: this.state.height-20+'px'} : null} 
+													className={this.state.isFullscreen ? 'fullscreen-wrap' : null}
+												>												
+													<ReactMde
+														className={this.state.isFullscreen ? 
+															this.props.profile.profile.colorscheme + ' fullscreen':
+															this.props.profile.profile.colorscheme
+														} 
+														onChange={this.handleValueChange}
+														editorState={this.state.mdeState}
+														generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
+														layout={this.props.profile.profile.layout ? this.props.profile.profile.layout : "vertical"}
+														style={this.state.isFullscreen ? {height: this.state.height-20+'px'} : null}
 												/>
+												</div>
 											</MediaQuery>
 										</div>
-										{alert}
-										<div className="d-inline-flex" style={{flexWrap: 'wrap'}}>
+										{/*<div className="d-inline-flex" style={{flexWrap: 'wrap'}}>
 											<div className="form-group justify-content-start p-2">
 												<button type="button submit" className="btn btn-primary" value="Save Note">Save Note</button>
 											</div>
@@ -300,7 +421,7 @@ class SlapNote extends Component<{}, AppState> {
 													Switch to {this.state.isFullscreen ? 'normal' : 'fullscreen'} view
 												</button>
 											</div>
-										</div>
+										</div>*/}
 										{this.state.isFullscreen ? 
 												<div onClick={()=>this.setState({isFullscreen: !this.state.isFullscreen})} className="unfullscreen-wrap">
 													<a href="#!"><span role="img" aria-label="back">🔙</span></a>

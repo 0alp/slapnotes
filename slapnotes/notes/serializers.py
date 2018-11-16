@@ -8,6 +8,7 @@ from django.utils.translation import gettext as _
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.contrib.auth import password_validation
 import requests
 
 class NoteSerializer(serializers.ModelSerializer):
@@ -35,6 +36,10 @@ class CreateUserSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("A user with that email address already exists.")
         return norm_email
 
+    def validate_password(self, value):
+        password_validation.validate_password(value, self.instance)
+        return value
+
     def create(self, validated_data):
         user = User.objects.create_user(validated_data['username'],
             validated_data['email'],
@@ -61,6 +66,10 @@ class ChangePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
     new_password2 = serializers.CharField(required=True)
+
+    def validate_password(self, value):
+        password_validation.validate_password(value, self.instance)
+        return value
     
     def validate(self, data):
         if not data['new_password'] == data['new_password2']:
@@ -109,6 +118,10 @@ class SubmitPasswordResetSerializer(serializers.Serializer):
     uidb64 = serializers.CharField(required=True)
     password = serializers.CharField(required=True)
     password2 = serializers.CharField(required=True)
+
+    def validate_password(self, value):
+        password_validation.validate_password(value, self.instance)
+        return value
 
     def validate(self, data):
         if data['password'] != data['password2']:

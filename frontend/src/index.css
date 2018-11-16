@@ -67,6 +67,15 @@ ul {
 	list-style: none;
 }
 
+table {
+	table-layout: fixed;
+	width: 100%
+}
+
+td {
+	overflow-wrap: break-word;
+}
+
 .btn {
 	margin: 10px;
 }
@@ -213,14 +222,6 @@ section .svg-inline--fa {
 	color: dimgrey;
 }
 
-/* .fa-mobile { */
-/* 	margin: -30px -150px 30px 0; */
-/* } */
-
-/* .fa-tablet { */
-/* 	margin: -30px 0 30px -150px; */
-/* } */
-
 .settings-transition-enter {
 	opacity: 0.01;
 	max-height: 0;
@@ -294,6 +295,11 @@ section .svg-inline--fa {
 	background-color: purple;
 }
 
+.last-p {
+	padding-bottom: 150px;
+}
+
+
 /* >:( stupid recaptcha lib... */
 .recaptcha-wrapper > div > div > div {
 	height: auto !important;
@@ -312,6 +318,8 @@ section .svg-inline--fa {
 		height: 95%;
 		top: 10px;
 		left: 10px;
+		transition: 2s;
+		/* overflow: scroll; */
 	}
 	
 	.unfullscreen-wrap {
@@ -320,6 +328,9 @@ section .svg-inline--fa {
 		right: 20px;
 	}
 
+	.note-list {
+		max-height: 100%;
+	}
 
 }
 
@@ -338,11 +349,19 @@ section .svg-inline--fa {
 	}
 	
 	.react-mde.fullscreen {
+		/* position: fixed; */
+		/* width: 90%; */
+		/* overflow: scroll; */
+		/* /1* height: 600px; *1/ */
+		/* top: 10px; */
+	}
+
+	.fullscreen-wrap{
 		position: fixed;
-		width: 90%;
+	    width: 90%;
 		overflow: scroll;
-		height: 600px;
 		top: 10px;
+		z-index: 2;
 	}
 
 	.unfullscreen-wrap {
@@ -356,10 +375,6 @@ section .svg-inline--fa {
 	.unfullscreen-wrap span {
 	    color: grey;
 	    padding: 5px;
-	}
-
-	.last-p {
-		padding-bottom: 150px;
 	}
 
 	.first-row-after-rev{
@@ -384,6 +399,11 @@ section .svg-inline--fa {
 
 	.ss-style-doublediagonal-rev .col-12 {
 		padding-bottom:20px;
+	}
+
+	.note-list {
+		max-height: 200px;
+	    overflow: scroll;
 	}
 }
 
