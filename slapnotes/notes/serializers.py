@@ -107,7 +107,7 @@ class PasswordResetSerializer(serializers.Serializer):
         request = self.context.get('request')
         opts = {
             'use_https': request.is_secure(),
-            'from_email': getattr(settings, 'EMAIL_HOST_USER'),
+            'from_email': getattr(settings, 'DEFAULT_FROM_EMAIL'),
             'email_template_name': 'password_email.html',
             'request': request,
         }

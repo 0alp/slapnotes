@@ -142,5 +142,5 @@ class ContactEmailAPI(generics.GenericAPIView):
         message = serializer.validated_data['message']
         email_text = "You received a message from {name} at {email}: {message}".format(
                 name=name, email=email, message=message)
-        send_mail("Contact email from Slapnote", email_text, email, [getattr(settings, 'EMAIL_HOST_USER')])
+        send_mail("Contact email from Slapnote", email_text, getattr(settings, 'DEFAULT_FROM_EMAIL'), [getattr(settings, 'DEFAULT_FROM_EMAIL')])
         return Response(serializer.data)
