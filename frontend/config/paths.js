@@ -43,7 +43,7 @@ module.exports = {
   dotenv: resolveApp('.env'),
   appBuild: resolveApp('build'),
   // production setting
-  // appBuild: resolveApp('../assets/bundles/'),
+  appBuild: resolveApp('../assets/bundles/'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
   appIndexJs: resolveApp('src/index.js'),

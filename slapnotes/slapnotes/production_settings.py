@@ -1,7 +1,9 @@
 from .settings import *
 
+STATIC_ROOT = '/home/slaponicus/sites/slapnotes/assets/'
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "assets"),
+    os.path.join(BASE_DIR, "./assets"),
 ]
 
 WEBPACK_LOADER = {

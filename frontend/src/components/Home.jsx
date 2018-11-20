@@ -28,7 +28,7 @@ class Home extends Component {
 					<h1>Welcome to <span role="img">👋</span>note!</h1>
 					<p style={{fontSize: ".75em"}}>(a.k.a. slapnote)</p>
 					<p>
-						A notetaking app for programmers and humans
+						A colorful notetaking app for programmers and other people
 					</p>
 					<div className="row">
 						<div className="col-12">
@@ -48,7 +48,7 @@ class Home extends Component {
 						<div className="col-12 col-md-4">
 							<h3>Vim-inspired colorschemes</h3>
 							<i className="fas fa-palette fa-10x"></i>
-							<p>Are you used to the colors in your terminal? Edit your notes in a variety of colorschemes with basic Markdown syntax highlighting.</p>
+							<p>Do you love your terminal colors? Edit your notes in a variety of colorschemes with basic Markdown syntax highlighting.</p>
 						</div>
 						<div className="col-12 col-md-4">
 							<h3>Live markdown editor</h3>
@@ -85,7 +85,7 @@ class Home extends Component {
 						</div>
 						<div className="col-12 col-md-3">
 							<h4>Professional yet FUN<span role="img">🎉</span></h4>
-							<p>Slapnote adds a sense of humor and adventure to a reliabile, secure, and efficient app - who else would have an emoji domain?</p>
+							<p>Slapnote adds a sense of humor and adventure to a reliabile, secure, and efficient app - hence the emoji domain <span role="img" aria-label="wink">😉</span></p>
 						</div>
 					</div>
 				</section>
