@@ -20,7 +20,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with open("./secrets.json") as f:
+key = os.path.join(BASE_DIR, "secrets.json")
+with open(key) as f:
     secrets = json.loads(f.read())
 
 def get_secret(settings, secrets=secrets):
