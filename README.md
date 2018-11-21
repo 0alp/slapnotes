@@ -27,7 +27,7 @@ Steps for deployment with Apache 2:
 - Build production files - `npm run build`
 - Move to top level - `cd ..`
 - Move assets - `mv assets/ slapnotes/`
-- Edit mod.wsgi for multisite server - check custom mod.wsgi... (daemon mode)
+- Edit mod.wsgi - we have to tell it to add our site directory to PYTHONPATH and use production settings
 
 `
 import os, sys
@@ -42,13 +42,13 @@ sys.path.append('/var/www/slapnotes/slapnotes/slapnotes/')
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "slapnotes.production_settings")
  
-application = get_wsgi_application()
-`
+application = get_wsgi_application()`
+
 - Move to apache directory - `cd /etc/apache2/sites-available`
 - Use this conf (but use your site name and path names):
 
-`
-WSGIScriptAlias / /var/www/slapnotes/slapnotes/slapnotes/wsgi.py
+
+`WSGIScriptAlias / /var/www/slapnotes/slapnotes/slapnotes/wsgi.py
 WSGIPythonHome /var/www/slapnotes
 WSGIPythonPath /var/www/slapnotes:/var/www/slapnotes/slapnotes/lib/python3.4
 WSGIPassAuthorization On
@@ -89,6 +89,7 @@ WSGIPassAuthorization On
 
 </VirtualHost>
 `
+
 - Enable site - `sudo a2ensite xn--note-fi63c.ws`
 - Restart apache - `sudo service apache2 restart`
 
