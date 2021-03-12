@@ -40,7 +40,7 @@
     "react": "^16.5.2",
     "react-collapsible": "^2.3.1",
     "react-confirm-alert": "^2.0.5",
-    "react-dev-utils": "^5.0.2",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "^16.5.0",
     "react-draggable": "^3.0.5",
     "react-google-recaptcha": "^1.0.4",
